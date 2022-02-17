@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href= {% static 'questionsRules/reset.css' %}>
+    <link rel="stylesheet" href= {% static 'questionsRules/style.css' %}>
+    <title>SEGorgojo</title>
+</head>
+<body>
+    <header>
+        <h1>Rule</h1>
+    </header>
+    <main>
+        {% if latest_question_list %}
+            <ul>
+                {% for question in latest_question_list  %}
+                    <li>
+                        <a href=" {% url 'questionsRules:detail' question.id%}">{{question.question_text}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        <p>Question error!!</p>
+    {% endif %} 
+    </main>
+    <footer>
+        <a href="#">Contacto</a>
+        <a href="#">terminos y condiciones</a>
+        <a href="#">Politica de Privacidad</a>
+    </footer>
+</body>
+</html>
+
+{% comment %} {% load static %}
+<link rel="stylesheet" href= {% static 'questionsRules/style.css' %}>
+
+{% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list  %}
+        {% comment %} {% if question_id == 0 %} {% endcomment %}
+            {% comment %} <li><a href=" {% url 'questionsRules:detail' question.id%}">{{question.question_text}}</a></li> {% endcomment %}
+        {% comment %} {% endif %} {% endcomment %}
+        {% comment %} {% endfor %}
+    </ul>
+{% else %}
+    <p>Question error!!</p>
+{% endif %} {% endcomment %} 
