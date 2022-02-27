@@ -1,0 +1,44 @@
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    width: 100vw;
+    height: 10vh;
+    padding: 10px 4px;
+    bottom: 0;
+    clear: both;
+}
+
+footer img {
+    max-width: 30px;
+    max-height: auto;
+    padding: 0;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0;
+    padding: 0 4px;
+}
+
+footer p {
+    color: white;
+    margin: 0;
+    padding: 10 4px;
+}
+
+footer p:hover {
+    color: #5ea3e0;
+}
+
+footer a:hover {
+    background: linear-gradient(
+        to right,
+        hsl(90 100% 62%),
+        hsl(204 100% 69%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

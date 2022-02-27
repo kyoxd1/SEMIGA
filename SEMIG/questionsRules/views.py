@@ -18,7 +18,9 @@ class IndexView(generic.ListView):
     
     def get_queryset(self):
         """Return all questions"""
-        return Question.objects.all()
+        # return Question.objects.all()
+        """Return questions 1er rule"""
+        return Question.objects.filter(pk__in=[1,2]);
 
 
 # def detail(request, question_id):
@@ -27,6 +29,20 @@ class IndexView(generic.ListView):
 #         "question": question
 #     });
 
+def rules(request):
+    latest_question_list = Question.objects.filter(pk__in=[1,2])
+    return render(request, "questionsRules/rules.html", {
+        "latest_question_list": latest_question_list
+        });
+    
+def resp(request):
+    if(1 == 'si' and 2 == 'si'):
+        latest_question_list = Question.objects.filter(pk = 4)
+    else:
+        latest_question_list = Question.objects.filter(pk__in=[3,4])
+    return render(request, "questionsRules/rules.html", {
+        "latest_question_list": latest_question_list
+        });
 class DetailView(generic.DetailView):
     model = Question
     template_name= "questionsRules/detail.html"

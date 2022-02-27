@@ -1,0 +1,34 @@
+{% load static %}
+<link rel="stylesheet" href= {% static 'questionsRules/header.css' %}>
+<link rel="stylesheet" href= {% static 'questionsRules/rules.css' %}>
+<link rel="stylesheet" href= {% static 'questionsRules/footer.css' %}>
+
+{% if latest_question_list %}
+    {% include "questionsRules/header.html" %}
+    <main>
+        <ul>
+            <form action="{% url 'questionsRules:resp' %}" method="post">
+                {% csrf_token %}
+                {% for question in latest_question_list  %}
+                    <fieldset>
+                        <legend> <h1>{{ question.question_text }}</h1></legend>
+                        {% if error_message %}
+                            <p> <strong>{{ error_message }}</strong></p>
+                        {% endif %}
+                        {% for choice in question.choices_set.all  %}
+                            <input type="radio" name="{{ question.id }}" value="{{ choice.choice_text }}" id= "{{ choice.id }}">
+                            <label for="{{ question.id }}">
+                                {{ choice.choice_text}}
+                            </label>
+                            <br>
+                        {% endfor %}
+                    </fieldset>
+                {% endfor %}
+                <input type="submit" value= "aceptar" >
+            </form>
+        </ul>
+    </main>
+    {% include "questionsRules/footer.html" %}
+    {% else %}
+    <p>Question error!!</p>
+{% endif %}
