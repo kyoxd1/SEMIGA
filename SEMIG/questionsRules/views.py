@@ -36,11 +36,42 @@ def rules(request):
         });
     
 def resp(request):
-    if(1 == 'si' and 2 == 'si'):
-        latest_question_list = Question.objects.filter(pk = 4)
-    else:
-        latest_question_list = Question.objects.filter(pk__in=[3,4])
-    return render(request, "questionsRules/rules.html", {
+    
+    #value=request.POST['TB_sample']
+    # value = request.REQUEST.get(request,'TB_sample')
+    # value = request.POST.get('TB_sample','')
+    latest_question_list = Question.objects.filter(pk__in=[3,4])
+    try:
+        question1 = request.POST['question1']
+        question2 = request.POST['question2']
+        if(question1=='No' and question2 == 'No'):
+            return render(request, "questionsRules/gorgojoInformation.html", {
+                "latest_question_list": latest_question_list
+            })
+        elif(question1=='Si' and question2 == 'Si'):
+            return render(request, "questionsRules/gorgojoInformation.html", {
+                "latest_question_list": latest_question_list
+            })
+        elif(question1=='No' and question2 == 'Si'):
+            return render(request, "questionsRules/gorgojoInformation.html", {
+                "latest_question_list": latest_question_list
+            })
+        else:
+            return render(request, "questionsRules/rules.html", {
+                "latest_question_list": latest_question_list
+            })
+        
+    except (KeyError, Question.DoesNotExist, Choices.DoesNotExist):
+        latest_question_list = Question.objects.filter(pk__in=[1,2])
+        return render(request, "questionsRules/rules.html",{
+            "latest_question_list": latest_question_list,
+            "error_message": "No elegiste ninguna respuesta"
+        })
+    
+    
+def gorgojoInformation(request, latest_question_list):
+    # latest_question_list = Question.objects.filter(pk__in=[3,4])
+    return render(request, "questionsRules/gorgojoInformation.html", {
         "latest_question_list": latest_question_list
         });
 class DetailView(generic.DetailView):

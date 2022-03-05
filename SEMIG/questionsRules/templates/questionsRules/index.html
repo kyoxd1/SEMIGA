@@ -1,38 +1,28 @@
 {% load static  %}
-<link rel="stylesheet" href= {% static 'questionsRules/header.css' %}>
+
 <link rel="stylesheet" href= {% static 'questionsRules/index.css' %}>
-<link rel="stylesheet" href= {% static 'questionsRules/footer.css' %}>
+
 
 {% if latest_question_list %}
     {% include "questionsRules/header.html" %}
-
-    <main>
-        <div class="image-container box1">
-            <img src="static/questionsRules/images/gorgojo.jpg"
-            class="rounded" alt="Gorgojo y el peligro hacia nuestro cultivo de papa">
-        </div>
-        <div class="box2">
-            <p class="principal-text">¿Sabia Usted que la plaga del Gorgojo de Los Andes podria dañar hasta el 100% de su cultivo si no es combatido y/o controlado a tiempo.?</p>
-            <p class="secundary-text">Pero no se preocupe, con este Sistema Experto obtendra la guia y conocimientos necesarios para realizar un buen manejo integrado para la plaga del Gorgojo de Los Andes</p>
-        </div>
-        <div class="box3">
-            <a href ="{% url 'questionsRules:rules'%}">Realizar Manejo Integrado</a>
+    <main class="content_main">
+        <div class="grid">
+            <div class="image-container box1">
+                <img src="static/questionsRules/images/gorgojo.jpg"
+                class="rounded rounded float-left" alt="Gorgojo y el peligro hacia nuestro cultivo de papa">
+            </div>
+            <div class="box2">
+                <p class="first-text text-center">¿Sabia Usted que la plaga del Gorgojo de Los Andes podria dañar hasta el 100% de su cultivo si no es combatido y/o controlado a tiempo.?</p>
+                <p class="secundary-text text-center">Pero no se preocupe, con este Sistema Experto obtendra la guia y conocimientos necesarios para realizar un buen manejo integrado para la plaga del Gorgojo de Los Andes</p>
+                <br>
+            </div>
+            <div class="box3">
+                <a href ="{% url 'questionsRules:rules'%}">Realizar Manejo Integrado</a>
+            </div>
         </div>
     </main>
     {% include "questionsRules/footer.html" %}
-    
 {% else %}
     <p>Question error!!</p>
 {% endif %}
 
-{% comment %} {% if latest_question_list %}
-            <ul>
-                {% for question in latest_question_list  %}
-                    <li>
-                        <a href=" {% url 'questionsRules:detail' question.id%}">{{question.question_text}}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-        <p>Question error!!</p>
-        {% endif %}  {% endcomment %}

@@ -1,0 +1,18 @@
+{% load static %}
+<link rel="stylesheet" href= {% static 'questionsRules/header.css' %}>
+{% comment %} <link rel="stylesheet" href= {% static 'questionsRules/rules.css' %}> {% endcomment %}
+<link rel="stylesheet" href= {% static 'questionsRules/footer.css' %}>
+
+
+{% if latest_question_list %}
+    {% include "questionsRules/header.html" %}
+
+    <main>
+        <p>vista Gorgojo
+        </p>
+    </main>
+
+{% include "questionsRules/footer.html" %}
+    {% else %}
+    <p>Question error!!</p>
+{% endif %}
