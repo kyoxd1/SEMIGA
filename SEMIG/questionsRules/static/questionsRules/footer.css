@@ -1,20 +1,24 @@
 .footer{
     justify-content: space-evenly;
-    height: 75px;
-    padding-bottom: 32000px;
-    margin-bottom: -32000px;
+    height: 4rem;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    opacity: 100%;
+    background: hsl(204, 100%, 5%);
 }
 
 .footer img{
     max-width: 30px;
     max-height: auto;
-    padding: 0;
+    padding: auto;
 }
 
 .footer a{
     color: white;
-    margin: 0;
-    padding: 10px 4px;
+    margin: auto;
+    padding: auto;
     text-decoration: none;
 }
 

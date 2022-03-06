@@ -1,4 +1,4 @@
-form .title-container{
+form .title-question{
     background: linear-gradient(
         to right,
         hsl(90 100% 62%),
@@ -11,17 +11,14 @@ form .title-container{
     text-align: center;
 }
 
-label{
-    padding: 0%;
-    margin: 0%;
-    font-size: 15px;
+form .choices-question{
+    color: white;
 }
 
 form input{
     border-radius: 0.5rem;
     font-weight: bold;
     font-size: 20px;
-    padding-top: 20px;
     width: 200px;
     text-align: center;
     text-decoration: none;

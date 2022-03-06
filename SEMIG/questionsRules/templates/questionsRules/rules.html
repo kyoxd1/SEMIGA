@@ -1,27 +1,29 @@
 {% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href= {% static 'questionsRules/header.css' %}>
 <link rel="stylesheet" href= {% static 'questionsRules/rules.css' %}>
 <link rel="stylesheet" href= {% static 'questionsRules/footer.css' %}>
 
 {% if latest_question_list %}
     {% include "questionsRules/header.html" %}
-    <main class="content_main">
-        <form action="{% url 'questionsRules:resp' %}" method="post">
+    <main class="container">
+        <form action="{% url 'questionsRules:resp'%}" method="post">
             {% csrf_token %}
             {% for question in latest_question_list  %}
-                <h2 class="title-fieldset">{{ question.question_text }}</h2>
+                <h2 class="title-question">{{ question.question_text }}</h2>
                 {% if error_message %}
                     <p class="text-danger"> <strong>{{ error_message }}</strong></p>
                 {% endif %}
                 {% for choice in question.choices_set.all  %}
                 <div class="form-check">
                     <input type="radio" name="question{{ question.id }}" value="{{ choice.choice_text }}" id= "{{ choice.id }}" class="form-check-input">
-                    <label for="question{{ question.id }}" class="form-check-label bold">
+                    <label for="question{{ question.id }}" class="form-check-label choices-question">
                         {{ choice.choice_text}}
                     </label>
                 </div>
                 {% endfor %}
             {% endfor %}
+            <br>
             <input type="submit" value= "aceptar">
         </form>
     </main>

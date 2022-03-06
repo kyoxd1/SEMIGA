@@ -5,7 +5,8 @@ from . import views
 app_name = "questionsRules"
 urlpatterns = [
     # /questionsRules/
-    path("", views.IndexView.as_view(), name= "index"),
+    # path("", views.IndexView.as_view(), name= "index"),
+    path("", views.index, name= "index"),
     path("/rules", views.rules, name= "rules"),
     path("/resp", views.resp, name= "resp"),
     path("/gorgojo_info", views.gorgojoInformation, name= "gorgojoInformation"),
