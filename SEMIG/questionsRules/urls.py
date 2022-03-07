@@ -7,9 +7,9 @@ urlpatterns = [
     # /questionsRules/
     # path("", views.IndexView.as_view(), name= "index"),
     path("", views.index, name= "index"),
-    path("/rules", views.rules, name= "rules"),
-    path("/resp", views.resp, name= "resp"),
-    path("/gorgojo_info", views.gorgojoInformation, name= "gorgojoInformation"),
+    path("<int:question_id>/rules/", views.rules, name= "rules"),
+    path("<int:question_id>/resp/", views.resp, name= "resp"),
+    path("gorgojo_info/", views.gorgojoInformation, name= "gorgojoInformation"),
     # /questionsRules/5
     path("<int:pk>/", views.DetailView.as_view(), name= "detail"),
     # /questionsRules/results

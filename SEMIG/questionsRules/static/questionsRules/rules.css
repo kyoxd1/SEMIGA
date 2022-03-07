@@ -36,3 +36,7 @@ form input:hover{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.container{
+    padding-bottom: 4rem;
+}

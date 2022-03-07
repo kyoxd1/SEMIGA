@@ -1,5 +1,5 @@
 from msilib.schema import Error
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
@@ -9,8 +9,10 @@ from .models import Question, Choices
 
 def index(request):
     latest_question_list = Question.objects.filter(pk__in=[1,2])
+    question = Question.objects.get(pk = 1)
     return render(request, "questionsRules/index.html",{
-        "latest_question_list": latest_question_list
+        "latest_question_list": latest_question_list,
+        "question": question
         });
 
 # class IndexView(generic.ListView):
@@ -30,19 +32,31 @@ def index(request):
 #         "question": question
 #     });
 
-def rules(request):
-    latest_question_list = Question.objects.filter(pk__in=[1,2])
+def rules(request, question_id):
+    question = Question.objects.get(pk = question_id)
+    if(question_id == 1 or question_id == 2):
+        latest_question_list = Question.objects.filter(pk__in=[1,2])
+    if(question_id == 3 or question_id == 4):
+        latest_question_list = Question.objects.filter(pk__in=[3,4])
+    if(question_id == 5):
+        latest_question_list = Question.objects.filter(pk__in=[5])
+    if(question_id == 6):
+        latest_question_list = Question.objects.filter(pk__in=[6,7,8,9,10])
+    if(question_id == 11):
+        latest_question_list = Question.objects.filter(pk__in=[11,12,13,8,14])
     return render(request, "questionsRules/rules.html", {
-    "latest_question_list": latest_question_list
+    "latest_question_list": latest_question_list,
+    "question": question
     });
     
     
-def resp(request):  
+def resp(request, question_id ):
     try:
-        if('question1' in request.POST and 'question2' in request.POST):
-            latest_question_list = Question.objects.filter(pk__in=[3,4])
+        question = get_object_or_404(Question, pk = question_id)
+        if(question.id == 1 or question.id == 2):
             question1 = request.POST['question1']
             question2 = request.POST['question2']
+            latest_question_list = Question.objects.filter(pk__in=[3,4])
             if(question1=='No' and question2 == 'No'):
                 return render(request, "questionsRules/gorgojoInformation.html", {
                     "latest_question_list": latest_question_list
@@ -55,38 +69,49 @@ def resp(request):
                 return render(request, "questionsRules/gorgojoInformation.html", {
                     "latest_question_list": latest_question_list
                 })
-            else:
-                return render(request, "questionsRules/rules.html", {
-                    "latest_question_list": latest_question_list
-                })       
-        elif('question3' in request.POST and 'question4' in request.POST):
+            elif(question1 == 'Si' and question2== 'No' ):
+                question = get_object_or_404(Question, pk = 3)
+                return HttpResponseRedirect(reverse("questionsRules:rules", args=(question.id,)))
+                # return render(request, "questionsRules/rules.html", {
+                #     "latest_question_list": latest_question_list,
+                #     "question": question
+                # })
+        elif(question.id == 3 or question.id == 4):
             latest_question_list = Question.objects.filter(pk__in=[5])
             question1 = request.POST['question3']
             question2 = request.POST['question4']
-            if(question1=='Si' and question2 == 'Si' or question1=='No' and question2=='Si'):
+            if((question1=='si' and question2 == 'Si') or (question1=='no' and question2=='Si')):
                 return render(request, "questionsRules/gorgojoInformation.html", {
                     "latest_question_list": latest_question_list
                 })
             else:
-                return render(request, "questionsRules/rules.html", {
-                    "latest_question_list": latest_question_list
-                })
-        else:
-            return render(request, "questionsRules/rules.html",{
-            "latest_question_list": latest_question_list,
-            "error_message": "Debes elegir alguna respuesta"
-        })
-    except (UnboundLocalError, ValueError, KeyError, Question.DoesNotExist, Choices.DoesNotExist):
-        if('question1' in request.POST or 'question2' in request.POST):
+                question = get_object_or_404(Question, pk = 5)
+                return HttpResponseRedirect(reverse("questionsRules:rules", args=(question.id,)))
+        elif(question.id == 5):
+            question1 = request.POST['question5']
+            if(question1 == 'Recién planeo empezar mi cultivo'):
+                question = get_object_or_404(Question, pk = 6)
+            else:
+                question = get_object_or_404(Question, pk = 11)
+                
+    except (ValueError, KeyError, Question.DoesNotExist, Choices.DoesNotExist):
+        if(question_id == 1 or question_id == 2):
             latest_question_list = Question.objects.filter(pk__in=[1,2])
-        elif('question3' in request.POST or 'question4' in request.POST):
+        if(question_id == 3 or question_id == 4):
             latest_question_list = Question.objects.filter(pk__in=[3,4])
-        else:
-            latest_question_list = Question.objects.filter(pk__in=[5]) 
+        if(question_id == 5):
+            latest_question_list = Question.objects.filter(pk__in=[5])
+        if(question_id == 6):
+            latest_question_list = Question.objects.filter(pk__in=[6,7,8,9,10])
+        if(question_id == 11):
+            latest_question_list = Question.objects.filter(pk__in=[11,12,13,8,14])
         return render(request, "questionsRules/rules.html",{
             "latest_question_list": latest_question_list,
-            "error_message": "Debes elegir alguna respuesta"
+            "error_message": "Debes elegir alguna respuesta",
+            "question" : question
         })
+    else:
+        return HttpResponseRedirect(reverse("questionsRules:rules", args=(question.id,)))
     
     
 def gorgojoInformation(request, latest_question_list):
