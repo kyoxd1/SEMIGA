@@ -1,6 +1,6 @@
 .footer{
     justify-content: space-evenly;
-    height: 4rem;
+    height: 5rem;
     position: fixed;
     width: 100%;
     left: 0;
@@ -13,6 +13,7 @@
     max-width: 30px;
     max-height: auto;
     padding: auto;
+    margin: auto;
 }
 
 .footer a{

@@ -1,14 +1,14 @@
 form .title-question{
     background: linear-gradient(
         to right,
-        hsl(90 100% 62%),
-        hsl(204 100% 69%)
+        rgb(200, 61, 255),
+        rgb(119, 4, 81)
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding: 0;
     margin: 0;
-    text-align: center;
+    text-align: left;
 }
 
 form .choices-question{
