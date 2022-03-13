@@ -1,6 +1,6 @@
 .footer{
-    justify-content: space-evenly;
     height: 5rem;
+    align-content: center;
     position: fixed;
     width: 100%;
     left: 0;
@@ -9,21 +9,31 @@
     background: hsl(204, 100%, 5%);
 }
 
-.footer img{
+.footer_div{
+    justify-content: space-evenly;
+    position: inherit;
+    width: 100%;
+    height: auto;
+    margin: auto auto;
+    padding: 0;
+    background: hsl(204, 100%, 5%);
+}
+
+.footer_div img{
     max-width: 30px;
     max-height: auto;
     padding: auto;
     margin: auto;
 }
 
-.footer a{
+.footer_div a{
     color: white;
     margin: auto;
     padding: auto;
     text-decoration: none;
 }
 
-.footer a:hover{
+.footer_div a:hover{
     background: linear-gradient(
         to right,
         hsl(90 100% 62%),

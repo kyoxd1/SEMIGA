@@ -31,6 +31,11 @@ class GorgojoQuestionThree(Fact):
 class GorgojoQuestionFor(Fact):
     pass
 
+
+class GorgojoQuestionFive(Fact):
+    pass
+
+
 class integratedHandling(KnowledgeEngine):
     question = get_object_or_404(Question, pk =1)
     urlRedirect = "questionsRules:rules"
@@ -61,7 +66,7 @@ class integratedHandling(KnowledgeEngine):
     
     @Rule(QuestionList(questionId =11))
     def QuestionList_Five(self):
-        listQuestion = Question.objects.filter(pk__in=[11,12,13,8,14])
+        listQuestion = Question.objects.filter(pk__in=[11,12,13,8,10,14])
         self.listQuestion = listQuestion
         return self.listQuestion
     
@@ -178,7 +183,7 @@ class integratedHandling(KnowledgeEngine):
     @Rule(AS.gorgojoQuestionFor << GorgojoQuestionFor(question6=L('No'), question7=L('No') | L('Si'), question8=L('No') | L('Si'), question9=L('No') | L('Si'), question10=L('No') | L('Si')))
     def GorgojoQuestionFor_1(self):
         question = get_object_or_404(Question, pk = 1)
-        urlRedirect = "questionsRules:gorgojoInformationAndGoodPractice"
+        urlRedirect = "questionsRules:chemicals"
         self.question = question
         self.urlRedirect = urlRedirect
         return self.question, self.urlRedirect
@@ -186,7 +191,7 @@ class integratedHandling(KnowledgeEngine):
     @Rule(AS.gorgojoQuestionFor << GorgojoQuestionFor(question6=L('Si'), question7=L('No') , question8=L('No') | L('Si'), question9=L('No') | L('Si'), question10=L('No') | L('Si')))
     def GorgojoQuestionFor_2(self):
         question = get_object_or_404(Question, pk = 1)
-        urlRedirect = "questionsRules:gorgojoInformationAndGoodPractice"
+        urlRedirect = "questionsRules:ditches"
         self.question = question
         self.urlRedirect = urlRedirect
         return self.question, self.urlRedirect
@@ -194,7 +199,7 @@ class integratedHandling(KnowledgeEngine):
     @Rule(AS.gorgojoQuestionFor << GorgojoQuestionFor(question6=L('Si'), question7=L('Si') , question8=L('No') , question9=L('No') | L('Si'), question10=L('No') | L('Si')))
     def GorgojoQuestionFor_3(self):
         question = get_object_or_404(Question, pk = 1)
-        urlRedirect = "questionsRules:gorgojoInformationAndGoodPractice"
+        urlRedirect = "questionsRules:plantOtherVegetables"
         self.question = question
         self.urlRedirect = urlRedirect
         return self.question, self.urlRedirect
@@ -202,7 +207,7 @@ class integratedHandling(KnowledgeEngine):
     @Rule(AS.gorgojoQuestionFor << GorgojoQuestionFor(question6=L('Si'), question7=L('Si') , question8=L('Si'), question9=L('No'), question10=L('No') | L('Si')))
     def GorgojoQuestionFor_4(self):
         question = get_object_or_404(Question, pk = 1)
-        urlRedirect = "questionsRules:gorgojoInformationAndGoodPractice"
+        urlRedirect = "questionsRules:plantPickUp"
         self.question = question
         self.urlRedirect = urlRedirect
         return self.question, self.urlRedirect
@@ -210,15 +215,71 @@ class integratedHandling(KnowledgeEngine):
     @Rule(AS.gorgojoQuestionFor << GorgojoQuestionFor(question6=L('Si'), question7=L('Si') , question8=L('Si'), question9=L('Si'), question10=L('No')))
     def GorgojoQuestionFor_5(self):
         question = get_object_or_404(Question, pk = 1)
-        urlRedirect = "questionsRules:gorgojoInformationAndGoodPractice"
+        urlRedirect = "questionsRules:traps"
         self.question = question
         self.urlRedirect = urlRedirect
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFor << GorgojoQuestionFor(question6=L('Si'), question7=L('Si') , question8=L('Si'), question9=L('Si'), question10=L('Si')))
     def GorgojoQuestionFor_6(self):
+        question = get_object_or_404(Question, pk = 5)
+        urlRedirect = "questionsRules:continueStageChoice"
+        self.question = question
+        self.urlRedirect = urlRedirect
+        return self.question, self.urlRedirect
+    
+    @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('No'), question12=L('Si') | L('No'), question13=L('Si') | L('No'), question8=L('Si') | L('No'), question14=L('Si') | L('No'), question10=L('Si') | L('No')))
+    def GorgojoQuestionFive_1(self):
         question = get_object_or_404(Question, pk = 1)
-        urlRedirect = "questionsRules:gorgojoInformationAndGoodPractice"
+        urlRedirect = "questionsRules:chemicals"
+        self.question = question
+        self.urlRedirect = urlRedirect
+        return self.question, self.urlRedirect
+    
+    @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('No'), question13=L('Si') | L('No'), question8=L('Si') | L('No'), question14=L('Si') | L('No'), question10=L('Si') | L('No')))
+    def GorgojoQuestionFive_2(self):
+        question = get_object_or_404(Question, pk = 1)
+        urlRedirect = "questionsRules:ditches"
+        self.question = question
+        self.urlRedirect = urlRedirect
+        return self.question, self.urlRedirect
+    
+    @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('Si'), question13=L('No'), question8=L('Si') | L('No'), question14=L('Si') | L('No'), question10=L('Si') | L('No')))
+    def GorgojoQuestionFive_3(self):
+        question = get_object_or_404(Question, pk = 1)
+        urlRedirect = "questionsRules:culturalWork"
+        self.question = question
+        self.urlRedirect = urlRedirect
+        return self.question, self.urlRedirect
+    
+    @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('Si'), question13=L('Si'), question8=L('No'), question14=L('Si') | L('No'), question10=L('Si') | L('No')))
+    def GorgojoQuestionFive_4(self):
+        question = get_object_or_404(Question, pk = 1)
+        urlRedirect = "questionsRules:plantOtherVegetables"
+        self.question = question
+        self.urlRedirect = urlRedirect
+        return self.question, self.urlRedirect
+    
+    @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('Si'), question13=L('Si'), question8=L('Si'), question14=L('No'), question10=L('Si') | L('No')))
+    def GorgojoQuestionFive_5(self):
+        question = get_object_or_404(Question, pk = 1)
+        urlRedirect = "questionsRules:continueStageChoice"
+        self.question = question
+        self.urlRedirect = urlRedirect
+        return self.question, self.urlRedirect
+    
+    @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('Si'), question13=L('Si'), question8=L('Si'), question14=L('Si'), question10=L('No')))
+    def GorgojoQuestionFive_6(self):
+        question = get_object_or_404(Question, pk = 1)
+        urlRedirect = "questionsRules:traps"
+        self.question = question
+        self.urlRedirect = urlRedirect
+        return self.question, self.urlRedirect
+    
+    @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('Si'), question13=L('Si'), question8=L('Si'), question14=L('Si'), question10=L('Si')))
+    def GorgojoQuestionFive_7(self):
+        question = get_object_or_404(Question, pk = 1)
+        urlRedirect = "questionsRules:continueStageChoice"
         self.question = question
         self.urlRedirect = urlRedirect
         return self.question, self.urlRedirect

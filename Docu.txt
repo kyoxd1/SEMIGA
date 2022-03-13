@@ -47,13 +47,18 @@
         - Removió las plantas (K'ipas) de cosechas anteriores       si no                                           """COMPLETED"""
         - Sabe que trampas podria poner alrededor del cultivo        si no                                          """COMPLETED"""
         
-        # Productos quimicos que no dañaran su cultivo      no ...
-        # Zanjas, como realizarlas y como mejorar su efectividad        si no ...
-        # ¿Sabia Usted que los cultivos como ... dan mas seguridad a su cultivo de papa?        si si no ...
-        # La importancia del recojo de K'ipas       si si si no ...
-        # Trampas caseras de gran efectividad para la parcela       si si si si no
+        # Productos quimicos que no dañaran su cultivo      no ...                                                  """COMPLETED"""
+        # Zanjas, como realizarlas y como mejorar su efectividad        si no ...                                   """COMPLETED"""
+        # ¿Sabia Usted que los cultivos como ... dan mas seguridad a su cultivo de papa?        si si no ...        """COMPLETED"""
+        # La importancia del recojo de K'ipas       si si si no ...                                                 """COMPLETED"""
+        # Trampas caseras de gran efectividad para la parcela       si si si si no                                  """COMPLETED"""
         
         #Etapa de su cultivo
+        #Vistas Completada quimicos
+        #Vistas Completada zanjas
+        #Vistas Completada otros cultivos
+        #Vistas Completada recojo de kipas
+        #Vistas Completada trampas
         
         
         
@@ -65,12 +70,12 @@
         - Sabe que cultivos podria sembrar alrededor de la parcela      si no                                       """COMPLETED"""
         - ¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?        si no                                   """COMPLETED"""
         
-        # Productos quimicos que no dañaran su cultivo      no ...
-        # Zanjas, como realizarlas y como mejorar su efectividad        si no ...
-        # Aporque y su importancia      si si no ...
-        # Trampas caseras de gran efectividad para la parcela       si si si no ...
-        # ¿Sabia Usted que los cultivos como ... dan mas seguridad a su cultivo de papa?  si si si si no ...
-        # Medidas a realizar para saber si tiene en su parcela al Gorgojo de Los Andes  si si si si si no
+        # Productos quimicos que no dañaran su cultivo      no ...                                                  """COMPLETED"""
+        # Zanjas, como realizarlas y como mejorar su efectividad        si no ...                                   """COMPLETED"""
+        # Aporque y su importancia      si si no ...                                                                """COMPLETED"""
+        # Trampas caseras de gran efectividad para la parcela       si si si no ...                                 """COMPLETED"""
+        # ¿Sabia Usted que los cultivos como ... dan mas seguridad a su cultivo de papa?  si si si si no ...        """COMPLETED"""
+        # Medidas a realizar para saber si tiene en su parcela al Gorgojo de Los Andes  si si si si si no           
         
         #Etapa de su cultivo
         
