@@ -11,12 +11,14 @@
 
 .footer_div{
     justify-content: space-evenly;
-    position: inherit;
+    position: absolute;
     width: 100%;
     height: auto;
-    margin: auto auto;
-    padding: 0;
     background: hsl(204, 100%, 5%);
+    top:50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
 }
 
 .footer_div img{

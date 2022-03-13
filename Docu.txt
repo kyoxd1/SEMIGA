@@ -75,8 +75,9 @@
         # Aporque y su importancia      si si no ...                                                                """COMPLETED"""
         # Trampas caseras de gran efectividad para la parcela       si si si no ...                                 """COMPLETED"""
         # ¿Sabia Usted que los cultivos como ... dan mas seguridad a su cultivo de papa?  si si si si no ...        """COMPLETED"""
-        # Medidas a realizar para saber si tiene en su parcela al Gorgojo de Los Andes  si si si si si no           
+        # Medidas a realizar para saber si tiene en su parcela al Gorgojo de Los Andes  si si si si si no           """COMPLETED"""     
         
+        #Todas las vistas terminadas
         #Etapa de su cultivo
         
     
@@ -90,15 +91,15 @@
         - Realizo la recoleccion de los Gorgojos Adultos        si no                                               """COMPLETED"""
         - Descubrio una gran cantidad de gorgojos en su parcela     si no                                           """COMPLETED"""
         
-        # Productos quimicos que no dañaran su cultivo      no ...
-        # Aporque y su importancia      si no ...
-        # Zanjas, como realizarlas y como mejorar su efectividad        si si no ...
-        # Trampas caseras de gran efectividad para la parcela       si si si no ...
-        # ¿Sabia Usted que los cultivos como ... dan mas seguridad a su cultivo de papa?        si si si si no ...
-        # Que revisar para saber que tiene en su parcela al Gorgojo de Los Andes        si si si si si no ...
-        # Como recolectar de gran manera a los Gorgojos Adultos     si si si si si si no ...
-        # Que producto quimico no nocivo podria echar a la parcela      si si si si si si si no
+        # Productos quimicos que no dañaran su cultivo      no ...                                                  """COMPLETED"""
+        # Aporque y su importancia      si no ...                                                                   """COMPLETED"""
+        # Zanjas, como realizarlas y como mejorar su efectividad        si si no ...                                """COMPLETED"""
+        # Trampas caseras de gran efectividad para la parcela       si si si no ...                                 """COMPLETED"""
+        # Medidas a realizar para saber si tiene en su parcela al Gorgojo de Los Andes    si si si si no ...        """COMPLETED"""
+        # Como recolectar de gran manera a los Gorgojos Adultos        si si si si si no ...                        """COMPLETED"""
+        # Como contrarestar al Gorgojo de Los Andes  si si si si si si no ...                                       """COMPLETED"""
         
+        #Todas las vistas terminadas
         #Etapa de su cultivo
         
         
@@ -108,10 +109,11 @@
         - Descubrio una gran cantidad de gorgojos en su parcela     si no                                           """COMPLETED"""
         - Sabe en que seleccionar la papa, para un menor riesgo       si no                                         """COMPLETED"""
         
-        # Como recolectar de gran manera a los Gorgojos Adultos     no ...
-        # Que producto quimico no nocivo podria echar a la parcela      si no ...
-        # Selección de la Papa sobre plastico, yute o mantel            si si no ... 
+        # Como recolectar de gran manera a los Gorgojos Adultos     no ...                                          """COMPLETED"""
+        # Como contrarestar al Gorgojo de Los Andes     si no ...                                                   """COMPLETED"""
+        # Selección de la Papa sobre plastico, yute o mantel            si si no ...                                """COMPLETED"""
         
+        #Todas las vistas terminadas
         #Etapa de su cultivo
         
         
@@ -121,12 +123,13 @@
         - Cree que la papa esta segura en su almacen o otro lugar similar       si no                               """COMPLETED"""
         - Conoce la utilidad del Hongo Blanco       si no                                                           """COMPLETED"""
         
-        # Remocion de suelo, una buena practica para evitar al Gorgojo      no ...
-        # Como preparar el almacen o lugar donde dejara la papa     si no ...
-        # Peligro en el Almacen         si si no ...
-        # El Hongo Blanco, el guardian de nuestro cultivo       si si si no
+        # Remocion de suelo, una buena practica para evitar al Gorgojo      no ...                                  """COMPLETED""" 
+        # Como preparar el almacen o lugar donde dejara la papa     si no ...                                       """COMPLETED"""
+        # Peligro en el Almacen         si si no ...                                                                """COMPLETED"""
+        # El Hongo Blanco, el guardian de nuestro cultivo       si si si no                                         """COMPLETED"""
         
         # vista Ganadora - termino de su cultivo
+        #Todas las vistas terminadas
     
     
     ## Vistas Totales

@@ -21,8 +21,12 @@ urlpatterns = [
     path("<int:question_id>/traps/", views.traps, name= "traps"),
     path("<int:question_id>/continue_stage_choice/", views.continueStageChoice, name= "continueStageChoice"),
     path("<int:question_id>/cultural_work/", views.culturalWork, name= "culturalWork"),
-    # /questionsRules/5
-    path("<int:pk>/", views.DetailView.as_view(), name= "detail"),
-    # /questionsRules/results
-    path("<int:question_id>/results/", views.results, name= "results"),
+    path("<int:question_id>/gorgojo_measures/", views.gorgojoMeasures, name= "gorgojoMeasures"),
+    path("<int:question_id>/gather_gorgojo/", views.gatherGorgojo, name= "gatherGorgojo"),
+    path("<int:question_id>/counther_the_gorgojo/", views.countherTheGorgojo, name= "countherTheGorgojo"),
+    path("<int:question_id>/potato_selection/", views.potatoSelection, name= "potatoSelection"),
+    path("<int:question_id>/soil_removal/", views.soilRemoval, name= "soilRemoval"),
+    path("<int:question_id>/warehouse_preparation/", views.warehousePreparation, name= "warehousePreparation"),
+    path("<int:question_id>/danger_into_warehouse/", views.dangerIntoWarehouse, name= "dangerIntoWarehouse"), 
+    path("<int:question_id>/white_fungus/", views.whiteFungus, name= "whiteFungus"), 
 ]

@@ -18,6 +18,9 @@ body {
 }
 
 .header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: hsl(204, 100%, 5%);
     background: linear-gradient(
         to right,
@@ -27,11 +30,10 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 50px;
-    height: 10rem;
+    height: 20rem;
 }
 
 #header-container{
-    position: fixed;
 	margin: auto;
 	width: 100vw;
 	height: 40px;
@@ -40,9 +42,8 @@ body {
 
 #text1,
 #text2 {
-	position: fixed;
 	width: 100%;
-	display: inline-block;
+	display: inline;
     background: -webkit-linear-gradient(rgb(90, 209, 123), rgb(39, 155, 209));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
