@@ -1,0 +1,45 @@
+/* Explanation in JS tab */
+
+/* Cool font from Google Fonts! */
+@import url("https://fonts.googleapis.com/css?family=Raleway:900&display=swap");
+
+body {
+	margin: 0px;
+    background-color: hsl(204, 100%, 5%);    
+}
+
+#container {
+	position: absolute;
+	margin: auto;
+	width: 100vw;
+	height: 80pt;
+	top: 0;
+	bottom: 0;
+	filter: url(#threshold) blur(0.6px);
+    background-color: linear-gradient(
+        to right,
+        hsl(90 100% 62%),
+        hsl(204 100% 69%)
+    );
+    -webkit-background-clip: text;
+}
+
+/* Your average text styling */
+#text1,
+#text2 {
+	position: absolute;
+	width: 100%;
+	display: inline-block;
+    background: -webkit-linear-gradient(rgb(90, 209, 123), rgb(39, 155, 209));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* background: rgb(2,0,36); */
+    /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(21,87,46,0.989233193277311) 35%, rgba(9,125,61,1) 72%, rgba(0,212,255,1) 100%);; */
+	font-family: "Raleway", sans-serif;
+	font-size: 40pt;
+
+    font-weight: 100;
+	text-align: center;
+
+	user-select: none;
+}

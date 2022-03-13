@@ -1,51 +1,51 @@
 """" 
 
-¿Conoces a la plaga del Gorgojo de Los Andes?       si  no
-¿Es su primer cultivo?      si  no
+¿Conoces a la plaga del Gorgojo de Los Andes?       si  no              """COMPLETED"""
+¿Es su primer cultivo?      si  no                                      """COMPLETED"""
 
-#Vista 1
-# Información de la plaga Gorgojo de Los Andes      no, no
-    #Vista Completa 1
+#Vista 1                                                                """COMPLETED"""
+# Información de la plaga Gorgojo de Los Andes      no, no              """COMPLETED"""
+    #Vista Completa 1                                                   
     - Pasa a la Vista 4
 
 
-#Vista 2
-# Información de la plaga Gorgojo de Los Andes y buenas practicas para iniciar un buen cultivo      no, si
-    #Vista Completa 2
+#Vista 2                                                                                                            """COMPLETED"""
+# Información de la plaga Gorgojo de Los Andes y buenas practicas para iniciar un buen cultivo      no, si          """COMPLETED"""
+    #Vista Completa 2                                                                                               
     - Pasa a la Vista 4.2
     
     
-#Vista 3
-# Buenas practicas para iniciar un buen cultivo      si, si
+#Vista 3                                                                                                            """COMPLETED"""
+# Buenas practicas para iniciar un buen cultivo      si, si                                                         """COMPLETED"""
     #Vista Completa 3
     - Pasa a la Vista 4.2
 
 
-#Vista 4 +Questions si, no
-¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?      si  no
-¿La plaga del Gorgojo de Los Andes afecto su cultivo de papa?       si  no
+#Vista 4 +Questions si, no                                                                                          """COMPLETED"""
+¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?      si  no                                                  """COMPLETED"""
+¿La plaga del Gorgojo de Los Andes afecto su cultivo de papa?       si  no                                          """COMPLETED"""
 
-#Vista 4.1
-# Medidas de Prevencion para su cultivo de papa     si, si || no, si
+#Vista 4.1                                                                                                          """COMPLETED"""
+# Medidas de Prevencion para su cultivo de papa     si, si || no, si                                                """COMPLETED"""
     #Vista Completa 4.1
     - Pasa a la vista 4.2
 
-#Vista 4.2
-# Etapa de su cultivo: no, no || si, no
-    ¿En que etapa se encuentra tu cultivo?
-        -Recien planeo empezar el cultivo
-        -Acabo de sembrar
-        -Mi cultivo de papa ya esta mas de la mitad
-        -Estoy por cosechar mi cultivo
-        -Acabo de cosechar mi cultivo
+#Vista 4.2                                                                                                          """COMPLETED"""
+# Etapa de su cultivo: no, no || si, no                                                                             """COMPLETED"""
+    ¿En que etapa se encuentra tu cultivo?                                                                          """COMPLETED"""
+        -Recien planeo empezar el cultivo                                                                           """COMPLETED"""
+        -Acabo de sembrar                                                                                           """COMPLETED"""
+        -Mi cultivo de papa ya esta mas de la mitad                                                                 """COMPLETED"""
+        -Estoy por cosechar mi cultivo                                                                              """COMPLETED"""
+        -Acabo de cosechar mi cultivo                                                                               """COMPLETED"""
 
 
-    #Vista 5 Recien planeo empezar el cultivo
-        - Realizo desinfecciones Químicas       si no
-        - Realizo zanjas alrededor de la parcela para la siembra     si no
-        - Sabe que cultivos podria sembrar alrededor de la parcela      si no
-        - Removió las plantas (K'ipas) de cosechas anteriores       si no
-        - Sabe que trampas podria poner alrededor del cultivo        si no
+    #Vista 5 Recien planeo empezar el cultivo                                                                       """COMPLETED"""
+        - Realizo desinfecciones Químicas       si no                                                               """COMPLETED"""
+        - Realizo zanjas alrededor de la parcela para la siembra     si no                                          """COMPLETED"""
+        - Sabe que cultivos podria sembrar alrededor de la parcela      si no                                       """COMPLETED"""
+        - Removió las plantas (K'ipas) de cosechas anteriores       si no                                           """COMPLETED"""
+        - Sabe que trampas podria poner alrededor del cultivo        si no                                          """COMPLETED"""
         
         # Productos quimicos que no dañaran su cultivo      no ...
         # Zanjas, como realizarlas y como mejorar su efectividad        si no ...
@@ -57,33 +57,33 @@
         
         
         
-    #Vista 6 Acabo de sembrar
-        - Realizo desinfecciones Químicas antes del Sembrado        si no
-        - Realizo zanjas alrededor de la parcela        si no
-        - Realizo Aporques alto alrededor de la parcela       si no
-        - Sabe que trampas podria poner alrededor del cultivo       si no
-        - Sabe que cultivos podria sembrar alrededor de la parcela      si no
-        - ¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?        si no
+    #Vista 6 Acabo de sembrar                                                                                       """COMPLETED"""
+        - Realizo desinfecciones Químicas antes del Sembrado        si no                                           """COMPLETED"""
+        - Realizo zanjas alrededor de la parcela        si no                                                       """COMPLETED"""
+        - Realizo Aporques alto alrededor de la parcela       si no                                                 """COMPLETED"""
+        - Sabe que trampas podria poner alrededor del cultivo       si no                                           """COMPLETED"""
+        - Sabe que cultivos podria sembrar alrededor de la parcela      si no                                       """COMPLETED"""
+        - ¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?        si no                                   """COMPLETED"""
         
         # Productos quimicos que no dañaran su cultivo      no ...
         # Zanjas, como realizarlas y como mejorar su efectividad        si no ...
         # Aporque y su importancia      si si no ...
         # Trampas caseras de gran efectividad para la parcela       si si si no ...
-        # ¿Sabia Usted que los cultivos como ... dan mas seguridad a su cultivo de papa?        si si si si no ...
-        # Medidas a realizar para saber si tiene en su parcela al Gorgojo de Los Andes        si si si si si no
+        # ¿Sabia Usted que los cultivos como ... dan mas seguridad a su cultivo de papa?  si si si si no ...
+        # Medidas a realizar para saber si tiene en su parcela al Gorgojo de Los Andes  si si si si si no
         
         #Etapa de su cultivo
         
     
     
-    #Vista 7 Mi cosecha ya esta mas de la mitad
-        - Realizo desinfecciones Químicas antes del Sembrado        si no
-        - Realizo Aporques alto alrededor de la parcela       si no
-        - Realizo zanjas alrededor de la parcela        si no
-        - Coloco trampas alrededor de la parcela        si no
-        - ¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?        si no
-        - Realizo la recoleccion de los Gorgojos Adultos        si no
-        - Descubrio una gran cantidad de gorgojos en su parcela     si no
+    #Vista 7 Mi cosecha ya esta mas de la mitad                                                                     """COMPLETED"""
+        - Realizo desinfecciones Químicas antes del Sembrado        si no                                           """COMPLETED"""
+        - Realizo Aporques alto alrededor de la parcela       si no                                                 """COMPLETED"""
+        - Realizo zanjas alrededor de la parcela        si no                                                       """COMPLETED"""
+        - Coloco trampas alrededor de la parcela        si no                                                       """COMPLETED"""
+        - ¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?        si no                                   """COMPLETED"""
+        - Realizo la recoleccion de los Gorgojos Adultos        si no                                               """COMPLETED"""
+        - Descubrio una gran cantidad de gorgojos en su parcela     si no                                           """COMPLETED"""
         
         # Productos quimicos que no dañaran su cultivo      no ...
         # Aporque y su importancia      si no ...
@@ -98,10 +98,10 @@
         
         
         
-    #Vista 8 Estoy por cosechar mi cultivo
-        - Realizo la recoleccion de los Gorgojos Adultos        si no
-        - Descubrio una gran cantidad de gorgojos en su parcela     si no
-        - Sabe en que seleccionar la papa, para un menor riesgo       si no
+    #Vista 8 Estoy por cosechar mi cultivo                                                                          """COMPLETED"""
+        - Realizo la recoleccion de los Gorgojos Adultos        si                                                  """COMPLETED"""
+        - Descubrio una gran cantidad de gorgojos en su parcela     si no                                           """COMPLETED"""
+        - Sabe en que seleccionar la papa, para un menor riesgo       si no                                         """COMPLETED"""
         
         # Como recolectar de gran manera a los Gorgojos Adultos     no ...
         # Que producto quimico no nocivo podria echar a la parcela      si no ...
@@ -110,11 +110,11 @@
         #Etapa de su cultivo
         
         
-    #Vista 9 Acabo de cosechar mi cultivo
-        - Removio el suelo de su cultivo        si no
-        - Puso la papa en un almacen, o un lugar parecido        si no
-        - Cree que la papa esta segura en su almacen o otro lugar similar       si no
-        - Conoce la utilidad del Hongo Blanco       si no
+    #Vista 9 Acabo de cosechar mi cultivo                                                                           """COMPLETED"""
+        - Removio el suelo de su cultivo        si no                                                               """COMPLETED"""
+        - Puso la papa en un almacen, o un lugar parecido        si no                                              """COMPLETED"""
+        - Cree que la papa esta segura en su almacen o otro lugar similar       si no                               """COMPLETED"""
+        - Conoce la utilidad del Hongo Blanco       si no                                                           """COMPLETED"""
         
         # Remocion de suelo, una buena practica para evitar al Gorgojo      no ...
         # Como preparar el almacen o lugar donde dejara la papa     si no ...

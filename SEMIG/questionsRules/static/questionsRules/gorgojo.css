@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:900&display=swap");
+
 html {
     overflow: hidden;
     width: 100%;
@@ -28,15 +30,30 @@ body {
     height: auto;
 }
 
-.header h1{
-    display: inline;
-    margin: auto;
-    padding: 0;
-    max-width: 1200px;
-    font-size: 60px;
-    padding-bottom: 10px;
+#header-container{
+    position: relative;
+	margin: auto;
+	width: 100vw;
+	height: 90px;
+	filter: url(#threshold) blur(0.6px);
 }
 
+#text1,
+#text2 {
+	position: relative;
+	width: 100%;
+	display: inline-block;
+    background: -webkit-linear-gradient(rgb(90, 209, 123), rgb(39, 155, 209));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+	font-family: "Raleway", sans-serif;
+	font-size: 5rem;
+
+    font-weight: 100px;
+	text-align: center;
+
+	user-select: none;
+}
 .container{
     padding-bottom: 5rem;
 }

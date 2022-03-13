@@ -1,9 +1,5 @@
 form .title-question{
-    background: linear-gradient(
-        to right,
-        rgb(200, 61, 255),
-        rgb(119, 4, 81)
-    );
+    background: -webkit-linear-gradient(rgb(90, 209, 123), rgb(39, 155, 209));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding: 0;

@@ -14,8 +14,23 @@
         <title>Gorgojo de Los Andes</title>
     </head>
     <body>
-        <header class="header text-center">
-            <h1>¿Qué es el Gorgojo de Los Andes?</h1>
+        <header class="header">
+            <div id="header-container">
+                <span id="text1"></span>
+                <span id="text2"></span>
+                <svg id="filters">
+                    <defs>
+                        <filter id="threshold">
+                            <feColorMatrix in="SourceGraphic"
+                                    type="matrix"
+                                    values="1 0 0 0 0
+                                                    0 1 0 0 0
+                                                    0 0 1 0 0
+                                                    0 0 0 255 -140" />
+                        </filter>
+                    </defs>
+                </svg>
+            </div>   
         </header>
         <main class="container">
             <section>
@@ -50,9 +65,15 @@
                 <div>
                     <h2>Como se reproduce la plaga del Gorgojo de Los Andes</h2>
                 </div>
-                <div>
-                    <img src="/static/questionsRules/images/NoAlCultivo.svg"
-                        width="400px" alt="Papa dañada por larvas">
+                <div class="box-container">
+                    <div class="gorgojo__danger-image">
+                        <img src="/static/questionsRules/images/NoAlCultivo.svg"
+                            width="400px" alt="Papa dañada por larvas">
+                    </div>
+                    <div class="gorgojo__danger-text">
+                        <p>La plaga del Gorogojo de Los Andes es muy peligrosa para su parcela, si usted no hace nada para evitar que la plaga destruya totalmente su cultivo debe estar muy a la guardia, debe revisar mucho alrededor de las plantas de su cultivo o otras plantas de cultivos pasados, debido que en ese lugar los Gorgojos Adultos dejan los huevos. Sin duda la fase de larva es la mas peligrosa del Gorgojo de Los Andes asi que antes que llegue a esa fase debemos contrarestarla.
+                        </p>
+                    </div>
                 </div>
             </section>
             <section>
