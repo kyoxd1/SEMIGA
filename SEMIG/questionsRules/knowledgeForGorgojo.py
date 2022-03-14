@@ -290,7 +290,7 @@ class integratedHandling(KnowledgeEngine):
     
     @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('Si'), question13=L('Si'), question8=L('Si'), question14=L('Si'), question10=L('Si')))
     def GorgojoQuestionFive_7(self):
-        question = get_object_or_404(Question, pk = 1)
+        question = get_object_or_404(Question, pk = 5)
         urlRedirect = "questionsRules:continueStageChoice"
         self.question = question
         self.urlRedirect = urlRedirect
@@ -426,8 +426,8 @@ class integratedHandling(KnowledgeEngine):
     
     @Rule(AS.gorgojoQuestionEight << GorgojoQuestionEight(question19=L('Si'), question20=L('Si'), question21= L('Si'), question22=L('Si')))
     def GorgojoQuestionEight_5(self):
-        question = get_object_or_404(Question, pk = 1)
+        question = get_object_or_404(Question, pk = 5)
         urlRedirect = "questionsRules:continueStageChoice"
         self.question = question
         self.urlRedirect = urlRedirect
-        return self.question, self.urlRedi
+        return self.question, self.urlRedirect
