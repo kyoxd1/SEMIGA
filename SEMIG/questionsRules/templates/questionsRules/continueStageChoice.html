@@ -1,5 +1,10 @@
+{% load static %}
+<link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href= {% static 'questionsRules/continueStageChoice.css' %}>
+<link rel="stylesheet" href= {% static 'questionsRules/footer.css' %}>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +12,25 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="">Pasar a la siguiente etapa</a>
-</body>
-</html>
+    <header>
+        <a href="">Pasar a la siguiente etapa</a>
+    </header>
+    <main class="container_main">
+        <div class="container_div">
+            <h1>
+                <em>F</em>
+                <em>E</em>
+                <em>L</em>
+                <em class="planet left">I</em>
+                <em>C</em>
+                <em>I</em>
+                <em>D</em>
+                <em class="planet right">A</em>
+                <em>D</em>
+                <em>E</em>
+                <em>S</em>
+            </h1>
+        </div>   
+    </main>
+
+{% include "questionsRules/footer.html" %}
