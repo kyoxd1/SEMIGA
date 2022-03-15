@@ -87,6 +87,7 @@ header p {
 
   .text1, .text2{
     width: 100%;
+    height: 5rem;
   }
   
   .container{
