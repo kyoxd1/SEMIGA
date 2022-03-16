@@ -112,3 +112,7 @@ header p {
 div > p > span {
     font-weight: bold;
 }
+div >p > ul>li{
+  text-decoration: none;
+  color: white;
+}
