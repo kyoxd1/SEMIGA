@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
+from django.views import generic
 
 from .knowledgeForGorgojo import *
 from .models import Question, Choices
@@ -36,11 +37,11 @@ def rules(request, question_id):
 def resp(request, question_id ):
     try:
         question = get_object_or_404(Question, pk = question_id)
+        engine = integratedHandling()
         if(question.id == 1 or question.id == 2):
             question1 = request.POST['question1']
             question2 = request.POST['question2']
             latest_question_list = Question.objects.filter(pk__in=[3,4])
-            engine = integratedHandling()
             engine.reset()
             engine.declare(GorgojoQuestion(question1=question1, question2=question2))
             engine.run()
@@ -52,7 +53,6 @@ def resp(request, question_id ):
             latest_question_list = Question.objects.filter(pk__in=[5])
             question1 = request.POST['question3']
             question2 = request.POST['question4']
-            engine = integratedHandling()
             engine.reset()
             engine.declare(GorgojoQuestionTwo(question3=question1, question4=question2))
             engine.run()
@@ -62,7 +62,6 @@ def resp(request, question_id ):
         
         elif(question.id == 5):
             question1 = request.POST['question5']
-            engine = integratedHandling()
             engine.reset()
             engine.declare(GorgojoQuestionThree(resp=question1))
             engine.run()
@@ -76,7 +75,6 @@ def resp(request, question_id ):
             question8 = request.POST['question8']
             question9 = request.POST['question9']
             question10 = request.POST['question10']
-            engine = integratedHandling()
             engine.reset()
             engine.declare(GorgojoQuestionFor(question6=question6, question7=question7, question8 =question8, question9 = question9, question10= question10))
             engine.run()
@@ -90,7 +88,6 @@ def resp(request, question_id ):
             question8 = request.POST['question8']
             question14 = request.POST['question14']
             question10 = request.POST['question10']
-            engine = integratedHandling()
             engine.reset()
             engine.declare(GorgojoQuestionFive(question11=question11, question12=question12, question13 =question13, question8 = question8, question14= question14, question10= question10))
             engine.run()
@@ -105,7 +102,6 @@ def resp(request, question_id ):
             question15 = request.POST['question15']
             question16 = request.POST['question16']
             question17 = request.POST['question17']
-            engine = integratedHandling()
             engine.reset()
             engine.declare(GorgojoQuestionSix(question11=question11, question12=question12, question13 =question13, question14 = question14, question15= question15, question16= question16, question17= question17))
             engine.run()
@@ -116,7 +112,6 @@ def resp(request, question_id ):
             question16 = request.POST['question16']
             question17 = request.POST['question17']
             question18 = request.POST['question18']
-            engine = integratedHandling()
             engine.reset()
             engine.declare(GorgojoQuestionSeven(question16=question16, question17=question17, question18 =question18))
             engine.run()
@@ -128,7 +123,6 @@ def resp(request, question_id ):
             question20 = request.POST['question20']
             question21 = request.POST['question21']
             question22 = request.POST['question22']
-            engine = integratedHandling()
             engine.reset()
             engine.declare(GorgojoQuestionEight(question19=question19, question20=question20, question21 =question21, question22=question22))
             engine.run()

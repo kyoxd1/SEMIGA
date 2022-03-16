@@ -1,9 +1,10 @@
-#####################################################################
+####################################################################################
 # SISTEMA EXPERTO PARA EL MANEJO INTEGRADO DEL GORGOJO DE LOS ANDES #
-#####################################################################
+####################################################################################
 
-## Importante decir que se requiere Python desde 3.5 a la .38
-## debido a que la libreria experta solo acepta esas versiones
+## Importante:
+    - Decir que se requiere Python desde 3.5 a la .38
+    debido a que la libreria experta solo acepta esas versiones
 ## Si tiene una version superior lo recomendable es implementar Pypi puede seguir el siguiente tutorial:
 
 - https://pypi.org/project/pypi-install/

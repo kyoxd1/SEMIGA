@@ -1,3 +1,8 @@
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href= {% static 'questionsRules/preventiveMeasures.css' %}>
+<link rel="stylesheet" href= {% static 'questionsRules/footer.css' %}>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +12,61 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Zanjas</h1>
-</body>
-</html>
+    <header class="header">
+        <h1>Zanjas en tu cultivo</h1>
+    </header>
+    <main class="container">
+        <section>
+            <div class="section_title">
+                <h2>¿Qué es una zanja?</h2>
+            </div>
+            <div class="section_content">
+                <img src="" alt="">
+                <p>Bueno una zanja es una excavación de la tierra donde debe ser larga y angosta realizada en el terreno, esta acción se puede realizar de manera mecánica con algun o de manera manual con los siguientes materiales:
+                    <ul>
+                        <li>Pico.</li>
+                        <li>Pala.</li>
+                    </ul>
+                </p>
+            </div>
+        </section>
+        <section>
+            <div class="section_title">
+                <h2>¿Para qué sirve una zanja?</h2>
+            </div>
+            <div class="section_content">
+                <img src="" alt="">
+                <p>Como ya es de su conocimiento la plaga del Gorgojo de Los Andes no puedo volar asi que es muy necesario elaborar una zanja alrededor de la parcela para posteriormente de dia por medio ir a verificar la zanja para asi poder capturar a los gorgojos adultos
+                </p>
+            </div>
+        </section>
+        <section>
+            <div class="section_title">
+                <h2>¿Cómo elaborar una zanja?</h2>
+            </div>
+            <div class="section_content">
+                <img src="" alt="">
+                <p>Nos ubicaremos cerca a la parcela donde realizaremos la zanja, iniciamos el proceso de abrir la zanja de masomenos 30 centímetros de profundidad el cual es equivalente a un surco común y unos 100 centímetros de largo.  
+                </p>
+            </div>
+        </section>
+        <section>
+            <div class="section_title">
+                <h2>Revestimiento a la zanja</h2>
+            </div>
+            <div class="section_content">
+                <p>Luego de 20 a 30 días de la siembra para mayor efectividad luego de realizar la zanja se recomienda revestirla con plástico negro de masomenos 100 centímetros de largo y entre 60 o 80 centímetros de ancho, pondremos el plástico en el canal o la misma zanja, cubriendo por fuera con la tierra sacada de la zanja y de manera interior con piedras con mucha precaución para que no dañe al plástico y para que el viento no se lo pueda llevar.<br>Se recomienda visitar la zanja día por medio y por horas de la mañana para asi poder recojer a los Gorgojos adultos que esten en el plástico.</p>
+            </div>
+        </section>
+        <section>
+            <div class="section_title">
+                <h2>¿Por qué revistir la zanja con plástico negro?</h2>
+            </div>
+            <div class="section_content">
+                <img src="" alt="">
+                <p>Básicamente usamos plástico de color negro debido a que con la ayuda del sol se calentara y es una trampa mortal para la plaga del Gorgojo de Los Andes, ademas que el plastico hara que el Gorgojo no pueda movilizarse tan facilmente.
+                </p>
+            </div>
+        </section>
+    </main>
+    {% include "questionsRules/footer.html" %}
