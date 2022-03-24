@@ -1,11 +1,10 @@
-from msilib.schema import Error
-from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.views import generic
-from django.views import generic
 
 from .knowledgeForGorgojo import *
+
+# from .knowledgeForGorgojo import *
 from .models import Question, Choices
      
 
@@ -36,7 +35,7 @@ def rules(request, question_id):
     
 def resp(request, question_id ):
     try:
-        question = get_object_or_404(Question, pk = question_id)
+        question = Question.objects.filter(pk = question_id)
         engine = integratedHandling()
         if(question.id == 1 or question.id == 2):
             question1 = request.POST['question1']
@@ -146,7 +145,7 @@ def resp(request, question_id ):
     
     
 def gorgojoInformation(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
+    question = Question.objects.filter(pk=question_id)
     engine = integratedHandling()
     engine.reset()
     engine.declare(QuestionList(questionId=question_id))
@@ -159,7 +158,7 @@ def gorgojoInformation(request, question_id):
     
     
 def gorgojoInformationAndGoodPractice(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk__in=[1,2])
     return render(request, "questionsRules/gorgojoInformationAndGoodPractice.html", {
         "latest_question_list": latest_question_list,
@@ -168,7 +167,7 @@ def gorgojoInformationAndGoodPractice(request, question_id):
     
 
 def goodPractices(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk__in=[1,2])
     return render(request, "questionsRules/goodPractices.html", {
         "latest_question_list": latest_question_list,
@@ -176,7 +175,7 @@ def goodPractices(request, question_id):
         });
     
 def preventiveMeasures(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk__in=[5])
     return render(request, "questionsRules/preventiveMeasures.html", {
         "latest_question_list": latest_question_list,
@@ -184,7 +183,7 @@ def preventiveMeasures(request, question_id):
         });
     
 def chemicals(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk__in=[1,2])
     return render(request, "questionsRules/chemicals.html", {
         "latest_question_list": latest_question_list,
@@ -192,7 +191,7 @@ def chemicals(request, question_id):
     });
     
 def ditches(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk__in=[1,2])
     return render(request, "questionsRules/ditches.html", {
         "latest_question_list": latest_question_list,
@@ -200,7 +199,7 @@ def ditches(request, question_id):
     });
     
 def plantOtherVegetables(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk__in=[1,2])
     return render(request, "questionsRules/plantOtherVegetables.html", {
         "latest_question_list": latest_question_list,
@@ -208,7 +207,7 @@ def plantOtherVegetables(request, question_id):
     });
 
 def plantPickUp(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk__in=[1,2])
     return render(request, "questionsRules/plantPickUp.html", {
         "latest_question_list": latest_question_list,
@@ -216,7 +215,7 @@ def plantPickUp(request, question_id):
     });
 
 def traps(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk__in=[1,2])
     return render(request, "questionsRules/traps.html", {
         "latest_question_list": latest_question_list,
@@ -225,7 +224,7 @@ def traps(request, question_id):
     
     
 def continueStageChoice(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk = 5)
     return render(request, "questionsRules/continueStageChoice.html", {
         "latest_question_list": latest_question_list,
@@ -233,7 +232,7 @@ def continueStageChoice(request, question_id):
     });
     
 def culturalWork(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk = 5)
     return render(request, "questionsRules/culturalWork.html", {
         "latest_question_list": latest_question_list,
@@ -241,7 +240,7 @@ def culturalWork(request, question_id):
     });
     
 def gorgojoMeasures(request, question_id):
-    question = get_object_or_404(Question, pk = question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk = 5)
     return render(request, "questionsRules/gorgojoMeasures.html", {
         "latest_question_list": latest_question_list,
@@ -249,7 +248,7 @@ def gorgojoMeasures(request, question_id):
     });
     
 def gatherGorgojo(request, question_id):
-    question = get_object_or_404(Question, pk= question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk = 1)
     return render(request, "questionsRules/gatherGorgojo.html",{
         "latest_question_list": latest_question_list,
@@ -257,7 +256,7 @@ def gatherGorgojo(request, question_id):
     })
     
 def countherTheGorgojo(request, question_id):
-    question = get_object_or_404(Question, pk= question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk = 1)
     return render(request, "questionsRules/countherTheGorgojo.html",{
         "latest_question_list": latest_question_list,
@@ -265,7 +264,7 @@ def countherTheGorgojo(request, question_id):
     })
     
 def potatoSelection(request, question_id):
-    question = get_object_or_404(Question, pk= question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk = 1)
     return render(request, "questionsRules/potatoSelection.html",{
         "latest_question_list": latest_question_list,
@@ -273,7 +272,7 @@ def potatoSelection(request, question_id):
     })
     
 def soilRemoval(request, question_id):
-    question = get_object_or_404(Question, pk= question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk = 1)
     return render(request, "questionsRules/soilRemoval.html",{
         "latest_question_list": latest_question_list,
@@ -281,7 +280,7 @@ def soilRemoval(request, question_id):
     })
     
 def warehousePreparation(request, question_id):
-    question = get_object_or_404(Question, pk= question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk = 1)
     return render(request, "questionsRules/warehousePreparation.html",{
         "latest_question_list": latest_question_list,
@@ -289,7 +288,7 @@ def warehousePreparation(request, question_id):
     })
     
 def dangerIntoWarehouse(request, question_id):
-    question = get_object_or_404(Question, pk= question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk = 1)
     return render(request, "questionsRules/dangerIntoWarehouse.html",{
         "latest_question_list": latest_question_list,
@@ -297,7 +296,7 @@ def dangerIntoWarehouse(request, question_id):
     })
     
 def whiteFungus(request, question_id):
-    question = get_object_or_404(Question, pk= question_id)
+    question = Question.objects.filter(pk=question_id)
     latest_question_list = Question.objects.filter(pk = 1)
     return render(request, "questionsRules/whiteFungus.html",{
         "latest_question_list": latest_question_list,
