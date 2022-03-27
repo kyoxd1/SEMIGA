@@ -3096,7 +3096,7 @@ class QuestionsRules_GoodPracticesViewTests(TestCase):
         Test: if status code to View goodPractices is equal '200'
         Test: if latest_questions_list is equals to questions
         Test: if question.id is equals to 3
-        Test: if question5 isn't contains in response to View Index
+        Test: if question5 isn't contains in response to View preventiveMeasures
         """
         questions = Question.objects.filter(pk__in = [3,4]).order_by("id")
         question5 = Question.objects.get(pk = 5)
@@ -3146,7 +3146,7 @@ class QuestionsRules_PreventiveMeasuresViewTests(TestCase):
         Test: if status code to View preventiveMeasures is equal '200'
         Test: if latest_questions_list is equals to questions
         Test: if question.id is equals to 5
-        Test: if question5 isn't contains in response to View Index
+        Test: if question5 isn't contains in response to View preventiveMeasures
         """
         questions = Question.objects.filter(pk__in = [5]).order_by("id")
         question6 = Question.objects.get(pk = 6)
@@ -3176,11 +3176,6 @@ class QuestionsRules_ChemicalsViewTests(TestCase):
         Create_Question("¿Coloco trampas alrededor de la parcela?")
         Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
         Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
-        Create_Question("¿Sabe usted en qué seleccionar la papa, para un menor riesgo en el cultivo?")
-        Create_Question("¿Removió el suelo de su cultivo?")
-        Create_Question("¿Puso la papa en un almacén, o un lugar parecido?")
-        Create_Question("¿Cree qué su cultivo de papa esta seguro en el almacén o otro lugar similar?")
-        Create_Question("¿Conoce la utilidad del Hongo Blanco?")
         
     def test_chemicalsView_for_response404(self):
         """
@@ -3210,7 +3205,7 @@ class QuestionsRules_ChemicalsViewTests(TestCase):
         """
         Verificate if the request of the view is expected
 
-        View Test: preventiveMeasures.html
+        View Test: chemicals.html
         parameters: 6
 
         questions = [question6, question7, question8, question9, question10]
@@ -3220,7 +3215,7 @@ class QuestionsRules_ChemicalsViewTests(TestCase):
 
         Test: if latest_questions_list is equals to questions
         Test: if question.id is equals to 6
-        Test: if question7 isn't contains in response to View Index
+        Test: if question7 isn't contains in response to View chemicals
         """
         questions = Question.objects.filter(pk__in = [6,7,8,9,10]).order_by("id")
         question7 = Question.objects.get(pk = 7)
@@ -3233,7 +3228,7 @@ class QuestionsRules_ChemicalsViewTests(TestCase):
         """
         Verificate if the request of the view is expected
 
-        View Test: preventiveMeasures.html
+        View Test: chemicals.html
         parameters: 11
 
         questions = [question8,question10,question11,question12,question13,question14]
@@ -3243,7 +3238,7 @@ class QuestionsRules_ChemicalsViewTests(TestCase):
 
         Test: if latest_questions_list is equals to questions
         Test: if question.id is equals to 11
-        Test: if question7 isn't contains in response to View Index
+        Test: if question7 isn't contains in response to View chemicals
         """
         questions = Question.objects.filter(pk__in = [8,10,11,12,13,14]).order_by("id")
         question12 = Question.objects.get(pk = 12)
@@ -3256,7 +3251,7 @@ class QuestionsRules_ChemicalsViewTests(TestCase):
         """
         Verificate if the request of the view is expected
 
-        View Test: preventiveMeasures.html
+        View Test: chemicals.html
         parameters: 15
 
         questions = [question11,question12,question13,question14,question15,question16,question17]
@@ -3266,7 +3261,7 @@ class QuestionsRules_ChemicalsViewTests(TestCase):
 
         Test: if latest_questions_list is equals to questions
         Test: if question.id is equals to 15
-        Test: if question16 isn't contains in response to View Index
+        Test: if question16 isn't contains in response to View chemicals
         """
         questions = Question.objects.filter(pk__in = [11,12,13,14,15,16,17]).order_by("id")
         question16 = Question.objects.get(pk = 16)
@@ -3274,4 +3269,1199 @@ class QuestionsRules_ChemicalsViewTests(TestCase):
         self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
         self.assertEqual(response.context["question"].id, 15)
         self.assertNotContains(response, question16.question_text)
+        
+        
+class QuestionsRules_DitchesViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        
+    def test_ditchesView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 6 the status code is 404
+        if args != 11 the status code is 404
+        if args != 15 the status code is 404
+        
+        Test: arg =6, status_code = 200
+        Test: arg =11, status_code = 200
+        Test: arg 15, status_code = 200
+        Test: arg =7, status_code = 404
+        Test: arg =10, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:ditches", args=[6,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:ditches", args=[11,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:ditches", args=[15,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:ditches", args=[7,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:ditches", args=[10,]))
+        self.assertEqual(response.status_code, 404)
+        
+    def test_ditchesView_for_response_value6(self):
+        """
+        Verificate if the request of the view is expected
+
+        View Test: ditches.html
+        parameters: 6
+
+        questions = [question6, question7, question8, question9, question10]
+        question7 = Question7
+
+        View return: latest_questions_list[question6, question7, question8, question9, question10]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 6
+        Test: if question7 isn't contains in response to View ditches
+        """
+        questions = Question.objects.filter(pk__in = [6,7,8,9,10]).order_by("id")
+        question7 = Question.objects.get(pk = 7)
+        response = self.client.get(reverse("questionsRules:ditches", args=[6,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 6)
+        self.assertNotContains(response, question7.question_text)
+        
+    def test_ditchesView_for_response_value11(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: ditches.html
+        parameters: 11
+
+        questions = [question8,question10,question11,question12,question13,question14]
+        question12 = Question12
+
+        View return: latest_questions_list[question8,question10,question11,question12,question13,question14]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 11
+        Test: if question7 isn't contains in response to View ditches
+        """
+        questions = Question.objects.filter(pk__in = [8,10,11,12,13,14]).order_by("id")
+        question12 = Question.objects.get(pk = 12)
+        response = self.client.get(reverse("questionsRules:ditches", args=[11,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 11)
+        self.assertNotContains(response, question12.question_text)
+        
+    def test_ditchesView_for_response_value15(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: ditches.html
+        parameters: 15
+
+        questions = [question11,question12,question13,question14,question15,question16,question17]
+        question16 = Question16
+
+        View return: latest_questions_list[question11,question12,question13,question14,question15,question16,question17]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 15
+        Test: if question16 isn't contains in response to View ditches
+        """
+        questions = Question.objects.filter(pk__in = [11,12,13,14,15,16,17]).order_by("id")
+        question16 = Question.objects.get(pk = 16)
+        response = self.client.get(reverse("questionsRules:ditches", args=[15,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 15)
+        self.assertNotContains(response, question16.question_text)
+        
+        
+class QuestionsRules_PlantOtherVegetablesViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        
+    def test_ditchesView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 6 the status code is 404
+        if args != 11 the status code is 404
+        
+        Test: arg =6, status_code = 200
+        Test: arg =11, status_code = 200
+        Test: arg =7, status_code = 404
+        Test: arg =10, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:plantOtherVegetables", args=[6,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:plantOtherVegetables", args=[11,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:plantOtherVegetables", args=[7,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:plantOtherVegetables", args=[10,]))
+        self.assertEqual(response.status_code, 404)
+        
+    def test_plantOtherVegetablesView_for_response_value6(self):
+        """
+        Verificate if the request of the view is expected
+
+        View Test: plantOtherVegetables.html
+        parameters: 6
+
+        questions = [question6, question7, question8, question9, question10]
+        question7 = Question7
+
+        View return: latest_questions_list[question6, question7, question8, question9, question10]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 6
+        Test: if question7 isn't contains in response to View plantOtherVegetables
+        """
+        questions = Question.objects.filter(pk__in = [6,7,8,9,10]).order_by("id")
+        question7 = Question.objects.get(pk = 7)
+        response = self.client.get(reverse("questionsRules:plantOtherVegetables", args=[6,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 6)
+        self.assertNotContains(response, question7.question_text)
+        
+    def test_plantOtherVegetablesView_for_response_value11(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: plantOtherVegetables.html
+        parameters: 11
+
+        questions = [question8,question10,question11,question12,question13,question14]
+        question12 = Question12
+
+        View return: latest_questions_list[question8,question10,question11,question12,question13,question14]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 11
+        Test: if question7 isn't contains in response to View plantOtherVegetables
+        """
+        questions = Question.objects.filter(pk__in = [8,10,11,12,13,14]).order_by("id")
+        question12 = Question.objects.get(pk = 12)
+        response = self.client.get(reverse("questionsRules:plantOtherVegetables", args=[11,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 11)
+        self.assertNotContains(response, question12.question_text)
+        
+        
+class QuestionsRules_PlantPickUpViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        
+    def test_ditchesView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 6 the status code is 404
+        
+        Test: arg =6, status_code = 200
+        Test: arg =7, status_code = 404
+        Test: arg =5, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:plantOtherVegetables", args=[6,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:plantOtherVegetables", args=[7,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:plantOtherVegetables", args=[5,]))
+        self.assertEqual(response.status_code, 404)
+        
+    def test_plantPickUpView_for_response_value6(self):
+        """
+        Verificate if the request of the view is expected
+
+        View Test: plantPickUp.html
+        parameters: 6
+
+        questions = [question6, question7, question8, question9, question10]
+        question7 = Question7
+
+        View return: latest_questions_list[question6, question7, question8, question9, question10]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 6
+        Test: if question7 isn't contains in response to View plantPickUp
+        """
+        questions = Question.objects.filter(pk__in = [6,7,8,9,10]).order_by("id")
+        question7 = Question.objects.get(pk = 7)
+        response = self.client.get(reverse("questionsRules:plantPickUp", args=[6,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 6)
+        self.assertNotContains(response, question7.question_text)
+        
+
+class QuestionsRules_TrapsViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        
+    def test_trapsView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 6 the status code is 404
+        if args != 11 the status code is 404
+        if args != 15 the status code is 404
+        
+        Test: arg =6, status_code = 200
+        Test: arg =11, status_code = 200
+        Test: arg 15, status_code = 200
+        Test: arg =7, status_code = 404
+        Test: arg =10, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:traps", args=[6,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:traps", args=[11,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:traps", args=[15,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:traps", args=[7,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:traps", args=[10,]))
+        self.assertEqual(response.status_code, 404)
+        
+    def test_ditchesView_for_response_value6(self):
+        """
+        Verificate if the request of the view is expected
+
+        View Test: traps.html
+        parameters: 6
+
+        questions = [question6, question7, question8, question9, question10]
+        question7 = Question7
+
+        View return: latest_questions_list[question6, question7, question8, question9, question10]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 6
+        Test: if question7 isn't contains in response to View traps
+        """
+        questions = Question.objects.filter(pk__in = [6,7,8,9,10]).order_by("id")
+        question7 = Question.objects.get(pk = 7)
+        response = self.client.get(reverse("questionsRules:traps", args=[6,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 6)
+        self.assertNotContains(response, question7.question_text)
+        
+    def test_trapsView_for_response_value11(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: traps.html
+        parameters: 11
+
+        questions = [question8,question10,question11,question12,question13,question14]
+        question12 = Question12
+
+        View return: latest_questions_list[question8,question10,question11,question12,question13,question14]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 11
+        Test: if question7 isn't contains in response to View traps
+        """
+        questions = Question.objects.filter(pk__in = [8,10,11,12,13,14]).order_by("id")
+        question12 = Question.objects.get(pk = 12)
+        response = self.client.get(reverse("questionsRules:traps", args=[11,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 11)
+        self.assertNotContains(response, question12.question_text)
+        
+    def test_trapsView_for_response_value15(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: traps.html
+        parameters: 15
+
+        questions = [question11,question12,question13,question14,question15,question16,question17]
+        question16 = Question16
+
+        View return: latest_questions_list[question11,question12,question13,question14,question15,question16,question17]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 15
+        Test: if question16 isn't contains in response to View traps
+        """
+        questions = Question.objects.filter(pk__in = [11,12,13,14,15,16,17]).order_by("id")
+        question16 = Question.objects.get(pk = 16)
+        response = self.client.get(reverse("questionsRules:traps", args=[15,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 15)
+        self.assertNotContains(response, question16.question_text)
+
+
+class QuestionsRules_ContinueStageChoiceViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        Create_Question("¿Sabe usted en qué seleccionar la papa, para un menor riesgo en el cultivo?")
+        Create_Question("¿Removió el suelo de su cultivo?")
+        Create_Question("¿Puso la papa en un almacén, o un lugar parecido?")
+        Create_Question("¿Cree qué su cultivo de papa esta seguro en el almacén o otro lugar similar?")
+        Create_Question("¿Conoce la utilidad del Hongo Blanco?")
+        
+    def test_continueStageChoiceView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 11 the status code is 404
+        if args != 15 the status code is 404
+        if args != 18 the status code is 404
+        if args != 19 the status code is 404
+        
+        Test: arg =11, status_code = 200
+        Test: arg =15, status_code = 200
+        Test: arg =18, status_code = 200
+        Test: arg =19, status_code = 200
+        Test: arg =7, status_code = 404
+        Test: arg =10, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[11,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[15,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[18,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[19,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[7,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[10,]))
+        self.assertEqual(response.status_code, 404)
+        
+        
+    def test_continueStageChoiceView_for_response_value11(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: continueStageChoice.html
+        parameters: 11
+
+        questions = [question8,question10,question11,question12,question13,question14]
+        question12 = Question12
+
+        View return: latest_questions_list[question8,question10,question11,question12,question13,question14]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 11
+        Test: if question7 isn't contains in response to View continueStageChoice
+        """
+        questions = Question.objects.filter(pk__in = [8,10,11,12,13,14]).order_by("id")
+        question12 = Question.objects.get(pk = 12)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[11,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 11)
+        self.assertNotContains(response, question12.question_text)
+        
+    def test_continueStageChoiceView_for_response_value15(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: continueStageChoice.html
+        parameters: 15
+
+        questions = [question11,question12,question13,question14,question15,question16,question17]
+        question16 = Question16
+
+        View return: latest_questions_list[question11,question12,question13,question14,question15,question16,question17]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 15
+        Test: if question16 isn't contains in response to View continueStageChoice
+        """
+        questions = Question.objects.filter(pk__in = [11,12,13,14,15,16,17]).order_by("id")
+        question16 = Question.objects.get(pk = 16)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[15,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 15)
+        self.assertNotContains(response, question16.question_text)
+        
+    def test_continueStageChoiceView_for_response_value18(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: continueStageChoice.html
+        parameters: 18
+
+        questions = [question16,question17,question18]
+        question19 = Question19
+
+        View return: latest_questions_list[question16,question17,question18]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 18
+        Test: if question19 isn't contains in response to View continueStageChoice
+        """
+        questions = Question.objects.filter(pk__in = [16,17,18]).order_by("id")
+        question19 = Question.objects.get(pk = 19)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[18,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 18)
+        self.assertNotContains(response, question19.question_text)
+        
+    def test_continueStageChoiceView_for_response_value19(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: continueStageChoice.html
+        parameters: 19
+
+        questions = [question19,question20,question21,question22]
+        question1 = Question1
+
+        View return: latest_questions_list[question19,question20,question21,question22]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 19
+        Test: if question1 isn't contains in response to View continueStageChoice
+        """
+        questions = Question.objects.filter(pk__in = [19,20,21,22]).order_by("id")
+        question1 = Question.objects.get(pk = 1)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[19,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 19)
+        self.assertNotContains(response, question1.question_text)
+        
+        
+class QuestionsRules_CulturalWorkViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        
+    def test_culturalWorkView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 11 the status code is 404
+        if args != 15 the status code is 404
+        
+        Test: arg =11, status_code = 200
+        Test: arg =15, status_code = 200
+        Test: arg =7, status_code = 404
+        Test: arg =10, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:culturalWork", args=[11,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:culturalWork", args=[15,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:culturalWork", args=[7,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:culturalWork", args=[10,]))
+        self.assertEqual(response.status_code, 404)
+        
+        
+    def test_culturalWorkView_for_response_value11(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: culturalWork.html
+        parameters: 11
+
+        questions = [question8,question10,question11,question12,question13,question14]
+        question12 = Question12
+
+        View return: latest_questions_list[question8,question10,question11,question12,question13,question14]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 11
+        Test: if question7 isn't contains in response to View culturalWork
+        """
+        questions = Question.objects.filter(pk__in = [8,10,11,12,13,14]).order_by("id")
+        question12 = Question.objects.get(pk = 12)
+        response = self.client.get(reverse("questionsRules:culturalWork", args=[11,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 11)
+        self.assertNotContains(response, question12.question_text)
+        
+    def test_culturalWorkView_for_response_value15(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: culturalWork.html
+        parameters: 15
+
+        questions = [question11,question12,question13,question14,question15,question16,question17]
+        question16 = Question16
+
+        View return: latest_questions_list[question11,question12,question13,question14,question15,question16,question17]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 15
+        Test: if question16 isn't contains in response to View culturalWork
+        """
+        questions = Question.objects.filter(pk__in = [11,12,13,14,15,16,17]).order_by("id")
+        question16 = Question.objects.get(pk = 16)
+        response = self.client.get(reverse("questionsRules:culturalWork", args=[15,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 15)
+        self.assertNotContains(response, question16.question_text)
+        
+        
+class QuestionsRules_GorgojoMeasuresViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        
+    def test_gorgojoMeasuresView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 11 the status code is 404
+        if args != 15 the status code is 404
+        
+        Test: arg =11, status_code = 200
+        Test: arg =15, status_code = 200
+        Test: arg =7, status_code = 404
+        Test: arg =10, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:gorgojoMeasures", args=[11,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:gorgojoMeasures", args=[15,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:gorgojoMeasures", args=[7,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:gorgojoMeasures", args=[10,]))
+        self.assertEqual(response.status_code, 404)
+        
+        
+    def test_gorgojoMeasuresView_for_response_value11(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: gorgojoMeasures.html
+        parameters: 11
+
+        questions = [question8,question10,question11,question12,question13,question14]
+        question12 = Question12
+
+        View return: latest_questions_list[question8,question10,question11,question12,question13,question14]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 11
+        Test: if question7 isn't contains in response to View gorgojoMeasures
+        """
+        questions = Question.objects.filter(pk__in = [8,10,11,12,13,14]).order_by("id")
+        question12 = Question.objects.get(pk = 12)
+        response = self.client.get(reverse("questionsRules:gorgojoMeasures", args=[11,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 11)
+        self.assertNotContains(response, question12.question_text)
+        
+    def test_gorgojoMeasuresView_for_response_value15(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: gorgojoMeasures.html
+        parameters: 15
+
+        questions = [question11,question12,question13,question14,question15,question16,question17]
+        question16 = Question16
+
+        View return: latest_questions_list[question11,question12,question13,question14,question15,question16,question17]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 15
+        Test: if question16 isn't contains in response to View gorgojoMeasures
+        """
+        questions = Question.objects.filter(pk__in = [11,12,13,14,15,16,17]).order_by("id")
+        question16 = Question.objects.get(pk = 16)
+        response = self.client.get(reverse("questionsRules:gorgojoMeasures", args=[15,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 15)
+        self.assertNotContains(response, question16.question_text)
+        
+        
+class QuestionsRules_GatherGorgojoViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        Create_Question("¿Sabe usted en qué seleccionar la papa, para un menor riesgo en el cultivo?")
+        Create_Question("¿Removió el suelo de su cultivo?")
+        
+    def test_gatherGorgojoView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 15 the status code is 404
+        if args != 18 the status code is 404
+        
+        Test: arg =15, status_code = 200
+        Test: arg =18, status_code = 200
+        Test: arg =7, status_code = 404
+        Test: arg =10, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[15,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[18,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[7,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:continueStageChoice", args=[10,]))
+        self.assertEqual(response.status_code, 404)
+        
+        
+    def test_gatherGorgojoView_for_response_value15(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: gatherGorgojo.html
+        parameters: 15
+
+        questions = [question11,question12,question13,question14,question15,question16,question17]
+        question16 = Question16
+
+        View return: latest_questions_list[question11,question12,question13,question14,question15,question16,question17]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 15
+        Test: if question16 isn't contains in response to View gatherGorgojo
+        """
+        questions = Question.objects.filter(pk__in = [11,12,13,14,15,16,17]).order_by("id")
+        question16 = Question.objects.get(pk = 16)
+        response = self.client.get(reverse("questionsRules:gatherGorgojo", args=[15,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 15)
+        self.assertNotContains(response, question16.question_text)
+        
+    def test_gatherGorgojoView_for_response_value18(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: gatherGorgojo.html
+        parameters: 18
+
+        questions = [question16,question17,question18]
+        question19 = Question19
+
+        View return: latest_questions_list[question16,question17,question18]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 18
+        Test: if question19 isn't contains in response to View gatherGorgojo
+        """
+        questions = Question.objects.filter(pk__in = [16,17,18]).order_by("id")
+        question19 = Question.objects.get(pk = 19)
+        response = self.client.get(reverse("questionsRules:gatherGorgojo", args=[18,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 18)
+        self.assertNotContains(response, question19.question_text)
+        
+        
+class QuestionsRules_CountherTheGorgojoViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        Create_Question("¿Sabe usted en qué seleccionar la papa, para un menor riesgo en el cultivo?")
+        Create_Question("¿Removió el suelo de su cultivo?")
+        
+    def test_countherTheGorgojoView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 15 the status code is 404
+        if args != 18 the status code is 404
+        
+        Test: arg =15, status_code = 200
+        Test: arg =18, status_code = 200
+        Test: arg =7, status_code = 404
+        Test: arg =10, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:countherTheGorgojo", args=[15,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:countherTheGorgojo", args=[18,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:countherTheGorgojo", args=[7,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:countherTheGorgojo", args=[10,]))
+        self.assertEqual(response.status_code, 404)
+        
+        
+    def test_countherTheGorgojoView_for_response_value15(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: countherTheGorgojo.html
+        parameters: 15
+
+        questions = [question11,question12,question13,question14,question15,question16,question17]
+        question16 = Question16
+
+        View return: latest_questions_list[question11,question12,question13,question14,question15,question16,question17]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 15
+        Test: if question16 isn't contains in response to View countherTheGorgojo
+        """
+        questions = Question.objects.filter(pk__in = [11,12,13,14,15,16,17]).order_by("id")
+        question16 = Question.objects.get(pk = 16)
+        response = self.client.get(reverse("questionsRules:countherTheGorgojo", args=[15,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 15)
+        self.assertNotContains(response, question16.question_text)
+        
+    def test_countherTheGorgojoView_for_response_value18(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: countherTheGorgojo.html
+        parameters: 18
+
+        questions = [question16,question17,question18]
+        question19 = Question19
+
+        View return: latest_questions_list[question16,question17,question18]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 18
+        Test: if question19 isn't contains in response to View countherTheGorgojo
+        """
+        questions = Question.objects.filter(pk__in = [16,17,18]).order_by("id")
+        question19 = Question.objects.get(pk = 19)
+        response = self.client.get(reverse("questionsRules:countherTheGorgojo", args=[18,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 18)
+        self.assertNotContains(response, question19.question_text)
+        
+        
+class QuestionsRules_PotatoSelectionViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        Create_Question("¿Sabe usted en qué seleccionar la papa, para un menor riesgo en el cultivo?")
+        Create_Question("¿Removió el suelo de su cultivo?")
+        
+    def test_potatoSelectionView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 18 the status code is 404
+        
+        Test: arg =18, status_code = 200
+        Test: arg =7, status_code = 404
+        Test: arg =19, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:potatoSelection", args=[18,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:potatoSelection", args=[7,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:potatoSelection", args=[19,]))
+        self.assertEqual(response.status_code, 404)
+        
+        
+    def test_potatoSelectionView_for_response_value18(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: potatoSelection.html
+        parameters: 18
+
+        questions = [question16,question17,question18]
+        question19 = Question19
+
+        View return: latest_questions_list[question16,question17,question18]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 18
+        Test: if question19 isn't contains in response to View potatoSelection
+        """
+        questions = Question.objects.filter(pk__in = [16,17,18]).order_by("id")
+        question19 = Question.objects.get(pk = 19)
+        response = self.client.get(reverse("questionsRules:potatoSelection", args=[18,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 18)
+        self.assertNotContains(response, question19.question_text)
+        
+        
+class QuestionsRules_SoilRemovalViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        Create_Question("¿Sabe usted en qué seleccionar la papa, para un menor riesgo en el cultivo?")
+        Create_Question("¿Removió el suelo de su cultivo?")
+        Create_Question("¿Puso la papa en un almacén, o un lugar parecido?")
+        Create_Question("¿Cree qué su cultivo de papa esta seguro en el almacén o otro lugar similar?")
+        Create_Question("¿Conoce la utilidad del Hongo Blanco?")
+        
+    def test_soilRemovalView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 19 the status code is 404
+        
+        Test: arg =19, status_code = 200
+        Test: arg =18, status_code = 404
+        Test: arg =20, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:soilRemoval", args=[19,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:soilRemoval", args=[18,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:soilRemoval", args=[20,]))
+        self.assertEqual(response.status_code, 404)
+        
+        
+    def test_soilRemovalView_for_response_value18(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: soilRemoval.html
+        parameters: 19
+
+        questions = [question19,question20,question21,question22]
+        question18 = Question18
+
+        View return: latest_questions_list[question19,question20,question21,question22]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 19
+        Test: if question18 isn't contains in response to View soilRemoval
+        """
+        questions = Question.objects.filter(pk__in = [19,20,21,22]).order_by("id")
+        question18 = Question.objects.get(pk = 18)
+        response = self.client.get(reverse("questionsRules:soilRemoval", args=[19,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 19)
+        self.assertNotContains(response, question18.question_text)
+        
+        
+class QuestionsRules_WarehousePreparationViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        Create_Question("¿Sabe usted en qué seleccionar la papa, para un menor riesgo en el cultivo?")
+        Create_Question("¿Removió el suelo de su cultivo?")
+        Create_Question("¿Puso la papa en un almacén, o un lugar parecido?")
+        Create_Question("¿Cree qué su cultivo de papa esta seguro en el almacén o otro lugar similar?")
+        Create_Question("¿Conoce la utilidad del Hongo Blanco?")
+        
+    def test_warehousePreparationView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 19 the status code is 404
+        
+        Test: arg =19, status_code = 200
+        Test: arg =18, status_code = 404
+        Test: arg =20, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:warehousePreparation", args=[19,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:warehousePreparation", args=[18,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:warehousePreparation", args=[20,]))
+        self.assertEqual(response.status_code, 404)
+        
+        
+    def test_warehousePreparationView_for_response_value18(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: warehousePreparation.html
+        parameters: 19
+
+        questions = [question19,question20,question21,question22]
+        question18 = Question18
+
+        View return: latest_questions_list[question19,question20,question21,question22]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 19
+        Test: if question18 isn't contains in response to View warehousePreparation
+        """
+        questions = Question.objects.filter(pk__in = [19,20,21,22]).order_by("id")
+        question18 = Question.objects.get(pk = 18)
+        response = self.client.get(reverse("questionsRules:warehousePreparation", args=[19,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 19)
+        self.assertNotContains(response, question18.question_text)
+        
+        
+class QuestionsRules_DangerIntoWarehouseViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        Create_Question("¿Sabe usted en qué seleccionar la papa, para un menor riesgo en el cultivo?")
+        Create_Question("¿Removió el suelo de su cultivo?")
+        Create_Question("¿Puso la papa en un almacén, o un lugar parecido?")
+        Create_Question("¿Cree qué su cultivo de papa esta seguro en el almacén o otro lugar similar?")
+        Create_Question("¿Conoce la utilidad del Hongo Blanco?")
+        
+    def test_dangerIntoWarehouseView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 19 the status code is 404
+        
+        Test: arg =19, status_code = 200
+        Test: arg =18, status_code = 404
+        Test: arg =20, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:dangerIntoWarehouse", args=[19,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:dangerIntoWarehouse", args=[18,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:dangerIntoWarehouse", args=[20,]))
+        self.assertEqual(response.status_code, 404)
+        
+        
+    def test_dangerIntoWarehouseView_for_response_value18(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: dangerIntoWarehouse.html
+        parameters: 19
+
+        questions = [question19,question20,question21,question22]
+        question18 = Question18
+
+        View return: latest_questions_list[question19,question20,question21,question22]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 19
+        Test: if question18 isn't contains in response to View dangerIntoWarehouse
+        """
+        questions = Question.objects.filter(pk__in = [19,20,21,22]).order_by("id")
+        question18 = Question.objects.get(pk = 18)
+        response = self.client.get(reverse("questionsRules:dangerIntoWarehouse", args=[19,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 19)
+        self.assertNotContains(response, question18.question_text)
+        
+        
+class QuestionsRules_WhiteFungusViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        Create_Question("¿Sabe usted en qué seleccionar la papa, para un menor riesgo en el cultivo?")
+        Create_Question("¿Removió el suelo de su cultivo?")
+        Create_Question("¿Puso la papa en un almacén, o un lugar parecido?")
+        Create_Question("¿Cree qué su cultivo de papa esta seguro en el almacén o otro lugar similar?")
+        Create_Question("¿Conoce la utilidad del Hongo Blanco?")
+        
+    def test_whiteFungusView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 19 the status code is 404
+        
+        Test: arg =19, status_code = 200
+        Test: arg =18, status_code = 404
+        Test: arg =20, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:whiteFungus", args=[19,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:whiteFungus", args=[18,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:whiteFungus", args=[20,]))
+        self.assertEqual(response.status_code, 404)
+        
+        
+    def test_whiteFungusView_for_response_value18(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: whiteFungus.html
+        parameters: 19
+
+        questions = [question19,question20,question21,question22]
+        question18 = Question18
+
+        View return: latest_questions_list[question19,question20,question21,question22]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 19
+        Test: if question18 isn't contains in response to View whiteFungus
+        """
+        questions = Question.objects.filter(pk__in = [19,20,21,22]).order_by("id")
+        question18 = Question.objects.get(pk = 18)
+        response = self.client.get(reverse("questionsRules:whiteFungus", args=[19,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 19)
+        self.assertNotContains(response, question18.question_text)
         
