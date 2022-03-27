@@ -50,7 +50,7 @@ class GorgojoQuestionEight(Fact):
 class integratedHandling(KnowledgeEngine):
     question = Question.objects.filter(pk__in=[1])
     urlRedirect = "questionsRules:rules"
-    listQuestion = Question.objects.filter(pk__in=[1])
+    listQuestion = Question.objects.filter(pk__in=[0])
     
     @Rule(AS.questionList << QuestionList(questionId=L(1) | L(2)))
     def QuestionList_One(self):

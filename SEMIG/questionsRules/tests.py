@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.urls import reverse
 from django.utils import timezone
 
 from experta import *
@@ -6,17 +7,23 @@ from experta import *
 from .knowledgeForGorgojo import *
 from .models import Question
 
+
+def Create_Question(question_text):
+    """Question cretion for unit test"""
+    return Question.objects.create(question_text=question_text, pub_date= timezone.now())
+
+
+
 """
     TEST ALL RULES FOR FACT
 """
-
 class Gorgojo_Rules_For_Facts_Tests(TestCase):
     """
         CREATION QUESTION FOR RULES TEST
     """
     def setUp(self):
         Create_Question("¿Conoces al Gorgojo de Los Andes?")
-        Create_Question("Es su primer cultivo")
+        Create_Question("¿Es su primer cultivo?")
         Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
         Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
         Create_Question("¿En qué etapa se encuentra su cultivo?")
@@ -66,6 +73,7 @@ class Gorgojo_Rules_For_Facts_Tests(TestCase):
         
         self.assertEqual(latest_question_list[0].question_text, question_list[0].question_text)
         self.assertEqual(latest_question_list[1].question_text, question_list[1].question_text)
+        self.assertEqual(latest_question_list[0].question_text, "¿Conoces al Gorgojo de Los Andes?")
         
         """
             Rule Test of:
@@ -140,6 +148,7 @@ class Gorgojo_Rules_For_Facts_Tests(TestCase):
         latest_question_list = enginer.listQuestion
         
         self.assertEqual(latest_question_list[0].question_text, question_list[0].question_text)
+        self.assertQuerysetEqual(latest_question_list, question_list)
            
                 
     def test_return_fact_questions_list_for_def_questionListFor(self):
@@ -2243,6 +2252,1026 @@ class Gorgojo_Rules_For_Facts_Tests(TestCase):
         self.assertNotEqual(latest_question_list[0].question_text, question_list[0].question_text)
         self.assertEqual(urlRedirect, url)
 
-def Create_Question(question_text):
-    """Question cretion for unit test"""
-    return Question.objects.create(question_text=question_text, pub_date= timezone.now())
+class QuestionsRules_RulesViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        Create_Question("¿Sabe usted en qué seleccionar la papa, para un menor riesgo en el cultivo?")
+        Create_Question("¿Removió el suelo de su cultivo?")
+        Create_Question("¿Puso la papa en un almacén, o un lugar parecido?")
+        Create_Question("¿Cree qué su cultivo de papa esta seguro en el almacén o otro lugar similar?")
+        Create_Question("¿Conoce la utilidad del Hongo Blanco?")
+        
+    def test_rulesView_for_questionid_1(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 1
+
+        questions = [Question1, Question2]
+        question3 = Question3
+
+        View return: latest_questions_list[question1, question2]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if latest_questions_list is equals questions
+        Test: if question3 isn't contains in response to View Rules
+        """
+        question3 = Question.objects.get(pk = 3)
+        questions = Question.objects.filter(pk__in =[1,2]).order_by("id")
+        url = reverse("questionsRules:rules", args=(1,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertNotContains(response, question3.question_text)
+        
+    def test_rulesView_for_questionid_2(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 2
+
+        questions = [Question1, Question2]
+        question3 = Question3
+
+        View return: latest_questions_list[question1, question2]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if latest_questions_list is equals questions
+        Test: if question3 isn't contains in response to View Rules
+        """
+        question3 = Question.objects.get(pk = 3)
+        questions = Question.objects.filter(pk__in =[1,2]).order_by("id")
+        url = reverse("questionsRules:rules", args=(2,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertNotContains(response, question3.question_text)
+        
+    def test_rulesView_for_questionid_3(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 3
+
+        questions = [Question3, Question4]
+        question5 = Question5
+
+        View retunr: latest_questions_list[question3, question4]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if of RulesView response.latest_question_list[question3,question4] is equals questions
+        Test: if question5 isn't contains in response to View Rules
+        """
+        question5 = Question.objects.get(pk = 5)
+        questions = Question.objects.filter(pk__in =[3,4]).order_by("id")
+        url = reverse("questionsRules:rules", args=(3,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertNotContains(response, question5.question_text)
+        
+    def test_rulesView_for_questionid_4(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 4
+
+        questions = [Question3, Question4]
+        question5 = Question5
+
+        View retunr: latest_questions_list[question3, question4]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if of RulesView response.latest_question_list[question3,question4] is equals questions
+        Test: if question5 isn't contains in response to View Rules
+        """
+        question5 = Question.objects.get(pk = 5)
+        questions = Question.objects.filter(pk__in =[3,4]).order_by("id")
+        url = reverse("questionsRules:rules", args=(4,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertNotContains(response, question5.question_text)
+        
+        
+    def test_rulesView_for_questionid_5(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 5
+
+        question4 = Question4
+        questions = [Question5]
+        question6 = Question6
+
+        View return: latest_questions_list[question5]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if latest_questions_list is equals questions
+        Test: if question4 isn't contains in response to View Rules
+        Test: if question6 isn't contains in response to View Rules
+        """
+        question4 = Question.objects.get(pk = 4)
+        question6 = Question.objects.get(pk = 6)
+        questions = Question.objects.filter(pk__in =[5]).order_by("id")
+        url = reverse("questionsRules:rules", args=(5,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertNotContains(response, question4.question_text)
+        self.assertNotContains(response, question6.question_text)
+        
+        
+    def test_rulesView_for_questionid_6(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 6
+
+        question5 = Question8
+        questions = [Question6, Question7, Question8, Quesiton9, Question10]
+        question7 = Question7
+
+        View return: latest_questions_list[question6, question7, question8, quesiton9, question10]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if latest_questions_list is equals questions
+        Test: if question5 isn't contains in response to View Rules
+        Test: if question7 is contains in response to View Rules
+        """
+        question5 = Question.objects.get(pk = 5)
+        question7 = Question.objects.get(pk = 7)
+        questions = Question.objects.filter(pk__in =[6,7,8,9,10]).order_by("id")
+        url = reverse("questionsRules:rules", args=(6,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertNotContains(response, question5.question_text)
+        self.assertContains(response, question7.question_text)
+        
+        
+    def test_rulesView_for_questionid_7(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 7
+
+        question6 = Question6
+        question7 = Question7
+        question8 = Question8
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question6 isn't contains in response to View Rules
+        Test: if question7 isn't contains in response to View Rules
+        Test: if question8 isn't contains in response to View Rules
+        """
+        question6 = Question.objects.get(pk = 6)
+        question7 = Question.objects.get(pk = 7)
+        question8 = Question.objects.get(pk = 8)
+        url = reverse("questionsRules:rules", args=(7,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        self.assertNotContains(response, question6.question_text)
+        self.assertNotContains(response, question7.question_text)
+        self.assertNotContains(response, question8.question_text)
+        
+        
+    def test_rulesView_for_questionid_8(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 8
+
+        question7 = Question7
+        question8 = Question8
+        question9 = Question9
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question7 isn't contains in response to View Rules
+        Test: if question8 isn't contains in response to View Rules
+        Test: if question9 isn't contains in response to View Rules
+        """
+        question7 = Question.objects.get(pk = 7)
+        question8 = Question.objects.get(pk = 8)
+        question9 = Question.objects.get(pk = 9)
+        url = reverse("questionsRules:rules", args=(8,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        self.assertNotContains(response, question7.question_text)
+        self.assertNotContains(response, question8.question_text)
+        self.assertNotContains(response, question9.question_text)
+        
+        
+    def test_rulesView_for_questionid_9(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 9
+
+        question8 = Question8
+        question9 = Question9
+        question10 = Question10
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question8 isn't contains in response to View Rules
+        Test: if question9 isn't contains in response to View Rules
+        Test: if question10 isn't contains in response to View Rules
+        """
+        question8 = Question.objects.get(pk = 8)
+        question9 = Question.objects.get(pk = 9)
+        question10 = Question.objects.get(pk = 10)
+        url = reverse("questionsRules:rules", args=(9,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        self.assertNotContains(response, question8.question_text)
+        self.assertNotContains(response, question9.question_text)
+        self.assertNotContains(response, question10.question_text)
+        
+        
+    def test_rulesView_for_questionid_10(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 10
+
+        question9 = Question9
+        question10 = Question10
+        question11 = Question11
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question9 isn't contains in response to View Rules
+        Test: if question10 isn't contains in response to View Rules
+        Test: if question11 isn't contains in response to View Rules
+        """
+        question9 = Question.objects.get(pk = 9)
+        question10 = Question.objects.get(pk = 10)
+        question11 = Question.objects.get(pk = 11)
+        url = reverse("questionsRules:rules", args=(10,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        self.assertNotContains(response, question9.question_text)
+        self.assertNotContains(response, question10.question_text)
+        self.assertNotContains(response, question11.question_text)
+        
+        
+    def test_rulesView_for_questionid_11(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 11
+
+        question10 = Question10
+        questions = [Question8, Question10, Question11, Quesiton12, Question13, Question14]
+        question12 = Question12
+
+        View return: latest_questions_list[question8, question10, question11, quesiton12, question13, question14]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if latest_questions_list is equals questions
+        Test: if question10 is contains in response to View Rules
+        Test: if question12 is contains in response to View Rules
+        """
+        question10 = Question.objects.get(pk = 10)
+        questions = Question.objects.filter(pk__in =[8,10,11,12,13,14]).order_by("id")
+        question12 = Question.objects.get(pk = 12)
+        url = reverse("questionsRules:rules", args=(11,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertContains(response, question10.question_text)
+        self.assertContains(response, question12.question_text)
+        
+        
+    def test_rulesView_for_questionid_12(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 12
+
+        question11 = Question11
+        question12 = Question12
+        question13 = Question13
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question11 isn't contains in response to View Rules
+        Test: if question12 isn't contains in response to View Rules
+        Test: if question13 isn't contains in response to View Rules
+        """
+        question11 = Question.objects.get(pk = 11)
+        question12 = Question.objects.get(pk = 12)
+        question13 = Question.objects.get(pk = 13)
+        url = reverse("questionsRules:rules", args=(12,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        self.assertNotContains(response, question11.question_text)
+        self.assertNotContains(response, question12.question_text)
+        self.assertNotContains(response, question13.question_text)
+        
+        
+    def test_rulesView_for_questionid_13(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 13
+
+        question12 = Question12
+        question13 = Question13
+        question14 = Question14
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question12 isn't contains in response to View Rules
+        Test: if question13 isn't contains in response to View Rules
+        Test: if question14 isn't contains in response to View Rules
+        """
+        question12 = Question.objects.get(pk = 12)
+        question13 = Question.objects.get(pk = 13)
+        question14 = Question.objects.get(pk = 14)
+        url = reverse("questionsRules:rules", args=(13,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        self.assertNotContains(response, question12.question_text)
+        self.assertNotContains(response, question13.question_text)
+        self.assertNotContains(response, question14.question_text)
+        
+    
+    def test_rulesView_for_questionid_14(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 14
+
+        question13 = Question13
+        question14 = Question14
+        question15 = Question15
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question13 isn't contains in response to View Rules
+        Test: if question14 isn't contains in response to View Rules
+        Test: if question15 isn't contains in response to View Rules
+        """
+        question13 = Question.objects.get(pk = 13)
+        question14 = Question.objects.get(pk = 14)
+        question15 = Question.objects.get(pk = 15)
+        url = reverse("questionsRules:rules", args=(14,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        self.assertNotContains(response, question13.question_text)
+        self.assertNotContains(response, question14.question_text)
+        self.assertNotContains(response, question15.question_text)
+        
+        
+    def test_rulesView_for_questionid_15(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 15
+
+        question10 = Question10
+        questions = [Question11, Quesiton12, Question13, Question14, Question15, Question16, Question17]
+        question18 = Question18
+
+        View return: latest_questions_list[question11, question12, question13, question14, question15, question16, question17]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if latest_questions_list is equals questions
+        Test: if question14 isn't contains in response to View Rules
+        Test: if question16 isn't contains in response to View Rules
+        """
+        question10 = Question.objects.get(pk = 10)
+        questions = Question.objects.filter(pk__in=[11,12,13,14,15,16,17]).order_by("id")
+        question18 = Question.objects.get(pk = 18)
+        url = reverse("questionsRules:rules", args=(15,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertNotContains(response, question10.question_text)
+        self.assertNotContains(response, question18.question_text)
+        
+        
+    def test_rulesView_for_questionid_16(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 16
+
+        question15 = Question15
+        question16 = Question16
+        question17 = Question17
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question15 isn't contains in response to View Rules
+        Test: if question16 isn't contains in response to View Rules
+        Test: if question17 isn't contains in response to View Rules
+        """
+        question15 = Question.objects.get(pk = 15)
+        question16 = Question.objects.get(pk = 16)
+        question17 = Question.objects.get(pk = 17)
+        url = reverse("questionsRules:rules", args=(16,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        self.assertNotContains(response, question15.question_text)
+        self.assertNotContains(response, question16.question_text)
+        self.assertNotContains(response, question17.question_text)
+        
+    
+    def test_rulesView_for_questionid_17(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 17
+
+        question16 = Question16
+        question17 = Question17
+        question18 = Question18
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question16 isn't contains in response to View Rules
+        Test: if question17 isn't contains in response to View Rules
+        Test: if question18 isn't contains in response to View Rules
+        """
+        question16 = Question.objects.get(pk = 16)
+        question17 = Question.objects.get(pk = 17)
+        question18 = Question.objects.get(pk = 18)
+        url = reverse("questionsRules:rules", args=(17,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        self.assertNotContains(response, question16.question_text)
+        self.assertNotContains(response, question17.question_text)
+        self.assertNotContains(response, question18.question_text)
+        
+        
+    def test_rulesView_for_questionid_18(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 18
+
+        question15 = Question15
+        questions = [Question16, Question17, Question18]
+        question19 = Question19
+
+        View return: latest_questions_list[question16, question17, question18]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if latest_questions_list is equals questions
+        Test: if question15 isn't contains in response to View Rules
+        Test: if question19 isn't contains in response to View Rules
+        """
+        question15 = Question.objects.get(pk = 15)
+        questions = Question.objects.filter(pk__in=[16,17,18]).order_by("id")
+        question19 = Question.objects.get(pk = 19)
+        url = reverse("questionsRules:rules", args=(18,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertNotContains(response, question15.question_text)
+        self.assertNotContains(response, question19.question_text)
+        
+        
+    def test_rulesView_for_questionid_19(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 19
+
+        question18 = Question18
+        questions = [Question19, Question20, Question21, Question22]
+        question22 = Question22
+
+        View return: latest_questions_list[question19, question20, question21, question22]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if latest_questions_list is equals questions
+        Test: if question18 isn't contains in response to View Rules
+        Test: if question22 is contains in response to View Rules
+        """
+        question18 = Question.objects.get(pk = 18)
+        questions = Question.objects.filter(pk__in=[19,20,21,22]).order_by("id")
+        question22 = Question.objects.get(pk = 22)
+        url = reverse("questionsRules:rules", args=(19,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertNotContains(response, question18.question_text)
+        self.assertContains(response, question22.question_text)
+        
+        
+    def test_rulesView_for_questionid_20(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 20
+
+        question19 = Question19
+        question20 = Question20
+        question21 = Question21
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question19 isn't contains in response to View Rules
+        Test: if question20 isn't contains in response to View Rules
+        Test: if question21 isn't contains in response to View Rules
+        """
+        questions = Question.objects.filter(pk__in = [19, 20, 21])
+        url = reverse("questionsRules:rules", args=(20,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        for question in questions:
+            self.assertNotContains(response, question.question_text)
+            
+            
+    def test_rulesView_for_questionid_21(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 21
+
+        question20 = Question20
+        question21 = Question21
+        question22 = Question22
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question20 isn't contains in response to View Rules
+        Test: if question21 isn't contains in response to View Rules
+        Test: if question22 isn't contains in response to View Rules
+        """
+        questions = Question.objects.filter(pk__in = [22, 20, 21])
+        url = reverse("questionsRules:rules", args=(21,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        for question in questions:
+            self.assertNotContains(response, question.question_text)
+        
+        
+    def test_rulesView_for_questionid_22(self):
+        """
+        Verificate if the request for parameters, is the questions expected
+
+        View Test: Rules.html
+        Parameters: question = 22
+
+        question20 = Question20
+        question21 = Question21
+        question22 = Question22
+
+        View return: latest_questions_list[]
+
+        Test: if status code to View Rules is equal '200'
+        Test: if "Question Error!!" is contains in response to Vies Rules
+        Test: if latest_questions_list is equals to []
+        Test: if question20 isn't contains in response to View Rules
+        Test: if question21 isn't contains in response to View Rules
+        Test: if question22 isn't contains in response to View Rules
+        """
+        questions = Question.objects.filter(pk__in = [20, 21, 22])
+        url = reverse("questionsRules:rules", args=(22,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Question error!!")
+        self.assertQuerysetEqual(response.context["latest_question_list"], [])
+        for question in questions:
+            self.assertNotContains(response, question.question_text)
+            
+            
+class QuestionsRules_IndexViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        
+        
+    def test_indexView_for_response(self):
+        """
+        Verificate if the request of the view is expected
+
+        View Test: Index.html
+
+        questions = [Question1, Question2]
+        question3 = Question3
+
+        View return: latest_questions_list[question1, question2]
+
+        Test: if status code to View index is equal '200'
+        Test: if latest_questions_list is equals to questions
+        Test: if question3 isn't contains in response to View Index
+        """
+        questions = Question.objects.filter(pk__in = [1, 2]).order_by("id")
+        question3 = Question.objects.get(pk = 3)
+        url = reverse("questionsRules:index")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertNotContains(response, question3.question_text)
+        
+        
+class QuestionsRules_GorgojoInformationViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        
+    def test_gorgojoInformationView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 3 the status code is 404
+        
+        Test: arg =1, status_code = 404
+        Test: arg =2, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:gorgojoInformation", args=[1,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:gorgojoInformation", args=[2,]))
+        self.assertEqual(response.status_code, 404)
+        
+    def test_gorgojoInformationView_for_response(self):
+        """
+        Verificate if the request of the view is expected
+
+        View Test: GorgojoInformation.html
+        parameters: 3
+
+        questions = [Question3, Question4]
+        question5 = Question5
+
+        View return: latest_questions_list[question3, question4]
+
+        Test: if status code to View gorgojoInformation is equal '200'
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 3
+        Test: if question5 isn't contains in response to View Index
+        """
+        questions = Question.objects.filter(pk__in = [3,4]).order_by("id")
+        question5 = Question.objects.get(pk = 5)
+        response = self.client.get(reverse("questionsRules:gorgojoInformation", args=[3,]))
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 3)
+        self.assertNotContains(response, question5.question_text)
+        
+
+class QuestionsRules_GorgojoInformationAndGoodPracticeViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        
+    def test_gorgojoInformationAndGoodPracticeView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 3 the status code is 404
+        
+        Test: arg =1, status_code = 404
+        Test: arg =2, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:gorgojoInformationAndGoodPractice", args=[1,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:gorgojoInformationAndGoodPractice", args=[2,]))
+        self.assertEqual(response.status_code, 404)
+        
+    def test_gorgojoInformationAndGoodPracticeView_for_response(self):
+        """
+        Verificate if the request of the view is expected
+
+        View Test: gorgojoInformationAndGoodPractice.html
+        parameters: 3
+
+        questions = [Question3, Question4]
+        question5 = Question5
+
+        View return: latest_questions_list[question3, question4]
+
+        Test: if status code to View gorgojoInformationAndGoodPractice is equal '200'
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 3
+        Test: if question5 isn't contains in response to View Index
+        """
+        questions = Question.objects.filter(pk__in = [3,4]).order_by("id")
+        question5 = Question.objects.get(pk = 5)
+        response = self.client.get(reverse("questionsRules:gorgojoInformationAndGoodPractice", args=[3,]))
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 3)
+        self.assertNotContains(response, question5.question_text)
+        
+
+class QuestionsRules_GoodPracticesViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+    
+    def test_goodPracticesView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 3 the status code is 404
+        
+        Test: arg =1, status_code = 404
+        Test: arg =2, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:goodPractices", args=[1,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:goodPractices", args=[2,]))
+        self.assertEqual(response.status_code, 404)
+        
+    def test_goodPracticesView_for_response(self):
+        """
+        Verificate if the request of the view is expected
+
+        View Test: goodPractices.html
+        parameters: 3
+
+        questions = [Question3, Question4]
+        question5 = Question5
+
+        View return: latest_questions_list[question3, question4]
+
+        Test: if status code to View goodPractices is equal '200'
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 3
+        Test: if question5 isn't contains in response to View Index
+        """
+        questions = Question.objects.filter(pk__in = [3,4]).order_by("id")
+        question5 = Question.objects.get(pk = 5)
+        response = self.client.get(reverse("questionsRules:goodPractices", args=[3,]))
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 3)
+        self.assertNotContains(response, question5.question_text)
+        
+        
+
+class QuestionsRules_PreventiveMeasuresViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        
+    def test_preventiveMeasuresView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 3 the status code is 404
+        
+        Test: arg =1, status_code = 404
+        Test: arg =2, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:preventiveMeasures", args=[3,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:preventiveMeasures", args=[6,]))
+        self.assertEqual(response.status_code, 404)
+        
+          
+    def test_preventiveMeasuresView_for_response(self):
+        """
+        Verificate if the request of the view is expected
+
+        View Test: preventiveMeasures.html
+        parameters: 5
+
+        questions = [Question5]
+        question6 = Question6
+
+        View return: latest_questions_list[question5]
+
+        Test: if status code to View preventiveMeasures is equal '200'
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 5
+        Test: if question5 isn't contains in response to View Index
+        """
+        questions = Question.objects.filter(pk__in = [5]).order_by("id")
+        question6 = Question.objects.get(pk = 6)
+        response = self.client.get(reverse("questionsRules:preventiveMeasures", args=[5,]))
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 5)
+        self.assertNotContains(response, question6.question_text)
+        
+        
+class QuestionsRules_ChemicalsViewTests(TestCase):
+    def setUp(self):
+        Create_Question("¿Conoces al Gorgojo de Los Andes?")
+        Create_Question("¿Es su primer cultivo?")
+        Create_Question("¿Tuvo la plaga del Gorgojo de Los Andes anteriormente?")
+        Create_Question("¿La plaga del Gorgojo de los Andes afecto su cultivo de papa?")
+        Create_Question("¿En qué etapa se encuentra su cultivo?")
+        Create_Question("¿Realizó desinfecciones químicas?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela para la siembra?")
+        Create_Question("¿Sabe usted qué cultivos podría sembrar alrededor de la parcela?")
+        Create_Question("¿Removió las plantas (K'ipas) de cosechas anteriores?")
+        Create_Question("¿Sabe usted qué trampas podría poner alrededor del cultivo?")
+        Create_Question("¿Realizo desinfecciones Químicas antes del Sembrado?")
+        Create_Question("¿Realizó zanjas alrededor de la parcela?")
+        Create_Question("¿Realizó Aporques alto alrededor de la parcela?")
+        Create_Question("¿Sospecha qué en su cultivo tiene al Gorgojo de Los Andes?")
+        Create_Question("¿Coloco trampas alrededor de la parcela?")
+        Create_Question("¿Realizo la recolección de los Gorgojos Adultos?")
+        Create_Question("¿Descubrió una gran cantidad de gorgojos en su parcela?")
+        Create_Question("¿Sabe usted en qué seleccionar la papa, para un menor riesgo en el cultivo?")
+        Create_Question("¿Removió el suelo de su cultivo?")
+        Create_Question("¿Puso la papa en un almacén, o un lugar parecido?")
+        Create_Question("¿Cree qué su cultivo de papa esta seguro en el almacén o otro lugar similar?")
+        Create_Question("¿Conoce la utilidad del Hongo Blanco?")
+        
+    def test_chemicalsView_for_response404(self):
+        """
+        Test for pag_not_found 404
+        if args != 6 the status code is 404
+        if args != 11 the status code is 404
+        if args != 15 the status code is 404
+        
+        Test: arg =6, status_code = 200
+        Test: arg =11, status_code = 200
+        Test: arg 15, status_code = 200
+        Test: arg =7, status_code = 404
+        Test: arg =10, status_code = 404
+        """
+        response = self.client.get(reverse("questionsRules:chemicals", args=[6,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:chemicals", args=[11,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:chemicals", args=[15,]))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse("questionsRules:chemicals", args=[7,]))
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get(reverse("questionsRules:chemicals", args=[10,]))
+        self.assertEqual(response.status_code, 404)
+        
+    def test_chemicalsView_for_response_value6(self):
+        """
+        Verificate if the request of the view is expected
+
+        View Test: preventiveMeasures.html
+        parameters: 6
+
+        questions = [question6, question7, question8, question9, question10]
+        question7 = Question7
+
+        View return: latest_questions_list[question6, question7, question8, question9, question10]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 6
+        Test: if question7 isn't contains in response to View Index
+        """
+        questions = Question.objects.filter(pk__in = [6,7,8,9,10]).order_by("id")
+        question7 = Question.objects.get(pk = 7)
+        response = self.client.get(reverse("questionsRules:chemicals", args=[6,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 6)
+        self.assertNotContains(response, question7.question_text)
+        
+    def test_chemicalsView_for_response_value11(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: preventiveMeasures.html
+        parameters: 11
+
+        questions = [question8,question10,question11,question12,question13,question14]
+        question12 = Question12
+
+        View return: latest_questions_list[question8,question10,question11,question12,question13,question14]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 11
+        Test: if question7 isn't contains in response to View Index
+        """
+        questions = Question.objects.filter(pk__in = [8,10,11,12,13,14]).order_by("id")
+        question12 = Question.objects.get(pk = 12)
+        response = self.client.get(reverse("questionsRules:chemicals", args=[11,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 11)
+        self.assertNotContains(response, question12.question_text)
+        
+    def test_chemicalsView_for_response_value15(self):        
+        """
+        Verificate if the request of the view is expected
+
+        View Test: preventiveMeasures.html
+        parameters: 15
+
+        questions = [question11,question12,question13,question14,question15,question16,question17]
+        question16 = Question16
+
+        View return: latest_questions_list[question11,question12,question13,question14,question15,question16,question17]
+
+        Test: if latest_questions_list is equals to questions
+        Test: if question.id is equals to 15
+        Test: if question16 isn't contains in response to View Index
+        """
+        questions = Question.objects.filter(pk__in = [11,12,13,14,15,16,17]).order_by("id")
+        question16 = Question.objects.get(pk = 16)
+        response = self.client.get(reverse("questionsRules:chemicals", args=[15,]))
+        self.assertQuerysetEqual(response.context["latest_question_list"].order_by("id"), questions)
+        self.assertEqual(response.context["question"].id, 15)
+        self.assertNotContains(response, question16.question_text)
+        
