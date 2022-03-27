@@ -18,6 +18,13 @@
             - pip install Django
             - pip install experta==1.9.4
 
+## Test
+#### Para ejecutar los test necesitas:
+##### Windows
+            - py manage.py test questionsRules
+
+##### Linux / Mac
+            -python3 manage.py test questionsRules/
 ## Para ejecutar el programa
 
 ### Asegurate de estar dentro de la carpeta SEMIG
@@ -28,3 +35,4 @@
 
 #### Windows
             - py manage.py runserver
+
