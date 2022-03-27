@@ -1,12 +1,81 @@
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href= {% static 'questionsRules/preventiveMeasures.css' %}>
+<link rel="stylesheet" href= {% static 'questionsRules/footer.css' %}>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Recolección del Gorgojo</title>
 </head>
 <body>
-    <h1>Como recolectar gorgojo</h1>
-</body>
-</html>
+    <header class="header">
+        <h1>¿Cómo recolectar gorgojo?</h1>
+    </header>
+    <main class="container">
+        <section>
+            <div class="section_title">
+                <h2>Materiales Necesarios: </h2>
+            </div>
+            <div class="section_content">
+                <img src="" alt="">
+                <p>
+                    Para la recolección de la plaga del Gorgojo de Los Andes se necesitara algunos materiales, los cuales son: 
+                    <ul>
+                        <li>Un recipiente vacio, donde pondremos a los gorgojos adultos.</li>
+                        <li>Guantes, de ser necesario no es indispensable</li>
+                        <li>Botas</li>
+                        <li>Oberol</li>
+                    </ul>
+                </p>
+            </div>
+        </section>
+        <section>
+            <div class="section_title">
+                <h2>¡Sin Miedo!</h2>
+            </div>
+            <div class="section_content">
+                <img src="" alt="">
+                <p>
+                    Antes que nada lo principal que se debe realizar es, no entrar en desesperación si a la plaga del 
+                    Gorgojo de Los Andes, debido que son muy escurridizos. <br>
+                    Una vez ya determinamos que la plaga entro a nuestro cultivo debemos prepararnos para la recolección 
+                    de los Gorgojos Adultos.
+                    Si eres un agricultor nuevo o que recien empieza con esto de la agricultura, no tengas miedo el 
+                    Gorgojo prácticamente no te hara daño alguno mas que a tu cultivo de papa, asi que no tengas ningun 
+                    miedo.
+                </p>
+            </div>
+        </section>
+        <section>
+            <div class="section_title">
+                <h2>Procedemos a la recolección</h2>
+            </div>
+            <div class="section_content">
+                <img src="" alt="">
+                <p>
+                    Como ya vimos que la plaga del Gorgojo de Los Andes esta en nuestra parcela, entonces empezamos la 
+                    recolección. <br>
+                    <h2>¿Cuándo realizar la recolección?</h2>
+                    Alistamos todos los materiales necesarios y empezamos la recolección la cual podemos hacerla en dos 
+                    periodos, podemos realizar la recolección muy temprano tipo 5 o 6 de la mañana y la otra muy recomendada 
+                    es realizar la recolección durante la noche tipo 7 o 8. <br>
+                    Es recomendable hacer este proceso 2 a 3 veces a la semana en distintos surcos, preferentemente los surcos 
+                    que las trampas que mas se vio Gorgojos o de parcelas que anteriormente ya estaban con la plaga.
+                    <h2>¿Cómo recolectar Gorgojos Adultos?</h2>
+                    Primero aguarrando el recipiente vacio vamos a caminar en la parcela y llegando cerca a las plantas de 
+                    papa procederemos a sacudir el follaje para que los Gorgojos Adultos caigan de las plantas a neustro 
+                    recipiente, algunos no caeran directamente en el recipiente asi que luego de sacudir la planta recogeremos 
+                    a los Gorgojos que cayeron al suelo y los pondremos en el recipiente. <br>
+                    Tendremos que repetir este proceso en cada planta alrededor de la parcela, mientras mas ayuda tenga sera mucho 
+                    mas facil, incluso en familia podria hacer un concurso de quien recolecta mas Gorgojos Adultos durante el proceso.
+                    Se que el tema de recolección parece un trabajo muy cansador pero es necesario para que su cultivo de papa 
+                    no tenga grandes daños con esta plaga.
+                </p>
+            </div>
+        </section>
+    </main>
+    {% include "questionsRules/footer.html" %}
