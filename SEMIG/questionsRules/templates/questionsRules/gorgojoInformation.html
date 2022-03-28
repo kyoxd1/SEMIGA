@@ -1,6 +1,7 @@
 {% load static %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="stylesheet" href= {% static 'questionsRules/gorgojo.css' %}>
+<link rel="stylesheet" href= {% static 'questionsRules/header_static.css' %}>
+<link rel="stylesheet" href= {% static 'questionsRules/gorgojoInformation.css' %}>
 <link rel="stylesheet" href= {% static 'questionsRules/footer.css' %}>
 
 
@@ -15,22 +16,7 @@
     </head>
     <body>
         <header class="header">
-            <div id="header-container">
-                <span id="text2"></span>
-                <span id="text1"></span>
-                <svg id="filters">
-                    <defs>
-                        <filter id="threshold">
-                            <feColorMatrix in="SourceGraphic"
-                                    type="matrix"
-                                    values="1 0 0 0 0
-                                                    0 1 0 0 0
-                                                    0 0 1 0 0
-                                                    0 0 0 255 -140" />
-                        </filter>
-                    </defs>
-                </svg>
-            </div>   
+            <h1>¿Qué es el Gorgojo de Los Andes?</h1>
         </header>
         <main class="container">
             <section>
@@ -38,7 +24,7 @@
                     <p> El Gorgojo de Los Andes conocido por su nombre cientifico <b> Premnotrypes SPP  </b> tambien llamada como Gusano Blanco de la papa, el cual se encuentra en toda Sudamérica entre 2500 y 4700 m.s.n.m., está es una de las plagas mas peligrosas si no esque la mas peligrosa para su cultivo de papa.</p>
                 </div>
                 <div>
-                    <img src="/static/questionsRules/images/GorgojoAdultoSolo.svg" width="400px"  alt="gorgojo adulto" class="img-gorgojo">
+                    <img src="/static/questionsRules/images/GorgojoAdultoSolo.svg"  alt="gorgojo adulto" class="img-gorgojo">
                 </div>
             </section>
             <section>
@@ -48,12 +34,12 @@
                 </div>
                 <div>
                     <p><b>HUEVO: </b>Los huevos del Gorgojo de Los Andes son algo ovalados, segun expertos tiene un tamaños entre 1,12 y 1,25 mm de longuitud. Al principiolos huevos tienen un color blanco que con el pasar del tiempo se van poniendo de un color amarillento, por seguridad para los huevos estan cubiertos por una sustancia mucilaginosa y blanda la cual les cubre y protege. <br> Los huevos eclosionan alrededor de 20 a 30 días.</p>
-                    <div class="box-container">
+                    <div class="section_content">
 
-                        <div class="gorgojo__phases-image">
-                            <img src="/static/questionsRules/images/CiclosDelGorgojo.gif" width="400px" alt="Ciclos del Gorgojo de Los Andes">
+                        <div class="section_content-image">
+                            <img src="/static/questionsRules/images/CiclosDelGorgojo.gif" alt="Ciclos del Gorgojo de Los Andes">
                         </div>
-                        <div class="gorgojo__phases-text">
+                        <div class="section_content-text">
                             <p><b>Larva: </b>En este estado el Gorgojo de Los Andes mide aproximadamente entre 11 y 13 mm, no presente patas por lo que su movilidad se basa en arrastrarse, tiene una forma de tipo "C".<br>En esta fase el Gorgojo de Los Andes es un total riesgo para nuestro cultivo de papa, debido a que la larva debe sobrevivir y busca el tubérculo de la papa para su alimentación.</p>
                             <p><b>Pupa: </b>Luego de la fase de larva el Gorgojo entra en una fase de pupa que se desarrolla en una celda formada de tierra, donde se ponen asi durante 20 a 32 días. En esta fase el Gorgojo es mas suceptible debido a que existen microorganismos que la pueden parasitar, un ejemplo el hongo Beauveria Bassiana. <br> Presenta un color blanco al principio pero debido al periodo de melanización(mecanismo de defensa de los insectos frente a organismos invasores) va cambiando a un color amarillento a pardo oscuro.</p>    
                         </div>
@@ -65,12 +51,12 @@
                 <div>
                     <h2>Como se reproduce la plaga del Gorgojo de Los Andes</h2>
                 </div>
-                <div class="box-container">
-                    <div class="gorgojo__danger-image">
+                <div class="section_content">
+                    <div class="section_content-image">
                         <img src="/static/questionsRules/images/NoAlCultivo.svg"
-                            width="400px" alt="Papa dañada por larvas">
+                             alt="Papa dañada por larvas">
                     </div>
-                    <div class="gorgojo__danger-text">
+                    <div class="section_content-text">
                         <p>La plaga del Gorogojo de Los Andes es muy peligrosa para su parcela, si usted no hace nada para evitar que la plaga destruya totalmente su cultivo debe estar muy a la guardia, debe revisar mucho alrededor de las plantas de su cultivo o otras plantas de cultivos pasados, debido que en ese lugar los Gorgojos Adultos dejan los huevos. Sin duda la fase de larva es la mas peligrosa del Gorgojo de Los Andes asi que antes que llegue a esa fase debemos contrarestarla.
                         </p>
                     </div>
@@ -80,8 +66,8 @@
                 <div>
                     <h2>El Gorgojo de Los Andes, ¿Una amenaza?</h2>
                 </div>
-                <div class="box-container">
-                    <div class="gorgojo__danger-text">
+                <div class="section_content">
+                    <div class="section_content-text">
                         <p>Según grandes expertos y muchas investigaciones en el cultivo de papa, el Gorgojo de Los Andes podria dañar hasta el 100% de su parcela, llegando a perder todos su capital.
                             <br>
                             ¿Entonces como proteger tu parcela de esta amenaza?
@@ -89,11 +75,12 @@
                             Descuida, en este sistema te enseñaremos <b>TODO</b> para que puedas cuidar y proteger tu parcela de esta peligrosa plaga, tambien veras mejores formas de cuidar tu cultivo de papa a través de quimicos poco nocivos y ademas de cultivar otros vegetales alrededor de la parcela de papa para ponerlos como barrera de protección.
                         </p>
                     </div>
-                    <div class="gorgojo__danger-image">
+                    <div class="section_content-image">
                         <img src="/static/questionsRules/images/GorgojoAmenaza.gif"
-                        width="400px" alt="Gorgojo, ¿Una amenaza?">
+                         alt="Gorgojo, ¿Una amenaza?">
                     </div>
                 </div>
+                <br>
                 <div class="button-gorgojo">
                     <a href ="{% url 'questionsRules:rules' question.id %}" class="btn-gorgojo">Continuar con el sistema</a>
                 </div>

@@ -8,7 +8,6 @@ urlpatterns = [
     # path("", views.IndexView.as_view(), name= "index"),
     path("", views.index, name= "index"),
     path("pag_not_found/", views.pagError, name="pagError"),
-    path("prueba/", views.prueba, name= "prueba"),
     path("<int:question_id>/rules/", views.rules, name= "rules"),
     path("<int:question_id>/resp/", views.resp, name= "resp"),
     path("<int:question_id>/gorgojo_info/", views.gorgojoInformation, name= "gorgojoInformation"),

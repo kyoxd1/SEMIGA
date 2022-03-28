@@ -17,9 +17,6 @@ def index(request):
         });
 
 
-def prueba(request):
-    return render(request, "questionsRules/prueba.html",);
-
 def rules(request, question_id):
     question = Question.objects.get(pk = question_id)
     engine = integratedHandling()

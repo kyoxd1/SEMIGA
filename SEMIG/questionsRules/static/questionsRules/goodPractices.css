@@ -21,7 +21,7 @@ header{
     position: relative;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
+    align-items: center;
     background-color: hsl(204, 100%, 5%);
     background: linear-gradient(
         to right,
@@ -30,8 +30,7 @@ header{
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* margin-bottom: 50px; */
-    height: 10rem;
+    height: auto;
 }
 
 .title_container{
@@ -45,6 +44,7 @@ header p {
     display: inline-block;
     vertical-align: top;
     font-size: 3rem;
+    padding: 5px;
     margin: 0;
     font-family: 'Times New Roman', Times, serif;
   }

@@ -1,0 +1,12 @@
+:root {
+    --title-color: linear-gradient(
+        to right,
+        hsl(90 100% 62%),
+        hsl(204 100% 69%)
+    );
+    --background-color: ##fff;
+    --text-color: rgb(0, 0, 0);
+    --font: "Relaway", sans-serif;
+    --max-width: 1200px;
+  }
+

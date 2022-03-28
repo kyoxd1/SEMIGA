@@ -1,12 +1,24 @@
+{% load static %}
+<link rel="stylesheet" href= {% static 'questionsRules/not_found.css' %}>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>404</title>
 </head>
 <body>
-    <h1>ERROR 404</h1>
+    <h1>404 Ups!! parece que te perdiste</h1>
+    <p class="zoom-area"><b>Da Click al boton de abajo</b> retornaras a la pagina principal. </p>
+    <section class="error-container">
+    <span><span>4</span></span>
+    <span>0</span>
+    <span><span>4</span></span>
+    </section>
+    <div class="link-container">
+        <a href ="{% url 'questionsRules:index' %}" class="more-link">Regresar al Home</a>
+    </div>
 </body>
 </html>

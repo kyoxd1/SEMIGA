@@ -3,7 +3,7 @@
 ####################################################################################
 
 ## Importante:
-    - Decir que se requiere Python desde 3.5 a la .38
+    - Decir que se requiere Python desde 3.5 a la 3.8
     debido a que la libreria experta solo acepta esas versiones
 ## Si tiene una version superior lo recomendable es implementar Pypi puede seguir el siguiente tutorial:
 

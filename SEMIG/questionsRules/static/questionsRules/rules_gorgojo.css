@@ -15,7 +15,7 @@ form input{
     border-radius: 0.5rem;
     font-weight: bold;
     font-size: 20px;
-    width: 200px;
+    width: 100%;
     text-align: center;
     text-decoration: none;
     background-color: hsl(204, 100%, 5%);

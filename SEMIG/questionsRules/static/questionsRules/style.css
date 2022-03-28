@@ -1,0 +1,82 @@
+
+.grid{
+    display: grid;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 100px);
+}
+
+.image-container img{
+    max-width: 400px;
+    max-height: auto;
+    place-content: center;
+}
+
+.box1{
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 5;
+    place-content: center;
+}
+
+.box2{
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    place-content: center;
+    padding: 5px;
+}
+
+.box3{
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    place-content: center;
+}
+
+.first-text{
+    background: linear-gradient(
+        to right,
+        hsl(90 100% 62%),
+        hsl(204 100% 69%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.secundary-text{
+    color: white;
+}
+
+.box3 a{
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    width: 200px;
+    text-align: center;
+    text-decoration: none;
+    background-color: hsl(204, 100%, 5%);
+    color: white;
+    border: 1px solid white;
+}
+
+.box3 a:hover{
+    background: linear-gradient(
+        to right,
+        hsl(90 100% 62%),
+        hsl(204 100% 69%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.container{
+    padding-bottom: 4rem;
+}
