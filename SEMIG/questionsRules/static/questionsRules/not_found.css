@@ -5,7 +5,7 @@
 
 .error-container {
   text-align: center;
-  font-size: 180px;
+  font-size: 100px;
   font-family: 'Catamaran', sans-serif;
   font-weight: 800;
   margin: 20px 15px;
@@ -128,7 +128,7 @@ body {
     background: hsl(204, 100%, 5%);
     overflow-x: hidden;
     overflow-y: hidden;
-    width: 100%;
+    width: 100vh;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -159,4 +159,17 @@ a.more-link:hover{
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+@media screen and (min-width: 760px){
+
+  .error-container{
+    font-size: 140px;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .error-container{
+    font-size: 180px;
+  }
 }

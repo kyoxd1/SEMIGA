@@ -101,7 +101,7 @@ header p {
   }
   
   .container{
-    padding-bottom: 5rem;
+    padding-bottom: 8rem;
 }
 
 .section_title{
@@ -239,6 +239,10 @@ p > span {
     .section_list ul{
         font-size: 1.5rem;
     }
+
+    .container{
+        padding-bottom: 5rem;
+    }
 }
 
 @media screen and (min-width: 1024px){
@@ -278,5 +282,9 @@ p > span {
 
     .section_list ul{
         font-size: 2rem;
+    }
+
+    .container{
+        padding-bottom: 5rem;
     }
 }

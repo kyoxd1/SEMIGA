@@ -1,14 +1,10 @@
 .container{
-    padding-bottom: 5rem;
+    padding-bottom: 8rem;
 }
 
 h2{
     background-color: hsl(204, 100%, 5%);
-    background: linear-gradient(
-        to right,
-        hsl(90 100% 62%),
-        hsl(204 100% 69%)
-    );
+    background: -webkit-linear-gradient(rgb(90, 209, 123), rgb(39, 155, 209));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 30px;
@@ -125,6 +121,10 @@ div .section_content-text{
         width: 50%;
         height: auto;
     }
+
+    .container{
+        padding-bottom: 4rem;
+    }
 }
 
 @media screen and (min-width: 1024px){
@@ -146,5 +146,9 @@ div .section_content-text{
         height: auto;
         margin: 0;
         padding: 0;
+    }
+
+    .container{
+        padding-bottom: 4rem;
     }
 }
