@@ -18,16 +18,25 @@ def index(request):
 
 
 def rules(request, question_id):
-    question = Question.objects.get(pk = question_id)
-    engine = integratedHandling()
-    engine.reset()
-    engine.declare(QuestionList(questionId=question_id))
-    engine.run()
-    latest_question_list = engine.listQuestion
-    return render(request, "questionsRules/rules.html", {
-    "latest_question_list": latest_question_list,
-    "question": question
-    });
+    try:
+        if(question_id == (7 or 8 or 9 or 10 or 12 or 13 or 14 or 16 or 17 or 20 or 21 or 22)):
+            response =  render(request, "questionsRules/pagError.html")
+            response.status_code = 404
+            return response
+        question = Question.objects.get(pk = question_id)
+        engine = integratedHandling()
+        engine.reset()
+        engine.declare(QuestionList(questionId=question_id))
+        engine.run()
+        latest_question_list = engine.listQuestion
+        return render(request, "questionsRules/rules.html", {
+        "latest_question_list": latest_question_list,
+        "question": question
+        });
+    except (ValueError, KeyError, Question.DoesNotExist, Choices.DoesNotExist, NoReverseMatch):
+        response =  render(request, "questionsRules/pagError.html")
+        response.status_code = 404
+        return response
     
     
 def resp(request, question_id ):
