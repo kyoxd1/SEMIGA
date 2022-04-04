@@ -21,7 +21,6 @@ def rules(request, question_id):
     try:
         if(question_id == (7 or 8 or 9 or 10 or 12 or 13 or 14 or 16 or 17 or 20 or 21 or 22)):
             response =  render(request, "questionsRules/pagError.html")
-            response.status_code = 404
             return response
         question = Question.objects.get(pk = question_id)
         engine = integratedHandling()
