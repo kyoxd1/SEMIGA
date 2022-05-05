@@ -1,3 +1,4 @@
+from contextlib import nullcontext
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import NoReverseMatch, reverse
@@ -28,6 +29,9 @@ def rules(request, question_id):
         engine.declare(QuestionList(questionId=question_id))
         engine.run()
         latest_question_list = engine.listQuestion
+        if(latest_question_list.count() == 0):
+            response =  render(request, "questionsRules/pagError.html")
+            return response
         return render(request, "questionsRules/rules.html", {
         "latest_question_list": latest_question_list,
         "question": question
