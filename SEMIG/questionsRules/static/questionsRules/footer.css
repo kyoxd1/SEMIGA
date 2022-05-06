@@ -9,7 +9,7 @@
     left: 0;
     bottom: 0;
     opacity: 100%;
-    background: hsl(204, 100%, 5%);
+    background: hsl(205,80%,20%);
     z-index: 9999999999;
 }
 
@@ -18,7 +18,7 @@
     position: absolute;
     width: 100%;
     height: auto;
-    background: hsl(204, 100%, 5%);
+    background: hsl(205,80%,20%);
 }
 
 .footer_div img{

@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEGorgojo</title>
+    <link rel="icon" href="/static/questionsRules/images/favicon.png">
+    <meta name="description"
+      content="Bienvenidos al sistema experto, realizado para el manejo integrado de la plaga del Gorgojo de Los Andes">
+    <meta name="theme-color" content="#255e48">
+    <meta property="og:type" content="website">
+    <meta property="og:title" name="twitter:title" content="Gorgojo-de-Los-Andes">
+    <title>SistemaExpertoGorgojo</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light principal">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            <a class="navbar-brand" style="color:white; fontSize:2rem" href="#">
+                <img src="/static/questionsRules/images/favicon.png" alt="logo" width="50" height="39" class="d-inline-block align-text-top">
                 LuisKyo
             </a>
             <button class="navbar-toggler iconFix" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon iconFix"></span>
+                <span class="navbar-toggler-icon iconFix" style="fill:white"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
@@ -26,13 +32,13 @@
                   </li>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link textDetail" style="color:white" aria-current="page" href="{% url 'questionsRules:rules' 1 %}">¡Objetivo!</a>
+                  <a class="nav-link textDetail" style="color:white" aria-current="page" href="{% url 'questionsRules:objective' %}">¡Nuestro Objetivo!</a>
                 </li>
-                  <li class="nav-item">
+                {% comment %} <li class="nav-item">
                     <a class="nav-link textDetail" style="color:white" aria-current="page" href="#">¿Quien Soy?</a>
-                  </li>
+                  </li> {% endcomment %}
                   <li class="nav-item">
-                    <a class="nav-link textDetail" style="color:white" aria-current="page" href="#">Contacto</a>
+                    <a class="nav-link textDetail" style="color:white" aria-current="page" href="{% url 'questionsRules:contact' %}">Dejanos un comentario</a>
                   </li>
                 </ul>
             </div>

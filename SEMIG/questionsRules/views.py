@@ -1,4 +1,3 @@
-from contextlib import nullcontext
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import NoReverseMatch, reverse
@@ -17,6 +16,21 @@ def index(request):
         "question": question
         });
 
+def objective(request):
+    latest_question_list = Question.objects.filter(pk__in=[1,2])
+    question = Question.objects.get(pk = 1)
+    return render(request, "questionsRules/objective.html",{
+        "latest_question_list": latest_question_list,
+        "question": question
+    });
+    
+def contact(request):
+    latest_question_list = Question.objects.filter(pk__in=[1,2])
+    question = Question.objects.get(pk = 1)
+    return render(request, "questionsRules/Contact.html",{
+        "latest_question_list": latest_question_list,
+        "question": question
+    });  
 
 def rules(request, question_id):
     try:

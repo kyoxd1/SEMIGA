@@ -1,7 +1,11 @@
 
 .iconFix{
     fill: white;
-    color: white;
+    background: hsl(204, 100%, 5%);
+    -webkit-text-fill-color: transparent;
+}
+
+.iconFix:hover{
     background: linear-gradient(
         to right,
         hsl(90 100% 62%),
@@ -11,7 +15,7 @@
 }
 
 .principal {
-    background-color: hsl(204, 100%, 5%);
+    background-color: hsl(205,80%,20%);
     padding-top: 1rem;
     padding-bottom: 1rem;
     margin-bottom: 0.8rem;
@@ -21,7 +25,7 @@
 
 .textDetail {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 500;
 }
 
@@ -33,5 +37,5 @@
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 1.9rem;
+    font-size: 1.7rem;
 }
