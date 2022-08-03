@@ -12,12 +12,16 @@
     <meta property="og:title" name="twitter:title" content="Gorgojo-de-Los-Andes">
     <title>SistemaExpertoGorgojo</title>
 </head>
-<body>
+{% if Tarea %}
+<body class='modal-open'>
+{% else %}
+  <body>
+{% endif %}
     <nav class="navbar navbar-expand-lg navbar-light principal">
         <div class="container-fluid">
             <a class="navbar-brand" style="color:white; fontSize:2rem" href="#">
                 <img src="/static/questionsRules/images/favicon.png" alt="logo" width="50" height="39" class="d-inline-block align-text-top">
-                LuisKyo
+                PG
             </a>
             <button class="navbar-toggler iconFix" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon iconFix" style="fill:white"></span>

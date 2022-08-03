@@ -50,6 +50,7 @@ class GorgojoQuestionEight(Fact):
 class integratedHandling(KnowledgeEngine):
     question = Question.objects.filter(pk__in=[1])
     urlRedirect = "questionsRules:rules"
+    sugesstion = "NA"
     listQuestion = Question.objects.filter(pk__in=[0])
     
     @Rule(AS.questionList << QuestionList(questionId=L(1) | L(2)))
@@ -105,6 +106,7 @@ class integratedHandling(KnowledgeEngine):
     def GorgojoQuestion_rule1(self):
         question = Question.objects.filter(pk__in=[3])
         urlRedirect = "questionsRules:rules"
+        self.sugesstion = ""
         self.question = question
         self.urlRedirect = urlRedirect
         return self.question, self.urlRedirect
@@ -115,6 +117,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:goodPractices"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Saber mas sobre buenas practicas, el descanso del suelo donde no es recomendable que todos los años cultive papa debido a que la tierra debe descansar, la barrera vegetal donde las plantas de Oca y Cebada son las mejores para proteger su cultivo"
         return self.question, self.urlRedirect
 
     @Rule(GorgojoQuestion(question1='No',question2='No'))
@@ -123,6 +126,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:gorgojoInformation"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Saber mas sobre la plaga del Gorgojo, sus 4 etapas donde la etapa de Larva es mas vulnerable de esta plaga"
         return self.question, self.urlRedirect
         
 
@@ -132,6 +136,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:gorgojoInformationAndGoodPractice"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Saber mas sobre la plaga del Gorgojo, sus 4 etapas y en qué la etapa de larva es mas vulnerable; Además de saber buenas prácticas como barrera vegetal con plantas de Cebada y Oca alrededor de su parcela, etc."
         return self.question, self.urlRedirect
         
     @Rule(AS.gorgojoQuestionTwo << GorgojoQuestionTwo(question3=L('Si') | L('No'), question4=L('No')))
@@ -140,6 +145,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:rules"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = ""
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionTwo << GorgojoQuestionTwo(question3=L('No') | L('Si'), question4=L('Si')))
@@ -148,6 +154,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:preventiveMeasures"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Saber las medidas preventivas para evitar que la plaga vuelva a dañar su cultivo de papa"
         return self.question, self.urlRedirect
     
     @Rule(GorgojoQuestionThree(resp='Recién planeo empezar mi cultivo'))
@@ -198,6 +205,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:chemicals"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Conocer mejor los químicos para su cultivo, tanto los inorgánicos (Karate o Lambdacal) como los orgánicos (Aji, ajo y azufre en poca proporción)"
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFor << GorgojoQuestionFor(question6=L('Si'), question7=L('No') , question8=L('No') | L('Si'), question9=L('No') | L('Si'), question10=L('No') | L('Si')))
@@ -206,6 +214,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:ditches"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Realizar una zanja podria ser demasiado sencillo para muchos, pero debe saber la profundidad y anchura de la misma, ademas de que la zanja podría ser una gran trampa si se le revistiese con plástico negro."
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFor << GorgojoQuestionFor(question6=L('Si'), question7=L('Si') , question8=L('No') , question9=L('No') | L('Si'), question10=L('No') | L('Si')))
@@ -214,6 +223,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:plantOtherVegetables"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "¿Sabia usted que puede cultivar otras plantas vegetales para proteger su cultivo?, las plantas como el Tarwi, Oca, Cebada o Cebolla son una gran barrera para su cultivo de papa."
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFor << GorgojoQuestionFor(question6=L('Si'), question7=L('Si') , question8=L('Si'), question9=L('No'), question10=L('No') | L('Si')))
@@ -222,6 +232,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:plantPickUp"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Si anteriormente se realizo un cultivo en el mismo lugar donde esta cultivando actualmente, entonces asegurese de recoger las plantas voluntarias o K'ipas dado que ahi es donde la plaga del gorgojo de Los Andes deja huevos, etc."
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFor << GorgojoQuestionFor(question6=L('Si'), question7=L('Si') , question8=L('Si'), question9=L('Si'), question10=L('No')))
@@ -230,6 +241,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:traps"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Debe aprender a realizar trampas para poder minorizar el ingreso de la plaga a su cultivo, existen muchos tipos de trampas caseras las mas recomendadas son: revestir la zanja con plástico negro, usar piedras planas y botella de plástico."
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFor << GorgojoQuestionFor(question6=L('Si'), question7=L('Si') , question8=L('Si'), question9=L('Si'), question10=L('Si')))
@@ -238,6 +250,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:continueStageChoice"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = ""
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('No'), question12=L('Si') | L('No'), question13=L('Si') | L('No'), question8=L('Si') | L('No'), question14=L('Si') | L('No'), question10=L('Si') | L('No')))
@@ -246,6 +259,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:chemicals"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Conocer mejor los químicos para su cultivo, tanto los inorgánicos (Karate o Lambdacal) como los orgánicos (Aji, ajo y azufre en poca proporción)"
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('No'), question13=L('Si') | L('No'), question8=L('Si') | L('No'), question14=L('Si') | L('No'), question10=L('Si') | L('No')))
@@ -254,6 +268,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:ditches"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Realizar una zanja podria ser demasiado sencillo para muchos, pero debe saber la profundidad y anchura de la misma, ademas de que la zanja podría ser una gran trampa si se le revistiese con plástico negro."
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('Si'), question13=L('No'), question8=L('Si') | L('No'), question14=L('Si') | L('No'), question10=L('Si') | L('No')))
@@ -262,6 +277,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:culturalWork"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Es necesario realizar un buen aporque, no solo para que la planta crezca bien sino porque el aporque protege de gran manera a la planta de la papa de muchas plagas especialmente del Gorgojo de Los Andes."
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('Si'), question13=L('Si'), question8=L('No'), question14=L('Si') | L('No'), question10=L('Si') | L('No')))
@@ -270,6 +286,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:plantOtherVegetables"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "¿Sabia usted que puede cultivar otras plantas vegetales para proteger su cultivo?, las plantas como el Tarwi, Oca, Cebada o Cebolla son una gran barrera para su cultivo de papa."
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('Si'), question13=L('Si'), question8=L('Si'), question14=L('No'), question10=L('Si') | L('No')))
@@ -278,6 +295,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:gorgojoMeasures"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Dado que detecto a la plaga del Gorgojo de Los Andes, se le recomienda es estar en alerta poner trampar alrededor de su cultivo, ir a las primeras plantas alrededor de su parcela y verificar las hojas de las plantas donde ahi se ve si el Gorgojo se alimento o no, buscar en lugares húmedos cerca de la parcela, dado que ahi es donde se esconde la plaga."
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('Si'), question13=L('Si'), question8=L('Si'), question14=L('Si'), question10=L('No')))
@@ -286,6 +304,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:traps"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Debe aprender a realizar trampas para poder minorizar el ingreso de la plaga a su cultivo, existen muchos tipos de trampas caseras las mas recomendadas son: revestir la zanja con plástico negro, usar piedras planas y botella de plástico"
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionFive << GorgojoQuestionFive(question11=L('Si'), question12=L('Si'), question13=L('Si'), question8=L('Si'), question14=L('Si'), question10=L('Si')))
@@ -294,6 +313,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:continueStageChoice"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = ""
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question11=L('No'), question12=L('Si') | L('No'), question13=L('Si') | L('No'), question14=L('Si') | L('No'), question15=L('Si') | L('No'), question16=L('Si') | L('No'), question17=L('Si') | L('No')))

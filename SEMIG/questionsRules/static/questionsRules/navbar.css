@@ -1,41 +1,45 @@
 
 .iconFix{
-    fill: white;
-    background: hsl(204, 100%, 5%);
-    -webkit-text-fill-color: transparent;
+    fill: #DED9D6;
+    /* background: hsl(204, 100%, 5%);
+    -webkit-text-fill-color: transparent; */
 }
 
 .iconFix:hover{
-    background: linear-gradient(
+    /* background: linear-gradient(
         to right,
         hsl(90 100% 62%),
         hsl(204 100% 69%)
     );
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
+    fill: white;
 }
 
 .principal {
-    background-color: hsl(205,80%,20%);
+    background-color: #726E5F;
     padding-top: 1rem;
     padding-bottom: 1rem;
     margin-bottom: 0.8rem;
     font-size: 1.5rem;
-    color: white;
+    color: #DED9D6;
 }
 
 .textDetail {
-    color: white;
+    color: #DED9D6;
     font-size: 1.3rem;
     font-weight: 500;
 }
 
 .textDetail:hover {
-    background: linear-gradient(
+    /* background: linear-gradient(
         to right,
         hsl(90 100% 62%),
         hsl(204 100% 69%)
     );
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
+    background: #DED9D6;
+    color: #DED9D6;
     font-size: 1.7rem;
+    transition: 0.5rem;
 }

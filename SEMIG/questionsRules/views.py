@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpRequest, HttpResponseRedirect
 from django.urls import NoReverseMatch, reverse
 
 from .knowledgeForGorgojo import *
@@ -54,9 +54,8 @@ def rules(request, question_id):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
         return response
-    
-    
-def resp(request, question_id ):
+        
+def resp(request, question_id):
     try:
         question = Question.objects.get(pk = question_id)
         engine = integratedHandling()
@@ -69,7 +68,12 @@ def resp(request, question_id ):
             engine.run()
             urlRedirect = engine.urlRedirect
             question_new = engine.question[0]
-            return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            if(engine.sugesstion==''):
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            else:
+                tarea = question1+' '+question2
+                sugesstion = engine.sugesstion
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
             
         elif(question.id == 3 or question.id == 4):
             latest_question_list = Question.objects.filter(pk__in=[5])
@@ -80,7 +84,12 @@ def resp(request, question_id ):
             engine.run()
             urlRedirect = engine.urlRedirect
             question_new = engine.question[0]
-            return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            if(engine.sugesstion==''):
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            else:
+                tarea = question1+' '+question2
+                sugesstion = engine.sugesstion
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
         
         elif(question.id == 5):
             question1 = request.POST['question5']
@@ -102,7 +111,12 @@ def resp(request, question_id ):
             engine.run()
             urlRedirect = engine.urlRedirect
             question_new = engine.question[0]
-            return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            if(engine.sugesstion==''):
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            else:
+                tarea = question6+' '+question7+' '+question8+' '+question9+' '+question10
+                sugesstion = engine.sugesstion
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
         elif(question.id == 11):
             question11 = request.POST['question11']
             question12 = request.POST['question12']
@@ -115,7 +129,12 @@ def resp(request, question_id ):
             engine.run()
             urlRedirect = engine.urlRedirect
             question_new = engine.question[0]
-            return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            if(engine.sugesstion==''):
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            else:
+                tarea = question11+' '+question12+' '+question13+' '+question8+' '+question10+' '+question14
+                sugesstion = engine.sugesstion
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
         elif(question.id == 15):
             question11 = request.POST['question11']
             question12 = request.POST['question12']
@@ -152,7 +171,7 @@ def resp(request, question_id ):
             question_new = engine.question[0]
             return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
                 
-    except (ValueError, KeyError, Question.DoesNotExist, Choices.DoesNotExist, NoReverseMatch):
+    except (ValueError, KeyError, Question.DoesNotExist, Choices.DoesNotExist):
         engine = integratedHandling()
         engine.reset()
         engine.declare(QuestionList(questionId=question_id))
@@ -167,7 +186,7 @@ def resp(request, question_id ):
         return HttpResponseRedirect(reverse("questionsRules:rules", args=(question.id,)))
     
     
-def gorgojoInformation(request, question_id):
+def gorgojoInformation(request,question_id, tarea,sugesstion):
     if(question_id != 3):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -176,11 +195,13 @@ def gorgojoInformation(request, question_id):
     question = Question.objects.get(pk = question_id)
     return render(request, "questionsRules/gorgojoInformation.html", {
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
         });
     
     
-def gorgojoInformationAndGoodPractice(request, question_id):
+def gorgojoInformationAndGoodPractice(request, question_id, tarea,sugesstion):
     if(question_id != 3):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -189,11 +210,13 @@ def gorgojoInformationAndGoodPractice(request, question_id):
     latest_question_list = Question.objects.filter(pk__in=[3,4])
     return render(request, "questionsRules/gorgojoInformationAndGoodPractice.html", {
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
         });
     
 
-def goodPractices(request, question_id):
+def goodPractices(request, question_id, tarea,sugesstion):
     if(question_id != 3):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -202,10 +225,12 @@ def goodPractices(request, question_id):
     latest_question_list = Question.objects.filter(pk__in=[3,4])
     return render(request, "questionsRules/goodPractices.html", {
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
         });
     
-def preventiveMeasures(request, question_id):
+def preventiveMeasures(request, question_id, tarea, sugesstion):
     if(question_id != 5):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -214,11 +239,13 @@ def preventiveMeasures(request, question_id):
     latest_question_list = Question.objects.filter(pk__in=[5])
     return render(request, "questionsRules/preventiveMeasures.html", {
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
         });
     
     
-def chemicals(request, question_id):
+def chemicals(request, question_id, tarea, sugesstion):
     if(question_id != 6 and question_id != 11 and question_id != 15):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -231,10 +258,12 @@ def chemicals(request, question_id):
     latest_question_list = engine.listQuestion
     return render(request, "questionsRules/chemicals.html", {
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     });
     
-def ditches(request, question_id):
+def ditches(request, question_id, tarea, sugesstion):
     if(question_id != 6 and question_id != 11 and question_id != 15):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -247,10 +276,12 @@ def ditches(request, question_id):
     latest_question_list = engine.listQuestion
     return render(request, "questionsRules/ditches.html", {
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     });
     
-def plantOtherVegetables(request, question_id):
+def plantOtherVegetables(request, question_id, tarea, sugesstion):
     if(question_id != 6 and question_id != 11):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -263,10 +294,12 @@ def plantOtherVegetables(request, question_id):
     latest_question_list = engine.listQuestion
     return render(request, "questionsRules/plantOtherVegetables.html", {
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     });
 
-def plantPickUp(request, question_id):
+def plantPickUp(request, question_id, tarea, sugesstion):
     if(question_id != 6):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -275,10 +308,12 @@ def plantPickUp(request, question_id):
     latest_question_list = Question.objects.filter(pk__in=[6,7,8,9,10])
     return render(request, "questionsRules/plantPickUp.html", {
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     });
 
-def traps(request, question_id):
+def traps(request, question_id, tarea, sugesstion):
     if(question_id != 6 and question_id != 11 and question_id != 15):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -291,7 +326,9 @@ def traps(request, question_id):
     latest_question_list = engine.listQuestion
     return render(request, "questionsRules/traps.html", {
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     });
     
     
@@ -311,7 +348,7 @@ def continueStageChoice(request, question_id):
         "question": question
     });
     
-def culturalWork(request, question_id):
+def culturalWork(request, question_id, tarea, sugesstion):
     if(question_id != 11 and question_id != 15):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -324,10 +361,12 @@ def culturalWork(request, question_id):
     latest_question_list = engine.listQuestion
     return render(request, "questionsRules/culturalWork.html", {
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     });
     
-def gorgojoMeasures(request, question_id):
+def gorgojoMeasures(request, question_id, tarea, sugesstion):
     if(question_id != 11 and question_id != 15):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -340,7 +379,9 @@ def gorgojoMeasures(request, question_id):
     latest_question_list = engine.listQuestion
     return render(request, "questionsRules/gorgojoMeasures.html", {
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     });
     
 def gatherGorgojo(request, question_id):

@@ -8,6 +8,7 @@
 {% if latest_question_list %}
     {% include "questionsRules/header.html" %}
     <main class="container">
+          
         <form action="{% url 'questionsRules:resp' question.id %}" method="post">
             {% csrf_token %}
             {% for quiz in latest_question_list  %}
@@ -16,7 +17,7 @@
                     <p class="text-danger"> <strong>{{ error_message }}</strong></p>
                 {% endif %}
                 {% for choice in quiz.choices_set.all  %}
-                <div class="form-check">
+                <div class="form-check form-check-inline">
                     <input type="radio" name="question{{ quiz.id }}" value="{{ choice.choice_text }}" id= "{{ choice.id }}" class="form-check-input">
                     <label for="question{{ quiz.id }}" class="form-check-label choices-question">
                         {{ choice.choice_text}}
@@ -26,10 +27,13 @@
                 <br>
             {% endfor %}
             <br>
-            <input type="submit" value= "Aceptar">
+            <input type="submit"  value= "Aceptar">
         </form>
     </main>
+
+    
     {% include "questionsRules/footer.html" %}
     {% else %}
-    <p>Question error!!</p>
+     <p>Question error!!</p>
+
 {% endif %}
