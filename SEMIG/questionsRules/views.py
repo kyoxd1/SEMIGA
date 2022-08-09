@@ -71,7 +71,7 @@ def resp(request, question_id):
             if(engine.sugesstion==''):
                 return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
             else:
-                tarea = question1+' '+question2
+                tarea = question1+' conoce a la plaga del Gorgojo de Los Andes y de que '+question2+' es su primer cultivo.'
                 sugesstion = engine.sugesstion
                 return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
             
@@ -87,7 +87,7 @@ def resp(request, question_id):
             if(engine.sugesstion==''):
                 return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
             else:
-                tarea = question1+' '+question2
+                tarea = question1+' tuvo la plaga del gorgojo anteriormente pero '+question2+' vio que su cultivo fue afectado por la plaga.'
                 sugesstion = engine.sugesstion
                 return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
         
@@ -114,7 +114,7 @@ def resp(request, question_id):
             if(engine.sugesstion==''):
                 return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
             else:
-                tarea = question6+' '+question7+' '+question8+' '+question9+' '+question10
+                tarea = question10 +' conoce las trampas para el cultivo, '+question7+' elaboró zanjas, '+question8+' sabe la barrera vegetal,'+question6+' realizo desinfecciones químicas y '+question9+' removió las k`ipas'
                 sugesstion = engine.sugesstion
                 return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
         elif(question.id == 11):
@@ -132,7 +132,7 @@ def resp(request, question_id):
             if(engine.sugesstion==''):
                 return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
             else:
-                tarea = question11+' '+question12+' '+question13+' '+question8+' '+question10+' '+question14
+                tarea = 'Su cultivo '+question14+' esta a salvo de la plaga, '+question12+' realizó zanjas, '+question10 +' conoce las trampas para el cultivo, '+question13+' elaboró el aporque, '+question11+' conoce productos químicos orgánicos e inorgánicos y'+question8+' sabe la barrera vegetal'
                 sugesstion = engine.sugesstion
                 return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
         elif(question.id == 15):
@@ -148,7 +148,19 @@ def resp(request, question_id):
             engine.run()
             urlRedirect = engine.urlRedirect
             question_new = engine.question[0]
-            return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            if(engine.sugesstion==''):
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            else:
+                tarea = question16 +' realizó la recolección de la plaga, '+'su cultivo '+question14+' esta a salvo de la plaga, '+question12+' realizó zanjas, '+question15 +' conocó las trampas para el cultivo, '+question13+' elaboró el aporque, '+question11+' conoce productos químicos orgánicos e inorgánicos y '
+                
+                if question17=='No':
+                    prueba = 'No pudo detener a la plaga y ahora su cultivo corre peligro!!!!!'
+                else:
+                    prueba = 'Si pudo detener a la plaga y su cultivo esta a salvo por ahora. '
+                
+                tarea = tarea + prueba
+                sugesstion = engine.sugesstion
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
         elif(question.id == 18):
             question16 = request.POST['question16']
             question17 = request.POST['question17']
@@ -158,7 +170,19 @@ def resp(request, question_id):
             engine.run()
             urlRedirect = engine.urlRedirect
             question_new = engine.question[0]
-            return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            if(engine.sugesstion==''):
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            else:
+                tarea = question16 +' realizó la recolección de la plaga, '+question18+' sabe en que seleccionar la papa de su cultivo y '
+                
+                if question17=='No':
+                    prueba = 'No pudo detener a la plaga y ahora su cultivo corre peligro!!!!!'
+                else:
+                    prueba = 'Si pudo detener a la plaga y su cultivo esta a salvo por ahora. '
+                
+                tarea = tarea + prueba
+                sugesstion = engine.sugesstion
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
         elif(question.id == 19):
             question19 = request.POST['question19']
             question20 = request.POST['question20']
@@ -169,7 +193,18 @@ def resp(request, question_id):
             engine.run()
             urlRedirect = engine.urlRedirect
             question_new = engine.question[0]
-            return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            if(engine.sugesstion==''):
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
+            else:
+                tarea = question22 +' conoce la utilidad del Hongo Blanco, '+question19+' removió el suelo de donde recolecto la papa, '+question20+' puso la papa en un almacén y '
+                if question21=='No':
+                    prueba = 'No cree que su cultivo esta asalvo en un almacén'
+                else:
+                    prueba = 'Si esta seguro su papa en el almacén'
+                
+                tarea = tarea + prueba
+                sugesstion = engine.sugesstion
+                return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
                 
     except (ValueError, KeyError, Question.DoesNotExist, Choices.DoesNotExist):
         engine = integratedHandling()
@@ -384,7 +419,7 @@ def gorgojoMeasures(request, question_id, tarea, sugesstion):
         "sugesstion" : sugesstion
     });
     
-def gatherGorgojo(request, question_id):
+def gatherGorgojo(request, question_id, tarea, sugesstion):
     if(question_id != 15 and question_id != 18):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -397,10 +432,12 @@ def gatherGorgojo(request, question_id):
     latest_question_list = engine.listQuestion
     return render(request, "questionsRules/gatherGorgojo.html",{
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     })
     
-def countherTheGorgojo(request, question_id):
+def countherTheGorgojo(request, question_id, tarea, sugesstion):
     if(question_id != 15 and question_id != 18):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -413,10 +450,12 @@ def countherTheGorgojo(request, question_id):
     latest_question_list = engine.listQuestion
     return render(request, "questionsRules/countherTheGorgojo.html",{
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     })
     
-def potatoSelection(request, question_id):
+def potatoSelection(request, question_id, tarea, sugesstion):
     if(question_id != 18):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -425,10 +464,12 @@ def potatoSelection(request, question_id):
     latest_question_list = Question.objects.filter(pk__in = [16,17,18])
     return render(request, "questionsRules/potatoSelection.html",{
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     })
     
-def soilRemoval(request, question_id):
+def soilRemoval(request, question_id, tarea, sugesstion):
     if(question_id != 19):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -437,10 +478,12 @@ def soilRemoval(request, question_id):
     latest_question_list = Question.objects.filter(pk__in=[19,20,21,22])
     return render(request, "questionsRules/soilRemoval.html",{
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     })
     
-def warehousePreparation(request, question_id):
+def warehousePreparation(request, question_id, tarea, sugesstion):
     if(question_id != 19):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -449,10 +492,12 @@ def warehousePreparation(request, question_id):
     latest_question_list = Question.objects.filter(pk__in=[19,20,21,22])
     return render(request, "questionsRules/warehousePreparation.html",{
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     })
     
-def dangerIntoWarehouse(request, question_id):
+def dangerIntoWarehouse(request, question_id, tarea, sugesstion):
     if(question_id != 19):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -461,10 +506,12 @@ def dangerIntoWarehouse(request, question_id):
     latest_question_list = Question.objects.filter(pk__in=[19,20,21,22])
     return render(request, "questionsRules/dangerIntoWarehouse.html",{
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     })
     
-def whiteFungus(request, question_id):
+def whiteFungus(request, question_id, tarea, sugesstion):
     if(question_id != 19):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
@@ -473,7 +520,9 @@ def whiteFungus(request, question_id):
     latest_question_list = Question.objects.filter(pk__in=[19,20,21,22])
     return render(request, "questionsRules/whiteFungus.html",{
         "latest_question_list": latest_question_list,
-        "question": question
+        "question": question,
+        "tarea":tarea,
+        "sugesstion" : sugesstion
     })
     
 def pagError(request):

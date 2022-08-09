@@ -1,5 +1,9 @@
 body {
-    background: hsl(204, 100%, 5%);
+    background-image: url(https://th.bing.com/th/id/R.971a76d2f1a66a28166ccb9ca8ad9fbb?rik=6sF0jKlnygk8Ig&riu=http%3a%2f%2fwww.eje21.com.co%2fsite%2fwp-content%2fuploads%2f2017%2f05%2fPapa-cultivo-dos.jpg&ehk=lHDU4vfQxZnJBTYlQSZpO03%2fzDb4BHuzwQg%2b1SyNRGs%3d&risl=&pid=ImgRaw&r=0);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: #333;
     overflow-x: hidden;
     width: 100%;
     height: 100%;
@@ -10,15 +14,9 @@ body {
   /*----------Contact-form---------*/
   .section-title{
       margin: 1rem;
-    background-color: hsl(204, 100%, 5%);
-    background: linear-gradient(
-        to right,
-        hsl(90 100% 62%),
-        hsl(204 100% 69%)
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #DED9D6;
     text-align: center;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
   }
 
   .btn{
@@ -27,19 +25,13 @@ body {
     font-size: 20px;
     text-align: center;
     text-decoration: none;
-    background-color: hsl(204, 100%, 5%);
     color: white;
     border: 1px solid white;
   }
 
   .btn:hover{
-    background: linear-gradient(
-            to right,
-            hsl(90 100% 62%),
-            hsl(204 100% 69%)
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: hsl(204, 100%, 5%);
+    background-color: #726E5F;
   }
   
   .contact-form {

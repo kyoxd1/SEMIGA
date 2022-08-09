@@ -48,9 +48,11 @@
 
 .modal-title-header{
     text-align: center;
-    color: black;
+    color: #DED9D6;
     font-weight: bold;
     font-size: 1.5rem;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+
 }
 
 .modal-title-body>p{

@@ -45,7 +45,8 @@ body {
     max-width: 1200px;
     font-size: 25px;
     font-weight: bold;
-    color: white;
+    color: #DED9D6;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 }
 
 @media screen and (min-width: 760px){

@@ -154,7 +154,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:preventiveMeasures"
         self.question = question
         self.urlRedirect = urlRedirect
-        self.sugesstion = "Saber las medidas preventivas para evitar que la plaga vuelva a dañar su cultivo de papa"
+        self.sugesstion = "Saber las medidas preventivas para evitar que la plaga vuelva a dañar su cultivo de papa, usando algunos insecticidas orgánicos e inorgánicos."
         return self.question, self.urlRedirect
     
     @Rule(GorgojoQuestionThree(resp='Recién planeo empezar mi cultivo'))
@@ -316,92 +316,104 @@ class integratedHandling(KnowledgeEngine):
         self.sugesstion = ""
         return self.question, self.urlRedirect
     
-    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question11=L('No'), question12=L('Si') | L('No'), question13=L('Si') | L('No'), question14=L('Si') | L('No'), question15=L('Si') | L('No'), question16=L('Si') | L('No'), question17=L('Si') | L('No')))
+    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question17=L('No'), question12=L('Si') | L('No'), question13=L('Si') | L('No'), question14=L('Si') | L('No'), question15=L('Si') | L('No'), question16=L('Si') | L('No'), question11=L('Si') | L('No')))
     def GorgojoQuestionSix_1(self):
         question = Question.objects.filter(pk__in=[15])
-        urlRedirect = "questionsRules:chemicals"
+        urlRedirect = "questionsRules:countherTheGorgojo"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Dado que descubrió en su cultivo a la plaga, no se alarme lo mas recomendable es estar tranquilo y analizar dos puntos que podría realizar, uno es adelantar la cosecha en caso este muy cerca la temporada con esto reduciremos el riesgo de que afecte en gran medidad a nuestro cultivo, si no podemos adelantar la cosecha entonces el segundo punto seria de usar un menor proporcion químicos que ya se vieron anteriormente y los que conoce, tambien de seguir recolectando la plaga con mayor intensidad al igual que las trampas alrededor de la misma. "
         return self.question, self.urlRedirect
+        
     
-    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question11=L('Si'), question12=L('No'), question13=L('Si') | L('No'), question14=L('Si') | L('No'), question15=L('Si') | L('No'), question16=L('Si') | L('No'), question17=L('Si') | L('No')))
+    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question17=L('Si'), question12=L('No'), question13=L('Si') | L('No'), question14=L('Si') | L('No'), question15=L('Si') | L('No'), question16=L('Si') | L('No'), question11=L('Si') | L('No')))
     def GorgojoQuestionSix_2(self):
         question = Question.objects.filter(pk__in=[15])
         urlRedirect = "questionsRules:ditches"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "La zanja es lo primero que deberia mejorar para que la plaga no dañe en gran proporción su cultivo, inclusive deberia volverlo una trampa mortal para la plaga revistiendola con plástico negro, con la anchura apropiada esta es una gran defensa contra el Gorgojo de Los Andes. "
         return self.question, self.urlRedirect
     
-    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question11=L('Si'), question12=L('Si'), question13=L('No'), question14=L('Si') | L('No'), question15=L('Si') | L('No'), question16=L('Si') | L('No'), question17=L('Si') | L('No')))
+    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question17=L('Si'), question12=L('Si'), question13=L('No'), question14=L('Si') | L('No'), question15=L('Si') | L('No'), question16=L('Si') | L('No'), question11=L('Si') | L('No')))
     def GorgojoQuestionSix_3(self):
         question = Question.objects.filter(pk__in=[15])
         urlRedirect = "questionsRules:culturalWork"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = " El aporque trae grandes beneficios como mejora el riego para el cultivo, ademas ayuda a que la planta de papa crezca de manera recta y tambien es de gran ayuda para combatir a la plaga del Gorgojo de Los Andes, el aporque es la amontonar tierra alrededor de la planta de papa logrando asi todos los beneficios ya mencionados y mas."
         return self.question, self.urlRedirect
     
-    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question11=L('Si'), question12=L('Si'), question13=L('Si'), question14=L('No'), question15=L('Si') | L('No'), question16=L('Si') | L('No'), question17=L('Si') | L('No')))
+    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question17=L('Si'), question12=L('Si'), question13=L('Si'), question14=L('No'), question15=L('Si') | L('No'), question16=L('Si') | L('No'), question11=L('Si') | L('No')))
     def GorgojoQuestionSix_4(self):
         question = Question.objects.filter(pk__in=[15])
         urlRedirect = "questionsRules:gorgojoMeasures"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Dado que detecto a la plaga del Gorgojo de Los Andes, se le recomienda es estar en alerta poner trampar alrededor de su cultivo, ir a las primeras plantas alrededor de su parcela y verificar las hojas de las plantas donde ahi se ve si el Gorgojo se alimento o no, buscar en lugares húmedos cerca de la parcela, dado que ahi es donde se esconde la plaga."
         return self.question, self.urlRedirect
     
-    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question11=L('Si'), question12=L('Si'), question13=L('Si'), question14=L('Si'), question15=L('No'), question16=L('Si') | L('No'), question17=L('Si') | L('No')))
+    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question17=L('Si'), question12=L('Si'), question13=L('Si'), question14=L('Si'), question15=L('No'), question16=L('Si') | L('No'), question11=L('Si') | L('No')))
     def GorgojoQuestionSix_5(self):
         question = Question.objects.filter(pk__in=[15])
         urlRedirect = "questionsRules:traps"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Elaborar trampas siempre es un gran trabajo, o almenos eso es lo que la mayoria piensa, existen trampas caseras muy buenas y faciles de elaborar para poder combatir a la plaga del Gorgojo de Los Andes, como ser poner piedras planar alrededor de la parcelo o botellas de plástico para atraer a la plaga ahi."
         return self.question, self.urlRedirect
     
-    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question11=L('Si'), question12=L('Si'), question13=L('Si'), question14=L('Si'), question15=L('Si'), question16=L('No'), question17=L('Si') | L('No')))
+    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question17=L('Si'), question12=L('Si'), question13=L('Si'), question14=L('Si'), question15=L('Si'), question16=L('No'), question11=L('Si') | L('No')))
     def GorgojoQuestionSix_6(self):
         question = Question.objects.filter(pk__in=[15])
         urlRedirect = "questionsRules:gatherGorgojo"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Debe prácticar esta recolección ya sea visitando las trampas que puso en la parcela, viendo debajo de las plantas de papa o en lugares húmedos donde la plaga del Gorgojo se encuentren. "
         return self.question, self.urlRedirect
     
-    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question11=L('Si'), question12=L('Si'), question13=L('Si'), question14=L('Si'), question15=L('Si'), question16=L('Si'), question17=L('No')))
+    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question17=L('Si'), question12=L('Si'), question13=L('Si'), question14=L('Si'), question15=L('Si'), question16=L('Si'), question11=L('No')))
     def GorgojoQuestionSix_7(self):
         question = Question.objects.filter(pk__in=[15])
-        urlRedirect = "questionsRules:countherTheGorgojo"
+        urlRedirect = "questionsRules:chemicals"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Debe saber que no todos los productos químicos son malos para su cultivo, existen productos químicos inorgánicos buenos para su cultivo como el Acaritop a su vez tener en cuenta que tambien puede elaborar productos químicos orgánicos con aji o ajo para proteger su cultivo."
         return self.question, self.urlRedirect
     
-    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question11=L('Si'), question12=L('Si'), question13=L('Si'), question14=L('Si'), question15=L('Si'), question16=L('Si'), question17=L('Si')))
+    @Rule(AS.gorgojoQuestionSix << GorgojoQuestionSix(question17=L('Si'), question12=L('Si'), question13=L('Si'), question14=L('Si'), question15=L('Si'), question16=L('Si'), question11=L('Si')))
     def GorgojoQuestionSix_8(self):
         question = Question.objects.filter(pk__in=[18])
         urlRedirect = "questionsRules:continueStageChoice"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = ""
         return self.question, self.urlRedirect
     
-    @Rule(AS.gorgojoQuestionSeven << GorgojoQuestionSeven(question16=L('No'), question17=L('Si') | L('No'), question18= L('Si') | L('No')))
+    @Rule(AS.gorgojoQuestionSeven << GorgojoQuestionSeven(question17=L('No'), question16=L('Si') | L('No'), question18= L('Si') | L('No')))
     def GorgojoQuestionSeven_1(self):
-        question = Question.objects.filter(pk__in=[18])
-        urlRedirect = "questionsRules:gatherGorgojo"
-        self.question = question
-        self.urlRedirect = urlRedirect
-        return self.question, self.urlRedirect
-    
-    @Rule(AS.gorgojoQuestionSeven << GorgojoQuestionSeven(question16=L('Si'), question17=L('No'), question18= L('Si') | L('No')))
-    def GorgojoQuestionSeven_2(self):
         question = Question.objects.filter(pk__in=[18])
         urlRedirect = "questionsRules:countherTheGorgojo"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "Dado que descubrió en su cultivo a la plaga, no se alarme lo mas recomendable es estar tranquilo y analizar dos puntos que podría realizar, uno es adelantar la cosecha en caso este muy cerca la temporada con esto reduciremos el riesgo de que afecte en gran medidad a nuestro cultivo, si no podemos adelantar la cosecha entonces el segundo punto seria de usar un menor proporcion químicos que ya se vieron anteriormente y los que conoce, tambien de seguir recolectando la plaga con mayor intensidad al igual que las trampas alrededor de la misma. "
         return self.question, self.urlRedirect
     
-    @Rule(AS.gorgojoQuestionSeven << GorgojoQuestionSeven(question16=L('Si'), question17=L('Si'), question18= L('No')))
+    @Rule(AS.gorgojoQuestionSeven << GorgojoQuestionSeven(question17=L('Si'), question16=L('No'), question18= L('Si') | L('No')))
+    def GorgojoQuestionSeven_2(self):
+        question = Question.objects.filter(pk__in=[18])
+        urlRedirect = "questionsRules:gatherGorgojo"
+        self.question = question
+        self.urlRedirect = urlRedirect
+        self.sugesstion = "Debe prácticar esta recolección ya sea visitando las trampas que puso en la parcela, viendo debajo de las plantas de papa o en lugares húmedos donde la plaga del Gorgojo se encuentren. "
+        return self.question, self.urlRedirect
+    
+    @Rule(AS.gorgojoQuestionSeven << GorgojoQuestionSeven(question17=L('Si'), question16=L('Si'), question18= L('No')))
     def GorgojoQuestionSeven_3(self):
         question = Question.objects.filter(pk__in=[18])
         urlRedirect = "questionsRules:potatoSelection"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion = "El saber donde recolectar la papa es muy importante, dado que si se toma a la ligera y se lo recolecta en el suelo, las larvas que estan en la papa podrian llegar a la tierra entrar a fondo y completar su ciclo de vida y a futuro ese lugar tener una gran cantidad de plaga, por eso se recomienda el recojo con algun mantel, etc. inclusive poner alrededor gallinas para que ellas eliminen a las larvas que se encuentren en la papa."
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionSeven << GorgojoQuestionSeven(question16=L('Si'), question17=L('Si'), question18= L('Si')))
@@ -410,6 +422,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:continueStageChoice"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion =""
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionEight << GorgojoQuestionEight(question19=L('No'), question20=L('Si') | L('No'), question21= L('Si') | L('No'), question22=L('Si') | L('No')))
@@ -418,6 +431,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:soilRemoval"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion ="El remover el suelo donde amontono la papa es de gran importancia, puede que apesar de poner la papa sobre el mantel y traer a las gallinar cerca, algunas larvas pudiesen aver ingresado a la tierra con el fin de completar su ciclo de vida y reproducirse aun mas en su cultivo, para eso debemos remover la tierra y asi evitar futuras reproducciones de la plaga. "
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionEight << GorgojoQuestionEight(question19=L('Si'), question20=L('No'), question21= L('Si') | L('No'), question22=L('Si') | L('No')))
@@ -426,6 +440,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:warehousePreparation"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion ="Sin duda la papa debe estar en algun lugar como ser un almacén, con el fin de estar mas aslvo de alguna plaga, pero no se confunda esto no hara que sea imposible que alguna plaga llegue ahi. Este alerta!!"
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionEight << GorgojoQuestionEight(question19=L('Si'), question20=L('Si'), question21= L('No'), question22=L('Si') | L('No')))
@@ -434,6 +449,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:dangerIntoWarehouse"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion ="El hecho de que pusiera la papa de su cultivo en algun almacén o lugar seguro no impide que la papa corra peligro es mas cuando la papa es muy vulnerable a la plaga del Gorgojo de Los Andes y debe tomar medidas necesarias para poder evitar que esta plaga llegue donde puso la papa. "
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionEight << GorgojoQuestionEight(question19=L('Si'), question20=L('Si'), question21= L('Si'), question22=L('No')))
@@ -442,6 +458,7 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:whiteFungus"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion ="La utilidad del hongo blando es cortar el ciclo de vida de la plaga del Gorgojo de Los Andes con el fin de evitar futuras poblaciones de la misma, y asi proteger nuestro cultivo de esta plaga, se recomienda poner el hongo blanco en el almacen o lugar donde amontonara la papa una semana antes para asi surja efecto y evite el ingreso del Gorgojo."
         return self.question, self.urlRedirect
     
     @Rule(AS.gorgojoQuestionEight << GorgojoQuestionEight(question19=L('Si'), question20=L('Si'), question21= L('Si'), question22=L('Si')))
@@ -450,4 +467,5 @@ class integratedHandling(KnowledgeEngine):
         urlRedirect = "questionsRules:continueStageChoice"
         self.question = question
         self.urlRedirect = urlRedirect
+        self.sugesstion =""
         return self.question, self.urlRedirect
