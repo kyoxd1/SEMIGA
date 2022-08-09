@@ -132,7 +132,7 @@ def resp(request, question_id):
             if(engine.sugesstion==''):
                 return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,)))
             else:
-                tarea = 'Su cultivo '+question14+' esta a salvo de la plaga, '+question12+' realizó zanjas, '+question10 +' conoce las trampas para el cultivo, '+question13+' elaboró el aporque, '+question11+' conoce productos químicos orgánicos e inorgánicos y'+question8+' sabe la barrera vegetal'
+                tarea = 'Su cultivo '+question14+' esta a salvo de la plaga, '+question12+' realizó zanjas, '+question10 +' conoce las trampas para el cultivo, '+question13+' elaboró el aporque, '+question11+' conoce productos químicos orgánicos e inorgánicos y '+question8+' sabe la barrera vegetal'
                 sugesstion = engine.sugesstion
                 return HttpResponseRedirect(reverse(urlRedirect, args=(question_new.id,tarea,sugesstion,)))
         elif(question.id == 15):
