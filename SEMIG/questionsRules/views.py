@@ -3,9 +3,9 @@ from django.http import HttpRequest, HttpResponseRedirect
 from django.urls import NoReverseMatch, reverse
 
 from .knowledgeForGorgojo import *
-
+import random
 # from .knowledgeForGorgojo import *
-from .models import Question, Choices
+from .models import Question, Choices, Lottery, LotteryOptions
      
 
 def index(request):
@@ -54,6 +54,332 @@ def rules(request, question_id):
         response =  render(request, "questionsRules/pagError.html")
         response.status_code = 404
         return response
+    
+    
+def lotteryRules(request, question_id):
+    try:
+        question = question_id
+        engine = integrateHanlingLottery()
+        engine.reset()    
+        engine.declare(RandomList(questionId=1))
+        engine.run()
+        latest_question_list = engine.listQuestion
+        question = engine.questionL
+        if(latest_question_list.count() == 0):
+            response =  render(request, "questionsRules/pagError.html")
+            return response
+        return render(request, "questionsRules/loteryrules.html", {
+        "latest_question_list": latest_question_list,
+        "question": question
+        });
+    except (ValueError, KeyError, Lottery.DoesNotExist, LotteryOptions.DoesNotExist, NoReverseMatch):
+        response =  render(request, "questionsRules/pagError.html")
+        response.status_code = 404
+        return response
+    
+## Realizado el response para el sistema experto
+def loteryresp(request, question_id):
+    try:
+        question = question_id
+        engine = integrateHanlingLottery()
+        if(question==123):
+            question1 = request.POST['question1']
+            question2 = request.POST['question2']
+            question3 = request.POST['question3']
+            latest_question_list = Lottery.objects.filter(pk__in=[1,3,4])
+            engine.reset()
+            engine.declare(GorgojoLottery123(question1=question1, question2=question2, question3=question3))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question2+', y Pregunta 3:'+question3
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+            
+        elif(question==124):
+            latest_question_list = Lottery.objects.filter(pk__in=[1,2,4])
+            question1 = request.POST['question1']
+            question2 = request.POST['question2']
+            question4 = request.POST['question4']
+            engine.reset()
+            engine.declare(GorgojoLottery124(question1=question1, question2=question2, question4=question4))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question2+', y Pregunta 3:'+question4
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        
+        elif(question == 125):
+            question1 = request.POST['question1']
+            question2 = request.POST['question2']
+            question5 = request.POST['question5']
+            engine.reset()
+            engine.declare(GorgojoLottery125(question1=question1,question2=question2,question5=question5))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question2+', y Pregunta 3:'+question5
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        
+        elif(question == 126):
+            question1 = request.POST['question1']
+            question2 = request.POST['question2']
+            question6 = request.POST['question6']
+            engine.reset()
+            engine.declare(GorgojoLottery126(question1=question1, question2=question2, question6 =question6))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question2+', y Pregunta 3:'+question6
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        
+        elif(question == 134):
+            question1 = request.POST['question1']
+            question3 = request.POST['question3']
+            question4 = request.POST['question4']
+            engine.reset()
+            engine.declare(GorgojoLottery134(question1=question1, question3=question3, question4 =question4))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question3+', y Pregunta 3:'+question4
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 135):
+            question1 = request.POST['question1']
+            question3 = request.POST['question3']
+            question5 = request.POST['question5']
+            engine.reset()
+            engine.declare(GorgojoLottery135(question1=question1, question3=question3, question5 =question5))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question3+', y Pregunta 3:'+question5
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))  
+        
+        elif(question == 136):
+            question1 = request.POST['question1']
+            question3 = request.POST['question3']
+            question6 = request.POST['question6']
+            engine.reset()
+            engine.declare(GorgojoLottery136(question1=question1, question3=question3, question6 =question6))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question3+', y Pregunta 3:'+question6
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        
+        elif(question == 145):
+            question1 = request.POST['question1']
+            question4 = request.POST['question4']
+            question5 = request.POST['question5']
+            engine.reset()
+            engine.declare(GorgojoLottery145(question1=question1, question4=question4, question5 =question5))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question4+', y Pregunta 3:'+question5
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 146):
+            question1 = request.POST['question1']
+            question4 = request.POST['question4']
+            question6 = request.POST['question6']
+            engine.reset()
+            engine.declare(GorgojoLottery146(question1=question1, question4=question4, question6 =question6))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question4+', y Pregunta 3:'+question6
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 156):
+            question1 = request.POST['question1']
+            question5 = request.POST['question5']
+            question6 = request.POST['question6']
+            engine.reset()
+            engine.declare(GorgojoLottery156(question1=question1, question5=question5, question6 =question6))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question5+', y Pregunta 3:'+question6
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 234):
+            question2 = request.POST['question2']
+            question3 = request.POST['question3']
+            question4 = request.POST['question4']
+            engine.reset()
+            engine.declare(GorgojoLottery234(question2=question2, question3=question3, question4 =question4))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question2+', Pregunta 2: '+question3+', y Pregunta 3:'+question4
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 235):
+            question2 = request.POST['question2']
+            question3 = request.POST['question3']
+            question5 = request.POST['question5']
+            engine.reset()
+            engine.declare(GorgojoLottery235(question2=question2, question3=question3, question5 =question5))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question2+', Pregunta 2: '+question3+', y Pregunta 3:'+question5
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 236):
+            question2 = request.POST['question2']
+            question3 = request.POST['question3']
+            question6 = request.POST['question6']
+            engine.reset()
+            engine.declare(GorgojoLottery236(question2=question2, question3=question3, question6=question6))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question2+', Pregunta 2: '+question3+', y Pregunta 3:'+question6
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 245):
+            question2 = request.POST['question2']
+            question4 = request.POST['question4']
+            question5 = request.POST['question5']
+            engine.reset()
+            engine.declare(GorgojoLottery245(question2=question2, question4=question4, question5 =question5))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            tarea = 'Prueba tarea 245'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la Pregunta 1 : '+question2+', Pregunta 2: '+question4+', y Pregunta 3:'+question5
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 246):
+            question2 = request.POST['question2']
+            question4 = request.POST['question4']
+            question6 = request.POST['question6']
+            engine.reset()
+            engine.declare(GorgojoLottery246(question2=question2, question4=question4, question6=question6))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question2+', Pregunta 2: '+question4+', y Pregunta 3:'+question6
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 256):
+            question2 = request.POST['question2']
+            question5 = request.POST['question5']
+            question6 = request.POST['question6']
+            engine.reset()
+            engine.declare(GorgojoLottery256(question2=question2, question5=question5, question6=question6))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question2+', Pregunta 2:'+question5+', y Pregunta 3:'+question6
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 345):
+            question3 = request.POST['question3']
+            question4 = request.POST['question4']
+            question5 = request.POST['question5']
+            engine.reset()
+            engine.declare(GorgojoLottery345(question3=question3, question4=question4, question5 =question5))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question3+', Pregunta 2:'+question4+', y Pregunta 3:'+question5
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 346):
+            question3 = request.POST['question3']
+            question4 = request.POST['question4']
+            question6 = request.POST['question6']
+            engine.reset()
+            engine.declare(GorgojoLottery346(question3=question3, question4=question4, question6=question6))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question3+', Pregunta 2: '+question4+', y Pregunta 3:'+question6
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 356):
+            question3 = request.POST['question3']
+            question5 = request.POST['question5']
+            question6 = request.POST['question6']
+            engine.reset()
+            engine.declare(GorgojoLottery356(question3=question3, question5=question5, question6=question6))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question3+', Pregunta 2: '+question5+', y Pregunta 3:'+question6
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        elif(question == 456):
+            question4 = request.POST['question4']
+            question5 = request.POST['question5']
+            question6 = request.POST['question6']
+            engine.reset()
+            engine.declare(GorgojoLottery456(question4=question4, question5=question5, question6=question6))
+            engine.run()
+            urlRedirect = engine.urlRedirect
+            question_new = engine.question
+            tarea = 'Prueba tarea 123'
+            sugesstion = engine.sugesstion
+            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question4+', Pregunta 2: '+question5+', y Pregunta 3:'+question6
+            return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
+        
+        
+                
+    except (ValueError, KeyError, Lottery.DoesNotExist, LotteryOptions.DoesNotExist):
+        engine = integrateHanlingLottery()
+        engine.reset()
+        engine.declare(RandomList(questionId=1))
+        engine.run()
+        latest_question_list = engine.listQuestion
+        question = engine.questionL
+        
+        return render(request, "questionsRules/loteryrules.html",{
+            "latest_question_list": latest_question_list,
+            "error_message": "Debes elegir alguna respuesta",
+            "question" : question
+        })
+    else:
+        return HttpResponseRedirect(reverse("questionsRules:rules", args=(question.id,)))
+    
+def Prueba(request, question_id, tarea, sugesstion,respuestas):
+    question = 1
+    engine = integrateHanlingLottery()
+    engine.reset()
+    engine.declare(RandomList(questionId=1))
+    engine.run()
+    latest_question_list = engine.listQuestion
+    return render(request, "questionsRules/Prueba.html", {
+        "latest_question_list": latest_question_list,
+        "question": question,
+        "tarea":tarea,
+        "respuestas":respuestas,
+        "sugesstion" : sugesstion
+    });
         
 def resp(request, question_id):
     try:

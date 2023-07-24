@@ -15,3 +15,19 @@ class Choices(models.Model):
     
     def __str__(self):
         return self.choice_text
+    
+class Lottery(models.Model):
+    Lottery_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField("create date")
+    
+    def __str__(self):
+        return self.Lottery_text
+    
+
+class LotteryOptions(models.Model):
+    lottery = models.ForeignKey(Lottery, on_delete= models.CASCADE)
+    lottery_options_text = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.lottery_options_text  
+      
