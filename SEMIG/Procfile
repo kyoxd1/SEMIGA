@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn SEMIG.wsgi
+web: gunicorn SEMIG.wsgi
