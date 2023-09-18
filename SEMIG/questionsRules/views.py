@@ -91,10 +91,9 @@ def loteryresp(request, question_id):
             engine.declare(GorgojoLottery123(question1=question1, question2=question2, question3=question3))
             engine.run()
             urlRedirect = engine.urlRedirect
-            question_new = engine.question
             tarea = 'Prueba tarea 123'
             sugesstion = engine.sugesstion
-            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question2+', y Pregunta 3:'+question3
+            respuestas = 'Según sus respuestas a la: Pregunta 1 ¿Conoce al Gorgojo de Los Andes?: '+question1+', Pregunta 2 ¿Que Hongo se puede poner en el almacen o lugar donde guarda la papa?: '+question2+', y Pregunta 3 Si el Gorgojo de Los Andes aparece en su cultivo ¿Qué es lo primero que haría?:'+question3
             return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
             
         elif(question==124):
@@ -106,10 +105,9 @@ def loteryresp(request, question_id):
             engine.declare(GorgojoLottery124(question1=question1, question2=question2, question4=question4))
             engine.run()
             urlRedirect = engine.urlRedirect
-            question_new = engine.question
             tarea = 'Prueba tarea 123'
             sugesstion = engine.sugesstion
-            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question2+', y Pregunta 3:'+question4
+            respuestas = 'Según sus respuestas a la: Pregunta 1 ¿Conoce al Gorgojo de Los Andes?: '+question1+', Pregunta 2 ¿Que Hongo se puede poner en el almacen o lugar donde guarda la papa?: '+question2+', y Pregunta 3 ¿En el cultivo de papa es necesario colocar trampas?:'+question4
             return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
         
         elif(question == 125):
@@ -120,10 +118,9 @@ def loteryresp(request, question_id):
             engine.declare(GorgojoLottery125(question1=question1,question2=question2,question5=question5))
             engine.run()
             urlRedirect = engine.urlRedirect
-            question_new = engine.question
             tarea = 'Prueba tarea 123'
             sugesstion = engine.sugesstion
-            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question2+', y Pregunta 3:'+question5
+            respuestas = 'Según sus respuestas a la: Pregunta 1 ¿Conoce al Gorgojo de Los Andes?: '+question1+', Pregunta 2 ¿Que Hongo se puede poner en el almacen o lugar donde guarda la papa?: '+question2+', y Pregunta 3 ¿Se puede sembrar otros cultivos alrededor de la papa? (Como ser cebada, cebolla, etc.):'+question5
             return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
         
         elif(question == 126):
@@ -134,10 +131,9 @@ def loteryresp(request, question_id):
             engine.declare(GorgojoLottery126(question1=question1, question2=question2, question6 =question6))
             engine.run()
             urlRedirect = engine.urlRedirect
-            question_new = engine.question
             tarea = 'Prueba tarea 123'
             sugesstion = engine.sugesstion
-            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question2+', y Pregunta 3:'+question6
+            respuestas = 'Según sus respuestas a la: Pregunta 1 ¿Conoce al Gorgojo de Los Andes?: '+question1+', Pregunta 2 ¿Que Hongo se puede poner en el almacen o lugar donde guarda la papa?: '+question2+', y Pregunta 3 ¿Qué hace usted al momento de recolectar la papa?:'+question6
             return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
         
         elif(question == 134):
@@ -148,10 +144,9 @@ def loteryresp(request, question_id):
             engine.declare(GorgojoLottery134(question1=question1, question3=question3, question4 =question4))
             engine.run()
             urlRedirect = engine.urlRedirect
-            question_new = engine.question
             tarea = 'Prueba tarea 123'
             sugesstion = engine.sugesstion
-            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question3+', y Pregunta 3:'+question4
+            respuestas = 'Según sus respuestas a la: Pregunta 1 ¿Conoce al Gorgojo de Los Andes?: '+question1+', Pregunta 2 Si el Gorgojo de Los Andes aparece en su cultivo ¿Qué es lo primero que haría?: '+question3+', y Pregunta 3 ¿En el cultivo de papa es necesario colocar trampas?:'+question4
             return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
         elif(question == 135):
             question1 = request.POST['question1']
@@ -161,10 +156,9 @@ def loteryresp(request, question_id):
             engine.declare(GorgojoLottery135(question1=question1, question3=question3, question5 =question5))
             engine.run()
             urlRedirect = engine.urlRedirect
-            question_new = engine.question
             tarea = 'Prueba tarea 123'
             sugesstion = engine.sugesstion
-            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question3+', y Pregunta 3:'+question5
+            respuestas = 'Según sus respuestas a la: Pregunta 1 ¿Conoce al Gorgojo de Los Andes?: '+question1+', Pregunta 2 Si el Gorgojo de Los Andes aparece en su cultivo ¿Qué es lo primero que haría?: '+question3+', y Pregunta 3 ¿Se puede sembrar otros cultivos alrededor de la papa? (Como ser cebada, cebolla, etc.):'+question5
             return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))  
         
         elif(question == 136):
@@ -178,7 +172,7 @@ def loteryresp(request, question_id):
             question_new = engine.question
             tarea = 'Prueba tarea 123'
             sugesstion = engine.sugesstion
-            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question1+', Pregunta 2: '+question3+', y Pregunta 3:'+question6
+            respuestas = 'Según sus respuestas a la: Pregunta 1 ¿Conoce al Gorgojo de Los Andes?: '+question1+', Pregunta 2 Si el Gorgojo de Los Andes aparece en su cultivo ¿Qué es lo primero que haría?: '+question3+', y Pregunta 3 ¿Qué hace usted al momento de recolectar la papa?:'+question6
             return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
         
         elif(question == 145):
@@ -228,7 +222,6 @@ def loteryresp(request, question_id):
             engine.declare(GorgojoLottery234(question2=question2, question3=question3, question4 =question4))
             engine.run()
             urlRedirect = engine.urlRedirect
-            question_new = engine.question
             tarea = 'Prueba tarea 123'
             sugesstion = engine.sugesstion
             respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question2+', Pregunta 2: '+question3+', y Pregunta 3:'+question4
@@ -294,7 +287,7 @@ def loteryresp(request, question_id):
             urlRedirect = engine.urlRedirect
             tarea = 'Prueba tarea 123'
             sugesstion = engine.sugesstion
-            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question2+', Pregunta 2:'+question5+', y Pregunta 3:'+question6
+            respuestas = 'Según sus respuestas a la Pregunta 1 : '+question2+', Pregunta 2:'+question5+', y Pregunta 3:'+question6
             return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
         elif(question == 345):
             question3 = request.POST['question3']
@@ -306,7 +299,7 @@ def loteryresp(request, question_id):
             urlRedirect = engine.urlRedirect
             tarea = 'Prueba tarea 123'
             sugesstion = engine.sugesstion
-            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question3+', Pregunta 2:'+question4+', y Pregunta 3:'+question5
+            respuestas = 'Según sus respuestas a la \n Pregunta 1 : '+question3+', Pregunta 2:'+question4+', y Pregunta 3: '+question5
             return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
         elif(question == 346):
             question3 = request.POST['question3']
@@ -319,7 +312,7 @@ def loteryresp(request, question_id):
             question_new = engine.question
             tarea = 'Prueba tarea 123'
             sugesstion = engine.sugesstion
-            respuestas = 'Según sus respuestas a la </br> Pregunta 1 : '+question3+', Pregunta 2: '+question4+', y Pregunta 3:'+question6
+            respuestas = 'Según sus respuestas:, Pregunta 1  : '+question3+', Pregunta 2: '+question4+', y Pregunta 3:'+question6
             return HttpResponseRedirect(reverse(urlRedirect, args=(1,tarea,sugesstion,respuestas,)))
         elif(question == 356):
             question3 = request.POST['question3']

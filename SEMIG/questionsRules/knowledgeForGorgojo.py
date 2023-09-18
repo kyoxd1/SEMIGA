@@ -347,7 +347,7 @@ class integrateHanlingLottery(KnowledgeEngine):
     def GorgojoLottery124_7(self):
         question = 124
         urlRedirect = "questionsRules:Prueba"
-        self.sugesstion = ""
+        self.sugesstion = "a"
         self.question = question
         self.urlRedirect = urlRedirect
         return self.question, self.urlRedirect
@@ -1137,28 +1137,28 @@ class integrateHanlingLottery(KnowledgeEngine):
     
     @Rule(GorgojoLottery234(question2='Hongo negro',question3='Adelantar la Cosecha',question4='Si'))
     def GorgojoLottery234_6(self):
-        urlRedirect = "questionsRules:rules"
+        urlRedirect = "questionsRules:Prueba"
         self.sugesstion = ""
         self.urlRedirect = urlRedirect
         return self.question, self.urlRedirect
     
     @Rule(GorgojoLottery234(question2='Hongo blanco',question3='Usar insecticida peligroso',question4='No'))
     def GorgojoLottery234_7(self):
-        urlRedirect = "questionsRules:chemicals"
+        urlRedirect = "questionsRules:Prueba"
         self.urlRedirect = urlRedirect
         self.sugesstion = "Conocer mejor los químicos para su cultivo, tanto los inorgánicos (Karate o Lambdacal) como los orgánicos (Aji, ajo y azufre en poca proporción)"
         return self.question, self.urlRedirect
     
     @Rule(GorgojoLottery234(question2='Hongo blanco',question3='Usar insecticida peligroso',question4='Si'))
     def GorgojoLottery234_8(self):
-        urlRedirect = "questionsRules:rules"
-        self.sugesstion = ""
+        urlRedirect = "questionsRules:Prueba"
         self.urlRedirect = urlRedirect
+        self.sugesstion = "El hongo blanco es un gran aporte para la protección de nuestra papa una vez ya cosechada ya que nos protege de gran forma del Gorgojo de Los Andes ya que el hongo blanco acelera su ciclo de vida /n </br> el usar un insecticida peligroso podria eliminar a toda la plaga pero tambien dañaria muy seriamente su cultivo, debe tener en cuenta que si bien la solucion es buena debe tener mucho cuidado con no dañar su cultivo asi que la mejor recomendacion que se le daria es que vea el tiempo que falta par ala cosecha y si es posible adelantar dicha cosecha o usar quimicos con mucha cautela y con alguna supervision de un experto en uso de quimicos para controlar la plaga. \n </br> Excelente respuesta a su uso de trampas para un cultivo, son muy esenciales y faciles de elaborar en el cultivo, podria realizar trampas caseras como el uso de piedras planas o botellas plasticas cortadas a la mitad para que con la humedad se acerque la plaga. "
         return self.question, self.urlRedirect
     
     @Rule(GorgojoLottery234(question2='Hongo blanco',question3='Correr y gritar',question4='Si'))
     def GorgojoLottery234_9(self):
-        urlRedirect = "questionsRules:rules"
+        urlRedirect = "questionsRules:Prueba"
         self.sugesstion = ""
         self.urlRedirect = urlRedirect
         return self.question, self.urlRedirect
@@ -1695,8 +1695,8 @@ class integrateHanlingLottery(KnowledgeEngine):
     
     @Rule(GorgojoLottery345(question3='Usar insecticida peligroso',question4='Si',question5='Si'))
     def GorgojoLottery345_4(self):
-        urlRedirect = "questionsRules:rules"
-        self.sugesstion = ""
+        urlRedirect = "questionsRules:Prueba"
+        self.sugesstion = "asdasd"
         self.urlRedirect = urlRedirect
         return self.question, self.urlRedirect
     
@@ -2543,3 +2543,4 @@ class integratedHandling(KnowledgeEngine):
         self.urlRedirect = urlRedirect
         self.sugesstion =""
         return self.question, self.urlRedirect
+    
